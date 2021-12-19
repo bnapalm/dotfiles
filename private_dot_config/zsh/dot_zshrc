@@ -29,8 +29,8 @@ compdef __start_kubectl k
 autoload -Uz bd; bd 
 
 # fzf
-source /usr/share/doc/fzf/examples/key-bindings.zsh
-source /usr/share/doc/fzf/examples/completion.zsh
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
 
 # custom vi-up-down
 bindkey -M vicmd ī up-line-or-history
@@ -42,10 +42,12 @@ bindkey -M viopp s down-line-or-history
 
 # PowerLevel10k prompt
 # https://github.com/romkatv/powerlevel10k
-source ${HOME}/src/vendor/powerlevel10k/powerlevel10k.zsh-theme
+# source ${HOME}/src/vendor/powerlevel10k/powerlevel10k.zsh-theme
+source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 
 # This should be at the end of file
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
