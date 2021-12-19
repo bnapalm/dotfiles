@@ -1,0 +1,56 @@
+###########
+#  color  #
+###########
+
+alias ls='ls --color=auto'
+alias dir='dir --color=auto'
+alias vdir='vdir --color=auto'
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+
+###########
+#   ls    #
+###########
+
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+###########
+# kubectl #
+###########
+
+alias k="kubectl"
+alias kns="kubens"
+alias ktx="kubectx"
+
+###########
+#   git   #
+###########
+
+alias gs="git status"
+alias ga="git add"
+alias gp="git push"
+alias gplo="git pull origin"
+alias gb="git branch "
+alias gc="git commit"
+alias gd="git diff"
+alias glo='git log --pretty="oneline"'
+alias glol='git log --graph --oneline --decorate'
+
+###########
+# kittens #
+###########
+
+alias icat='kitty kitten icat'
+
+###########
+#  misc   #
+###########
+
+alias d="dirs -v"
+for index ({1..9}) alias "$index"="cd +${index}"; unset index
+alias vi="nvim"
+alias vim="nvim"
+

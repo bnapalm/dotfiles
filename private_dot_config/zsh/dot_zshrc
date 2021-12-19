@@ -1,0 +1,51 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+source ${XDG_CONFIG_HOME}/zsh/alias
+
+path+=${HOME}/.yarn/bin
+fpath+=${XDG_CONFIG_HOME}/zsh/plugins
+
+# Auto-Completion
+autoload -U compinit; compinit
+
+# Directory stack
+setopt AUTO_PUSHD
+setopt PUSHD_IGNORE_DUPS
+setopt PUSHD_SILENT
+
+
+# General completion
+source ${XDG_CONFIG_HOME}/zsh/completion.zsh
+# Kubectl completion
+source <(kubectl completion zsh)
+compdef __start_kubectl k
+
+# back-dir
+autoload -Uz bd; bd 
+
+# fzf
+source /usr/share/doc/fzf/examples/key-bindings.zsh
+source /usr/share/doc/fzf/examples/completion.zsh
+
+# custom vi-up-down
+bindkey -M vicmd ī up-line-or-history
+bindkey -M visual ī up-line-or-history
+bindkey -M viopp ī up-line-or-history
+bindkey -M vicmd s down-line-or-history
+bindkey -M visual s down-line-or-history
+bindkey -M viopp s down-line-or-history
+
+# PowerLevel10k prompt
+# https://github.com/romkatv/powerlevel10k
+source ${HOME}/src/vendor/powerlevel10k/powerlevel10k.zsh-theme
+
+# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
+[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
+
+# This should be at the end of file
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
