@@ -7,7 +7,7 @@ fi
 
 source ${XDG_CONFIG_HOME}/zsh/alias
 
-path+=${HOME}/.yarn/bin
+[[ ! -d ${HOME}/.yarn/bin ]] || path+=${HOME}/.yarn/bin
 fpath+=${XDG_CONFIG_HOME}/zsh/plugins
 
 # Auto-Completion
@@ -18,12 +18,13 @@ setopt AUTO_PUSHD
 setopt PUSHD_IGNORE_DUPS
 setopt PUSHD_SILENT
 
-
 # General completion
 source ${XDG_CONFIG_HOME}/zsh/completion.zsh
 # Kubectl completion
-source <(kubectl completion zsh)
-compdef __start_kubectl k
+if (( $+commands[kubectl] )); then
+  source <(kubectl completion zsh)
+  compdef __start_kubectl k
+fi
 
 # back-dir
 autoload -Uz bd; bd 
@@ -42,12 +43,17 @@ bindkey -M viopp s down-line-or-history
 
 # PowerLevel10k prompt
 # https://github.com/romkatv/powerlevel10k
-# source ${HOME}/src/vendor/powerlevel10k/powerlevel10k.zsh-theme
+# Note to self: Remove first line afterwards
+[[ ! -f ${HOME}/src/vendor/powerlevel10k/powerlevel10k.zsh-theme ]] || \
+source ${HOME}/src/vendor/powerlevel10k/powerlevel10k.zsh-theme
+[[ ! -f /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme ]] || \
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 
 # This should be at the end of file
+[[ ! -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] || \
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-#source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[[ ! -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] || \
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
