@@ -7,7 +7,7 @@
 "  General settings
 "-----------------------------
 
-set nowrap
+set wrap
 set formatoptions=cqrn1
 set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 set autoindent
