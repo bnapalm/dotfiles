@@ -214,7 +214,7 @@ bindsym Group2+$mod+r mode "resize"
 # finds out, if available)
 bar {
   output primary
-  workspace_min_width 60
+  workspace_min_width 45
   status_command SCRIPT_DIR=~/.config/i3blocks i3blocks
   position top
   tray_output primary
@@ -230,7 +230,7 @@ bar {
 
 bar {
   output DP-0
-  workspace_min_width 80
+  workspace_min_width 60
   status_command SCRIPT_DIR=~/.config/i3blocks i3blocks
   position top
   font pango:DejaVu Sans Mono 18
