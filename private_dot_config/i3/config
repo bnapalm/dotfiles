@@ -249,6 +249,7 @@ gaps inner 10
 gaps outer 5
 smart_gaps on
 
+client.focused          #d79921 #504945 #ffffff #2e9ef4 #d79921
 # old regolith settings
 
 bindsym Group1+$mod+c exec gnome-control-center --class=floating_window
