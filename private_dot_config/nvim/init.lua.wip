@@ -1,5 +1,6 @@
 require "user.options"
 require "user.keymaps"
 require "user.plugins"
-vim.o.background = "dark"
-vim.cmd [[colorscheme gruvbox]]
+require "user.colorscheme"
+require "user.cmp"
+require "user.lsp"
