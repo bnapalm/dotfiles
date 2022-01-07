@@ -67,11 +67,14 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 -- keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 -- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
+keymap("n", "<leader>f", "<cmd>Telescope find_files<cr>", opts)
+keymap("n", "<leader>t", "<cmd>Telescope live_grep<cr>", opts)
+keymap("n", "<leader>b", "<cmd>Telescope buffers<cr>", opts)
 
 -- Edit file under cursor
 keymap("n", "gf", ":edit <cfile><CR>", opts)
 
--- No highlight
-keymap("n", "<leader>h", ":noh", opts)
+keymap("n", "<leader>h", ":set hlsearch!<CR>", opts)
+keymap("n", "<leader>l", ":set cursorline!<CR>", opts)
 
-keymap("n", "<leader>b", ":buffers<CR>:buffer<Space>", {noremap = true} )
+-- keymap("n", "<leader>b", ":buffers<CR>:buffer<Space>", {noremap = true} )
