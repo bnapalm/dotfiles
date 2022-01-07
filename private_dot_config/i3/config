@@ -111,7 +111,7 @@ bindsym Group2+$mod+f fullscreen toggle
 bindsym Group1+$mod+comma layout stacking
 bindsym Group1+$mod+w layout tabbed
 bindsym Group1+$mod+e layout toggle split
-bindsym Group2+$mod+comma layout stacking
+bindsym Group2+$mod+z layout stacking
 bindsym Group2+$mod+w layout tabbed
 bindsym Group2+$mod+e layout toggle split
 
