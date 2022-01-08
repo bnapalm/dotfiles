@@ -32,8 +32,8 @@ keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
 -- Navigate buffers
-keymap("n", "<S-l>", ":bnext<CR>", opts)
-keymap("n", "<S-h>", ":bprevious<CR>", opts)
+keymap("n", "<A-l>", ":bnext<CR>", opts)
+keymap("n", "<A-h>", ":bprevious<CR>", opts)
 
 -- Move text up and down
 keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
@@ -76,5 +76,6 @@ keymap("n", "gf", ":edit <cfile><CR>", opts)
 
 keymap("n", "<leader>h", ":set hlsearch!<CR>", opts)
 keymap("n", "<leader>l", ":set cursorline!<CR>", opts)
+keymap("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", opts)
 
 -- keymap("n", "<leader>b", ":buffers<CR>:buffer<Space>", {noremap = true} )
