@@ -55,3 +55,4 @@ alias vi="nvim"
 alias vim="nvim"
 alias vimdiff="nvim -d"
 alias cz=chezmoi
+alias dc=docker-compose
