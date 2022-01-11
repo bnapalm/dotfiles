@@ -1,8 +1,3 @@
-[".config/local/share/nvim/site/autoload/plug.vim"]
-  type = "file"
-  url = "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-  refreshPeriod = "168h"
-
 ["src/vendor/i3blocks-contrib"]
     type = "archive"
     url = "https://github.com/vivien/i3blocks-contrib/archive/master.tar.gz"
