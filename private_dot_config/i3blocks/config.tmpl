@@ -78,7 +78,9 @@ interval=30
 #separator=false
 
 [wifi]
-INTERFACE=wlp5s0
+{{- if .wifi_adapter }}
+INTERFACE={{ .wifi_adapter }}
+{{- end }}
 COLOR_GE80=#458588
 COLOR_GE60=#98971a
 COLOR_GE40=#689d6a
