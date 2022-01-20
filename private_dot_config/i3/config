@@ -257,6 +257,7 @@ client.focused          #d79921 #504945 #ffffff #d65d0e #d79921
 
 # startup
 exec --no-startup-id feh --bg-scale --randomize ~/Pictures/wallpapers/landscape/*
+exec --no-startup-id picom
 # old regolith settings
 
 bindsym $mod+F11 exec feh --bg-scale --randomize ~/Pictures/wallpapers/landscape/*
