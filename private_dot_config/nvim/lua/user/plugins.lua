@@ -99,6 +99,8 @@ return packer.startup(function(use)
   use "https://tpope.io/vim/fugitive.git"
   use "shumphrey/fugitive-gitlab.vim"
 
+  use "towolf/vim-helm"
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
