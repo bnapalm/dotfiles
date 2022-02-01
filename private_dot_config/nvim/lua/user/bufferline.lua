@@ -1,4 +1,4 @@
--- Setup nvim-cmp.
+-- Setup bufferline.
 local status_ok, bline = pcall(require, "bufferline")
 if not status_ok then
   return
