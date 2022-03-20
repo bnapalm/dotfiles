@@ -49,11 +49,9 @@ alias glol='git log --graph --oneline --decorate'
 alias icat='kitty kitten icat'
 
 ###########
-#  misc   #
+#  nvim   #
 ###########
 
-alias d="dirs -v"
-for index ({1..9}) alias "$index"="cd +${index}"; unset index
 alias vi="nvim"
 alias vim="nvim"
 alias vimdiff="nvim -d"
