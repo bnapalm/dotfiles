@@ -55,5 +55,12 @@ alias icat='kitty kitten icat'
 alias vi="nvim"
 alias vim="nvim"
 alias vimdiff="nvim -d"
-alias cz=chezmoi
-alias dc=docker-compose
+
+###########
+#  misc   #
+###########
+
+alias d='dirs -v'
+for index ({1..9}) alias "$index"="cd +${index}"; unset index
+alias cz='chezmoi'
+alias dc='docker-compose'
