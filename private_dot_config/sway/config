@@ -192,9 +192,6 @@ smart_gaps on
 
 client.focused          #d79921 #504945 #ffffff #d65d0e #d79921
 
-# startup
-exec --no-startup-id feh --bg-scale --randomize ~/Pictures/wallpapers/landscape/*
-
 bindsym $mod+F11 exec feh --bg-scale --randomize ~/Pictures/wallpapers/landscape/*
 bindsym $mod+Escape exec dbus-send --type=method_call --dest=org.gnome.ScreenSaver /org/gnome/ScreenSaver org.gnome.ScreenSaver.Lock
 
@@ -230,3 +227,7 @@ output "eDP-1" {
 
 bindsym $mod+space exec --no-startup-id "j4-dmenu-desktop --dmenu='bemenu --fn \\"pango:Monospace 14\\" -H 30 -l 25 -M 920 -i'"
 bindsym $mod+p     exec --no-startup-id "bemenu-run --fn 'Monospace' 16 -H 25 -l 25 -M 920"
+
+# Wallpaper
+
+output "eDP-1" bg /home/black/Pictures/wallpapers/pretty_kitty.jpg fill
