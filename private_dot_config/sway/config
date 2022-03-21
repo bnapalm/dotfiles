@@ -200,7 +200,9 @@ bindsym $mod+Escape exec dbus-send --type=method_call --dest=org.gnome.ScreenSav
 
 ## Sway
 
-bar swaybar_command waybar
+bar {
+  swaybar_command waybar
+}
 
 default_border pixel
 
