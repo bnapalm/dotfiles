@@ -21,13 +21,6 @@ setopt PUSHD_SILENT
 # General completion
 source ${XDG_CONFIG_HOME}/zsh/completion.zsh
 
-# k8s completion
-(( $+commands[helm] )) && source <(helm completion zsh)
-if (( $+commands[kubectl] )); then
-  source <(kubectl completion zsh)
-  compdef __start_kubectl k
-fi
-
 # back-dir
 autoload -Uz bd; bd 
 

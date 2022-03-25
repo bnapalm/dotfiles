@@ -1,0 +1,14 @@
+#!/bin/bash
+
+LIGHT_THEME=~/.config/kitty/themes/gruvbox_light.conf
+DARK_THEME=~/.config/kitty/themes/gruvbox_dark.conf
+
+CUR_BG=$(kitty @ get-colors |grep "^background"|sed "s/^.*#//")
+
+if [ $CUR_BG = '282828' ]; then
+  TARGET=$LIGHT_THEME
+else
+  TARGET=$DARK_THEME
+fi
+
+kitty @ set-colors $TARGET $@

@@ -10,12 +10,16 @@ alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
 ###########
-#   ls    #
+#   exa   #
 ###########
 
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
+alias ls="exa"
+alias ll='exa -l --git --icons'
+alias la='exa -a'
+alias lla='exa -al --git --icons'
+alias llt='exa -als modified --git --icons'
+alias lls='exa -als size --git --icons'
+alias l='exa'
 
 ###########
 # kubectl #
@@ -46,13 +50,19 @@ alias glol='git log --graph --oneline --decorate'
 alias icat='kitty kitten icat'
 
 ###########
-#  misc   #
+#  nvim   #
 ###########
 
-alias d="dirs -v"
-for index ({1..9}) alias "$index"="cd +${index}"; unset index
 alias vi="nvim"
 alias vim="nvim"
 alias vimdiff="nvim -d"
-alias cz=chezmoi
-alias dc=docker-compose
+
+###########
+#  misc   #
+###########
+
+alias d='dirs -v'
+for index ({1..9}) alias "$index"="cd +${index}"; unset index
+alias cz='chezmoi'
+alias dc='docker-compose'
+alias cat='bat'
