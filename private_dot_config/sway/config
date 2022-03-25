@@ -34,6 +34,8 @@ font pango:DejaVu Sans Mono 10
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 # exec --no-startup-id nm-applet
 
+# for wob systemd socked
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 set $WOBSOCK /run/user/1000/wob.sock
 
 # Use pamixer to adjust volume in PulseAudio.
@@ -235,6 +237,3 @@ bindsym $mod+p     exec --no-startup-id "bemenu-run --fn 'Monospace' 16 -H 25 -l
 output "eDP-1" {
   bg /home/black/Pictures/wallpapers/pretty_kitty.jpg fill
 }
-
-# for wob systemd socked
-exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
