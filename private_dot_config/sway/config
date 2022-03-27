@@ -127,17 +127,17 @@ bindcode $mod+Shift+74 move container to workspace number $ws8
 bindcode $mod+Shift+75 move container to workspace number $ws9
 bindcode $mod+Shift+76 move container to workspace number $ws10
 
-# move focused container to workspace
-bindcode $mod+Shift+67 move container to workspace number $ws1
-bindcode $mod+Shift+68 move container to workspace number $ws2
-bindcode $mod+Shift+69 move container to workspace number $ws3
-bindcode $mod+Shift+70 move container to workspace number $ws4
-bindcode $mod+Shift+71 move container to workspace number $ws5
-bindcode $mod+Shift+72 move container to workspace number $ws6
-bindcode $mod+Shift+73 move container to workspace number $ws7
-bindcode $mod+Shift+74 move container to workspace number $ws8
-bindcode $mod+Shift+75 move container to workspace number $ws9
-bindcode $mod+Shift+76 move container to workspace number $ws10
+# move and follow container to workspace
+bindcode $mod+Control+67 move container to workspace number $ws1;  workspace $ws1
+bindcode $mod+Control+68 move container to workspace number $ws2;  workspace $ws2
+bindcode $mod+Control+69 move container to workspace number $ws3;  workspace $ws3
+bindcode $mod+Control+70 move container to workspace number $ws4;  workspace $ws4
+bindcode $mod+Control+71 move container to workspace number $ws5;  workspace $ws5
+bindcode $mod+Control+72 move container to workspace number $ws6;  workspace $ws6
+bindcode $mod+Control+73 move container to workspace number $ws7;  workspace $ws7
+bindcode $mod+Control+74 move container to workspace number $ws8;  workspace $ws8
+bindcode $mod+Control+75 move container to workspace number $ws9;  workspace $ws9
+bindcode $mod+Control+76 move container to workspace number $ws10; workspace $ws10
 
 # move workspaces across screens
 bindsym $mod+Shift+Tab move workspace to output right
