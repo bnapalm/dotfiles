@@ -5,6 +5,7 @@ export XDG_STATE_HOME="$XDG_CONFIG_HOME/local/state"
 
 typeset -U PATH path
 path+="$HOME/bin"
+path+="$HOME/.local/bin"
 export PATH
 export VISUAL="nvim"
 export EDITOR="$VISUAL"
