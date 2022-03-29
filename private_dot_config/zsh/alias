@@ -13,13 +13,13 @@ alias fgrep='fgrep --color=auto'
 #   exa   #
 ###########
 
-alias ls="exa"
+alias ls="exa --icons"
 alias ll='exa -l --git --icons'
-alias la='exa -a'
+alias la='exa -a --icons'
 alias lla='exa -al --git --icons'
 alias llt='exa -als modified --git --icons'
 alias lls='exa -als size --git --icons'
-alias l='exa'
+alias l='exa --icons'
 
 ###########
 # kubectl #
