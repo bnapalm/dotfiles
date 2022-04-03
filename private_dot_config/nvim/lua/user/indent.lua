@@ -3,8 +3,9 @@ if not status_ok then
   return
 end
 
-vim.cmd [[highlight IndentBlanklineContextChar  guifg=green gui=nocombine]]
-vim.cmd [[highlight IndentBlanklineContextStart guisp=green gui=underline]]
+local CustomHl = vim.api.nvim_get_hl_by_name('TabLineSel', true)
+vim.api.nvim_set_hl(0, 'IndentBlanklineContextChar',  { fg = CustomHl.foreground })
+vim.api.nvim_set_hl(0, 'IndentBlanklineContextStart', { sp = CustomHl.foreground, underline = true })
 
 indent.setup({
   space_char_blankline = " ",
