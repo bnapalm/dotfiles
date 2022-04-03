@@ -79,5 +79,6 @@ keymap("n", "<leader>h", ":set hlsearch!<CR>", opts)
 keymap("n", "<leader>l", ":set cursorline!<CR>", opts)
 keymap("n", "<leader>x", "<cmd>Bdelete<CR>", opts)
 keymap("n", "<leader>q", "<cmd>close<CR>", opts)
+keymap("n", '\\', ":Neotree reveal<CR>", opts)
 
 -- keymap("n", "<leader>b", ":buffers<CR>:buffer<Space>", {noremap = true} )
