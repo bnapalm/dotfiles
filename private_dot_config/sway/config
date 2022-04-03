@@ -208,6 +208,11 @@ output "eDP-1" {
 bindsym $mod+space exec --no-startup-id "j4-dmenu-desktop --dmenu='bemenu --fn \\"pango:Monospace 14\\" -H 30 -l 25 -M 920 -i'"
 bindsym $mod+p     exec --no-startup-id "bemenu-run --fn 'Monospace' 16 -H 25 -l 25 -M 920"
 
+# Displays
+
+set $laptop "eDP-1"
+bindswitch --reload --locked lid:on output $laptop disable
+bindswitch --reload --locked lid:off output $laptop enable
 # Wallpaper
 
 output "eDP-1" {
