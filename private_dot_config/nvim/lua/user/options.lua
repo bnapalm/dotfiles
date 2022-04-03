@@ -35,7 +35,7 @@ local options = {
   sidescrolloff = 8,
   formatoptions = "cqrn1",
   list = true,
-  listchars = { tab = '<=>', trail = '·', extends = '⇨', precedes = '⇦' },
+  listchars = { trail = '·', extends = '⇨', precedes = '⇦' },
   wildmode = { longest = 'full', 'full' },
 }
 
