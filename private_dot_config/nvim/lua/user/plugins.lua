@@ -101,6 +101,7 @@ return packer.startup(function(use)
   use "shumphrey/fugitive-gitlab.vim"
 
   use "towolf/vim-helm"
+  use "fatih/vim-go"
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
