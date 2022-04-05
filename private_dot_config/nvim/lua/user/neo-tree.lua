@@ -79,7 +79,7 @@ neo_tree.setup({
       ["S"] = "open_split",
       ["s"] = "open_vsplit",
       ["t"] = "open_tabnew",
-      ["C"] = "close_node",
+      ["h"] = "close_node",
       ["<bs>"] = "navigate_up",
       ["."] = "set_root",
       ["H"] = "toggle_hidden",
