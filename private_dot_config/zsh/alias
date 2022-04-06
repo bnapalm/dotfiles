@@ -66,3 +66,4 @@ for index ({1..9}) alias "$index"="cd +${index}"; unset index
 alias cz='chezmoi'
 alias dc='docker-compose'
 alias cat='bat'
+alias drun='docker run --rm -it -v "${PWD}":/app -w /app'
