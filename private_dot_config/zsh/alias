@@ -58,6 +58,15 @@ alias vim="nvim"
 alias vimdiff="nvim -d"
 
 ###########
+#terraform#
+###########
+
+alias tf="terraform"
+alias tg="terragrunt"
+alias tgpf="terragrunt plan -out tfplan"
+alias tgaf="terragrunt apply tfplan"
+
+###########
 #  misc   #
 ###########
 
