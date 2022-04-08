@@ -8,9 +8,9 @@
   border: none;
   border-radius: 0;
   font-family: "Font Awesome 6 Free Bold";
-  font-size: 16px;
+  font-size: 12px;
   font-variant: normal;
-  min-height: 0;
+  min-height: 12pt;
 }
 
 window#waybar {
