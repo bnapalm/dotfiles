@@ -142,6 +142,10 @@ bindcode $mod+Control+76 move container to workspace number $ws10; workspace $ws
 # move workspaces across screens
 bindsym $mod+Shift+Tab move workspace to output right
 
+# scratchpad
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
 # reload the configuration file
 bindsym $mod+Shift+r reload
 # exit i3 (logs you out of your X session)
