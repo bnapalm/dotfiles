@@ -29,14 +29,6 @@ autoload -Uz bd; bd
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 
-# custom vi-up-down
-bindkey -M vicmd ī up-line-or-history
-bindkey -M visual ī up-line-or-history
-bindkey -M viopp ī up-line-or-history
-bindkey -M vicmd s down-line-or-history
-bindkey -M visual s down-line-or-history
-bindkey -M viopp s down-line-or-history
-
 # PowerLevel10k prompt
 # https://github.com/romkatv/powerlevel10k
 # Note to self: Remove first line afterwards
