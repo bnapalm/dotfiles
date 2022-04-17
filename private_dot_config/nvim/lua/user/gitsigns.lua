@@ -60,8 +60,10 @@ gitsigns.setup {
     map('n', '[c', "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'", {expr=true})
 
     -- Actions
-    map({'n', 'v'}, '<leader>hs', gs.stage_hunk)
-    map({'n', 'v'}, '<leader>hr', gs.reset_hunk)
+    map({'n'}, '<leader>hs', gs.stage_hunk)
+    map({'n'}, '<leader>hr', gs.reset_hunk)
+    map({'v'}, '<leader>hs', '<cmd>lua require"gitsigns".stage_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>')
+    map({'v'}, '<leader>hr', '<cmd>lua require"gitsigns".reset_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>')
     map('n', '<leader>hS', gs.stage_buffer)
     map('n', '<leader>hu', gs.undo_stage_hunk)
     map('n', '<leader>hR', gs.reset_buffer)
