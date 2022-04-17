@@ -20,7 +20,6 @@ configs.setup {
     enable = true,
     enable_autocmd = false,
   },
-  -- nvim-treesitter-textobjects plugin
   textobjects = {
     select = {
       enable = true,
