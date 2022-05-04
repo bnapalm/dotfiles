@@ -73,3 +73,7 @@ keymap("n", "<leader>q", "<cmd>close<CR>", opts)
 keymap("n", '\\', ":Neotree toggle reveal<CR>", opts)
 
 -- keymap("n", "<leader>b", ":buffers<CR>:buffer<Space>", {noremap = true} )
+
+-- Resize gui font
+keymap({'n', 'i'}, "<C-+>", function() ResizeGuiFont(1)  end, opts)
+keymap({'n', 'i'}, "<C-->", function() ResizeGuiFont(-1) end, opts)

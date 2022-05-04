@@ -7,4 +7,4 @@ if not status_ok then
   return
 end
 
-vim.cmd("hi! Normal guibg=NONE")
+-- vim.cmd("hi! Normal guibg=NONE")
