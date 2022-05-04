@@ -77,3 +77,4 @@ keymap("n", '\\', ":Neotree toggle reveal<CR>", opts)
 -- Resize gui font
 keymap({'n', 'i'}, "<C-+>", function() ResizeGuiFont(1)  end, opts)
 keymap({'n', 'i'}, "<C-->", function() ResizeGuiFont(-1) end, opts)
+keymap({'n', 'i'}, "<C-BS>", function() ResetGuiFont() end, opts)

@@ -1,4 +1,5 @@
-vim.g.gui_font_size = 12
+vim.g.gui_font_default_size = 12
+vim.g.gui_font_size = vim.g.gui_font_default_size
 vim.g.gui_font_face = "Fira Code Retina"
 
 RefreshGuiFont = function()
@@ -9,3 +10,10 @@ ResizeGuiFont = function(delta)
   vim.g.gui_font_size = vim.g.gui_font_size + delta
   RefreshGuiFont()
 end
+
+ResetGuiFont = function ()
+  vim.g.gui_font_size = vim.g.gui_font_default_size
+RefreshGuiFont()
+end
+
+ResetGuiFont()
