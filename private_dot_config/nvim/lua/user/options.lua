@@ -37,6 +37,7 @@ local options = {
   list = true,
   listchars = { tab = '  ', trail = '·', extends = '⇨', precedes = '⇦' },
   wildmode = { longest = 'full', 'full' },
+  laststatus = 3,
 }
 
 vim.opt.shortmess:append "c"
