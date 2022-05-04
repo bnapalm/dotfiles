@@ -14,8 +14,8 @@ export EDITOR="$VISUAL"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
 export HISTFILE="$ZDOTDIR/.zhistory"
-export HISTSIZE=10000
-export SAVEHIST=10000
+export HISTSIZE=20000
+export SAVEHIST=20000
 
 export KUBECONFIG="$XDG_CONFIG_HOME/kube.config"
 
