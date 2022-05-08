@@ -1,10 +1,11 @@
 -- Autocommand that applies chezmoi config on save
-vim.cmd [[
-  augroup chezmoi_apply
-    autocmd!
-    autocmd BufWritePost ~/.config/local/share/chezmoi/* ! chezmoi apply --source-path "%"
-  augroup end
-]]
+local cz_dir = vim.env.HOME .. "/.config/local/share/chezmoi/*"
+local cz_grp = vim.api.nvim_create_augroup("chezmoi_apply", { clear = true })
+vim.api.nvim_create_autocmd("BufWritePost", {
+  pattern = cz_dir,
+  command = '! chezmoi apply --source-path "%"',
+  group = cz_grp
+})
 
 vim.cmd('autocmd FileType go setlocal shiftwidth=3 tabstop=3')
 
