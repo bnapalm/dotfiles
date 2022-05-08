@@ -9,13 +9,16 @@ neorg.setup {
     ["core.norg.dirman"] = {
       config = {
         workspaces = {
-          work = "~/notes/work",
-          home = "~/notes/home",
+          work = "~/src/notes/work",
+          home = "~/src/notes/home",
         }
       }
     },
     ["core.norg.concealer"] = {
-      config = {}
+      config = {
+        preset = "varied",
+        markup_preset = "safe"
+      }
     },
     ["core.norg.completion"] = {
       config = {
