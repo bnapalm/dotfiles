@@ -66,8 +66,8 @@ keymap("n", "<leader>p", "<cmd>Telescope projects<cr>", opts)
 -- Edit file under cursor
 keymap("n", "gf", ":edit <cfile><CR>", opts)
 
-keymap("n", "<leader>h", ":set hlsearch!<CR>", opts)
-keymap("n", "<leader>l", ":set cursorline!<CR>", opts)
+keymap("n", "<leader>hh", ":set hlsearch!<CR>", opts)
+keymap("n", "<leader>hl", ":set cursorline!<CR>", opts)
 keymap("n", "<leader>x", "<cmd>Bdelete<CR>", opts)
 keymap("n", "<leader>q", "<cmd>close<CR>", opts)
 keymap("n", '\\', ":Neotree toggle reveal<CR>", opts)
