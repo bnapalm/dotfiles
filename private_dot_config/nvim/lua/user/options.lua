@@ -38,6 +38,9 @@ local options = {
   listchars = { tab = '  ', trail = '·', extends = '⇨', precedes = '⇦' },
   wildmode = { longest = 'full', 'full' },
   laststatus = 3,
+
+  foldmethod = "expr",                     -- Enable treesitter based folding
+  foldexpr   = "nvim_treesitter#foldexpr()"
 }
 
 vim.opt.shortmess:append "c"
