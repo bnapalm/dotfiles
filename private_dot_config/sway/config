@@ -215,5 +215,5 @@ exec way-displays > /tmp/way-displays.${XDG_VTNR}.${USER}.log 2>&1
 # Wallpaper
 
 output "eDP-1" {
-  bg /home/black/Pictures/wallpapers/pretty_kitty.jpg fill
+  bg /home/black/Pictures/wallpapers/james_webb/carina_nebula.tif fill
 }
