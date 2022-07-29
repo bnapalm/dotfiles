@@ -217,3 +217,14 @@ exec way-displays > /tmp/way-displays.${XDG_VTNR}.${USER}.log 2>&1
 output "eDP-1" {
   bg /home/black/Pictures/wallpapers/james_webb/carina_nebula.tif fill
 }
+
+# GTK
+
+set $gnome-schema org.gnome.desktop.interface
+
+exec_always {
+  gsettings set $gnome-schema gtk-theme 'gruvbox-dark-gtk'
+  gsettings set $gnome-schema icon-theme 'oomox-gruvbox-dark'
+  # gsettings set $gnome-schema cursor-theme 'Your cursor Theme'
+  # gsettings set $gnome-schema font-name 'Your font name'
+}
