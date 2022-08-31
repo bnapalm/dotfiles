@@ -43,7 +43,8 @@ neorg.setup {
     ["core.norg.concealer"] = {
       config = {
         preset = "varied",
-        markup_preset = "safe"
+        markup_preset = "safe",
+        folds = "false"
       }
     },
     ["core.norg.completion"] = {
