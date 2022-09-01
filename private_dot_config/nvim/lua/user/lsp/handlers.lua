@@ -79,9 +79,9 @@ local function lsp_keymaps()
 end
 
 M.on_attach = function(client)
-  if client.name == "tsserver" then
-    client.resolved_capabilities.document_formatting = false
-  end
+  --[[ if client.name == "tsserver" then ]]
+  --[[   client.resolved_capabilities.document_formatting = false ]]
+  --[[ end ]]
   lsp_keymaps()
   lsp_highlight_document(client)
 end
