@@ -49,3 +49,8 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 czd () {
   cd $(chezmoi source-path)
 }
+
+# kubectl get ingressroutes with all rules
+kgirf() {
+  k get ingressroute -o jsonpath='{range .items[*]}{.metadata.name}{range .spec.routes[*]}{"\t"}{.match}{"\n"}{end}{"\n"}{end}'
+}
