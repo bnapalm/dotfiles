@@ -13,6 +13,20 @@
   min-height: 13pt;
 }
 
+button {
+  border: none;
+}
+
+label:disabled,
+button:disabled {
+  color: inherit;
+  background: inherit;
+}
+
+button:hover {
+  background: inherit;
+}
+
 window#waybar {
   background: @background;
   color: @foreground;
