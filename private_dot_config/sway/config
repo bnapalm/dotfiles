@@ -191,8 +191,8 @@ default_border pixel
 input "type:keyboard" {
   xkb_model       "pc104alt"
   xkb_layout      "us"
-  xkb_variant     "dvp"
-  xkb_options     "caps:swapescape,compose:102"
+  # xkb_variant     "dvp"
+  # xkb_options     "caps:compose:102"
   repeat_delay    250
   repeat_rate     40
 }
