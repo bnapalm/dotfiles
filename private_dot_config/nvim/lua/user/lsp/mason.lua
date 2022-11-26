@@ -62,11 +62,13 @@ mason_lspconfig.setup_handlers({
     lspconfig[server].setup({})
   end,
   ['beancount'] = function ()
-    lspconfig.beancount.setup({
-      init_options = {
-        journal_file = "/home/black/src/private/beancount/start.beancount"
-      }
-    })
+    lspconfig.beancount.setup(require("user.lsp.settings.beancount"))
+  end,
+  ['sumneko_lua'] = function ()
+    lspconfig.sumneko_lua.setup(require("user.lsp.settings.sumneko_lua"))
+  end,
+  ['gopls'] = function ()
+    lspconfig.gopls.setup(require("user.lsp.settings.gopls"))
   end
 })
 
