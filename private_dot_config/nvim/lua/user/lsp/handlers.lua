@@ -56,7 +56,7 @@ M.setup = function()
       bufmap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>')
 
       -- Displays a function's signature information
-      bufmap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<cr>')
+      bufmap({'n', 'i'}, '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<cr>')
 
       -- Renames all references to the symbol under the cursor
       bufmap('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>')
