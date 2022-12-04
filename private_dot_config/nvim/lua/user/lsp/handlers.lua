@@ -75,6 +75,7 @@ M.setup = function()
       bufmap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
 
       bufmap("n", "<leader>d", "<cmd>lua vim.diagnostic.setloclist()<CR>")
+      bufmap("n", "<leader>lf", function() vim.lsp.buf.format { async = true } end)
     end
   })
 
