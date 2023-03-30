@@ -10,6 +10,8 @@ source ${XDG_CONFIG_HOME}/zsh/alias
 [[ ! -d ${HOME}/.yarn/bin ]] || path+=${HOME}/.yarn/bin
 fpath+=${XDG_CONFIG_HOME}/zsh/plugins
 
+setopt HIST_IGNORE_SPACE
+
 # Directory stack
 setopt AUTO_PUSHD
 setopt PUSHD_IGNORE_DUPS
