@@ -33,7 +33,7 @@ M.setup = function()
       highlighting(client, bufnr)
 
       local bufmap = function(mode, lhs, rhs)
-        local opts = {buffer = true}
+        local opts = {noremap = true, silent = true, buffer = bufnr}
         vim.keymap.set(mode, lhs, rhs, opts)
       end
 
@@ -75,6 +75,7 @@ M.setup = function()
       bufmap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
 
       bufmap("n", "<leader>d", "<cmd>lua vim.diagnostic.setloclist()<CR>")
+      bufmap("n", "<leader>lg", vim.lsp.buf.document_symbol)
       bufmap("n", "<leader>lf", function() vim.lsp.buf.format { async = true } end)
     end
   })

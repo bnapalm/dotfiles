@@ -10,7 +10,7 @@ end
 
 local servers = {
   "jsonls",
-  "sumneko_lua",
+  "lua_ls",
   "tflint",
   "terraformls",
   "pyright",
@@ -64,8 +64,8 @@ mason_lspconfig.setup_handlers({
   ['beancount'] = function ()
     lspconfig.beancount.setup(require("user.lsp.settings.beancount"))
   end,
-  ['sumneko_lua'] = function ()
-    lspconfig.sumneko_lua.setup(require("user.lsp.settings.sumneko_lua"))
+  ['lua_ls'] = function ()
+    lspconfig.lua_ls.setup(require("user.lsp.settings.lua_ls"))
   end,
   ['gopls'] = function ()
     lspconfig.gopls.setup(require("user.lsp.settings.gopls"))
