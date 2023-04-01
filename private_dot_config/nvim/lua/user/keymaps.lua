@@ -74,6 +74,10 @@ keymap("n", "<leader>x", "<cmd>Bdelete<CR>", opts)
 keymap("n", "<leader>q", "<cmd>close<CR>", opts)
 keymap("n", '\\', ":Neotree toggle reveal<CR>", opts)
 
+-- Keep cursor in middle when jumping half page
+keymap("n", "<C-d>", "<C-d>zz")
+keymap("n", "<C-u>", "<C-u>zz")
+
 -- keymap("n", "<leader>b", ":buffers<CR>:buffer<Space>", {noremap = true} )
 
 -- Resize gui font
