@@ -115,6 +115,7 @@ return packer.startup(function(use)
   -- Language plugins
   use "towolf/vim-helm"
   use "fatih/vim-go"
+  vim.g.go_def_mapping_enabled = 0
 
   use {
     "nvim-neorg/neorg",
