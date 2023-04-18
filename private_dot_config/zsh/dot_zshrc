@@ -35,6 +35,10 @@ export KEYTIMEOUT=1
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 
+# vim mode
+bindkey -v
+export KEYTIMEOUT=1
+
 # PowerLevel10k prompt
 # https://github.com/romkatv/powerlevel10k
 # Note to self: Remove first line afterwards
