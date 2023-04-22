@@ -1,3 +1,10 @@
 return {
-  settings = { redhat = { telemetry = { enabled = false }}},
+  settings = {
+    yaml = {
+      keyOrdering = false
+    },
+    redhat = {
+      telemetry = { enabled = false }
+    }
+  },
 }

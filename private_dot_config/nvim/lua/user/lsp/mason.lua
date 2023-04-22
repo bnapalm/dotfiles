@@ -67,6 +67,9 @@ mason_lspconfig.setup_handlers({
   ['lua_ls'] = function ()
     lspconfig.lua_ls.setup(require("user.lsp.settings.lua_ls"))
   end,
+  ['yamlls'] = function ()
+    lspconfig.lua_ls.setup(require("user.lsp.settings.yamlls"))
+  end,
   ['gopls'] = function ()
     lspconfig.gopls.setup(require("user.lsp.settings.gopls"))
   end
