@@ -53,7 +53,8 @@ M.setup = function()
       bufmap('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>')
 
       -- Lists all the references 
-      bufmap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>')
+      --[[ bufmap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>') ]]
+      bufmap('n', 'gr', function() require('telescope.builtin').lsp_references() end)
 
       -- Displays a function's signature information
       bufmap({'n', 'i'}, '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<cr>')
