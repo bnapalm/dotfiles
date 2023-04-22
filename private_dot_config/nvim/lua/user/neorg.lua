@@ -6,7 +6,7 @@ end
 neorg.setup {
   load = {
     ["core.defaults"] = {},
-    ["core.norg.esupports.indent"] = {
+    ["core.esupports.indent"] = {
       config = {
         tweaks = {
           heading2 = 1,
@@ -32,7 +32,7 @@ neorg.setup {
         }
       }
     },
-    ["core.norg.dirman"] = {
+    ["core.dirman"] = {
       config = {
         workspaces = {
           work = "~/src/notes/work",
@@ -40,14 +40,14 @@ neorg.setup {
         }
       }
     },
-    ["core.norg.concealer"] = {
+    ["core.concealer"] = {
       config = {
         preset = "varied",
         markup_preset = "safe",
         folds = "false"
       }
     },
-    ["core.norg.completion"] = {
+    ["core.completion"] = {
       config = {
         engine = "nvim-cmp"
       }
