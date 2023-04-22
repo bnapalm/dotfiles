@@ -27,6 +27,10 @@ source ${XDG_CONFIG_HOME}/zsh/completion.zsh
 # back-dir
 autoload -Uz bd; bd 
 
+# vim mode
+bindkey -v
+export KEYTIMEOUT=1
+
 # fzf
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
@@ -50,6 +54,11 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 czd () {
   cd $(chezmoi source-path)
+}
+
+# colorize go test
+gtst() {
+  go test $* | sed ''/PASS/s//$(printf "\033[32mPASS\033[0m")/'' | sed ''/SKIP/s//$(printf "\033[34mSKIP\033[0m")/'' | sed ''/FAIL/s//$(printf "\033[31mFAIL\033[0m")/'' | sed ''/FAIL/s//$(printf "\033[31mFAIL\033[0m")/'' | GREP_COLORS="mt=01;33" grep -E --color=always '\s*[a-zA-Z0-9\-_.]+[:][0-9]+[:]|^'
 }
 
 # kubectl get ingressroutes with all rules
