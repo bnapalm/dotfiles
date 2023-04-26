@@ -119,5 +119,5 @@ window#waybar {
 }
 
 #tray {
-  margin-left: -1000000px;
+  /* margin-left: -1000000px; */
 }
