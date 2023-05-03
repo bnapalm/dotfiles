@@ -50,7 +50,7 @@ return packer.startup(function(use)
   use "akinsho/bufferline.nvim"
   use "moll/vim-bbye"
   use "nvim-lualine/lualine.nvim"
-  use "machakann/vim-sandwich"
+  --[[ use "machakann/vim-sandwich" ]]
   use "ahmedkhalf/project.nvim"
   use "lukas-reineke/indent-blankline.nvim"
   use {
@@ -61,6 +61,13 @@ return packer.startup(function(use)
       "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
       "MunifTanjim/nui.nvim"
     },
+  }
+  use {
+    "kylechui/nvim-surround",
+    tag = "*",
+    config = function ()
+      require("nvim-surround").setup({})
+    end
   }
   -- use "kyazdani42/nvim-tree.lua"
   -- use "akinsho/toggleterm.nvim"
