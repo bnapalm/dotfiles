@@ -40,7 +40,8 @@ local options = {
   laststatus = 3,
 
   foldmethod = "expr",                     -- Enable treesitter based folding
-  foldexpr   = "nvim_treesitter#foldexpr()"
+  foldexpr   = "nvim_treesitter#foldexpr()",
+  foldlevel  = 9
 }
 
 vim.opt.shortmess:append "c"
