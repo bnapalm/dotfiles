@@ -50,9 +50,9 @@ return packer.startup(function(use)
   use "akinsho/bufferline.nvim"
   use "moll/vim-bbye"
   use "nvim-lualine/lualine.nvim"
-  --[[ use "machakann/vim-sandwich" ]]
   use "ahmedkhalf/project.nvim"
   use "lukas-reineke/indent-blankline.nvim"
+  use "mbbill/undotree"
   use {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v2.x",
