@@ -7,6 +7,7 @@ typeset -U PATH path
 path+="$HOME/bin"
 path+="$HOME/.local/bin"
 path+="$HOME/go/bin"
+path+="$HOME/.cargo/bin"
 export PATH
 export VISUAL="nvim"
 export EDITOR="$VISUAL"
