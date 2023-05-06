@@ -58,11 +58,12 @@ keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 
-keymap("n", "<leader>f", "<cmd>Telescope find_files<cr>", opts)
-keymap("n", "<leader>t", "<cmd>Telescope live_grep<cr>", opts)
-keymap("n", "<leader>b", "<cmd>Telescope buffers<cr>", opts)
-keymap("n", "<leader>p", "<cmd>Telescope projects<cr>", opts)
-keymap("n", "<leader>/", "<cmd>Telescope current_buffer_fuzzy_find<cr>", opts)
+-- Telescope --
+keymap("n", "<leader>f", function () require('telescope.builtin').find_files() end, opts)
+keymap("n", "<leader>t", function () require('telescope.builtin').live_grep() end, opts)
+keymap("n", "<leader>b", function () require('telescope.builtin').buffers() end, opts)
+keymap("n", "<leader>/", function () require('telescope.builtin').current_buffer_fuzzy_find() end, opts)
+keymap("n", "<leader>p", function () require('telescope').extensions.projects.projects() end, opts)
 
 -- Edit file under cursor
 keymap("n", "gf", ":edit <cfile><CR>", opts)
