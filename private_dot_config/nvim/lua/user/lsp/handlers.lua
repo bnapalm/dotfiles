@@ -41,7 +41,7 @@ M.setup = function()
       bufmap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>')
 
       -- Jump to the definition
-      bufmap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>')
+      bufmap('n', 'gd', function() require('telescope.builtin').lsp_definitions() end)
 
       -- Jump to declaration
       bufmap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>')
