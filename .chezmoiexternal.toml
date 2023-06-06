@@ -1,6 +1,0 @@
-["src/vendor/i3blocks-contrib"]
-    type = "archive"
-    url = "https://github.com/vivien/i3blocks-contrib/archive/master.tar.gz"
-    exact = true
-    stripComponents = 1
-    refreshPeriod = "168h"
