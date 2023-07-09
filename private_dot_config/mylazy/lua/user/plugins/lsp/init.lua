@@ -81,6 +81,7 @@ end
 local M = {
   {
     "neovim/nvim-lspconfig",
+    event = { 'BufReadPre', 'BufNewFile' },
     config = function()
       require("lspconfig").lua_ls.setup({
         settings = {
