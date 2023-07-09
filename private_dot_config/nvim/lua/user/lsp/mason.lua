@@ -17,7 +17,7 @@ local servers = {
   "yamlls",
   "bashls",
   "beancount",
-  "gopls"
+  "gopls",
 }
 
 local settings = {
@@ -75,52 +75,15 @@ mason_lspconfig.setup_handlers({
   end
 })
 
---[[ local opts = {} ]]
-
---[[ for _, server in pairs(servers) do ]]
---[[   opts = { ]]
---[[     on_attach = require("user.lsp.handlers").on_attach, ]]
---[[     capabilities = require("user.lsp.handlers").capabilities, ]]
---[[   } ]]
---[[]]
---[[   server = vim.split(server, "@")[1] ]]
---[[]]
---[[   if server.name == "beancount" then ]]
---[[     local beancount_opts = require("user.lsp.settings.beancount") ]]
---[[     opts = vim.tbl_deep_extend("force", beancount_opts, opts) ]]
---[[   end ]]
---[[]]
---[[   -- if server == "jsonls" then ]]
---[[     -- local jsonls_opts = require "user.lsp.settings.jsonls" ]]
---[[     -- opts = vim.tbl_deep_extend("force", jsonls_opts, opts) ]]
---[[   -- end ]]
---[[]]
---[[ 	if server.name == "sumneko_lua" then ]]
---[[ 	 	local sumneko_opts = require("user.lsp.settings.sumneko_lua") ]]
---[[ 	 	opts = vim.tbl_deep_extend("force", sumneko_opts, opts) ]]
---[[ 	end ]]
---[[]]
---[[   if server.name == "yamlls" then ]]
---[[]]
---[[ 	 	local yamlls_opts = require("user.lsp.settings.yamlls") ]]
---[[ 	 	opts = vim.tbl_deep_extend("force", yamlls_opts, opts) ]]
---[[]]
---[[     -- Disable diagnostics for helm files ]]
---[[     local default_on_attach = opts.on_attach ]]
---[[     opts.on_attach = function (client, bufnr) ]]
---[[       default_on_attach(client, bufnr) ]]
---[[       if vim.bo[bufnr].buftype ~= "" or vim.bo[bufnr].filetype == "helm" then ]]
---[[         vim.diagnostic.disable() ]]
---[[       end ]]
---[[     end ]]
---[[]]
---[[   end ]]
---[[]]
---[[   -- if server == "pyright" then ]]
---[[     -- local pyright_opts = require "user.lsp.settings.pyright" ]]
---[[     -- opts = vim.tbl_deep_extend("force", pyright_opts, opts) ]]
---[[   -- end ]]
---[[]]
---[[   lspconfig[server].setup(opts) ]]
---[[   ::continue:: ]]
+--[[ local status_ok_2, mason_null_ls = pcall(require, "mason-null-ls") ]]
+--[[ if not status_ok_2 then ]]
+--[[   return ]]
 --[[ end ]]
+--[[]]
+--[[ mason_null_ls.setup({ ]]
+--[[   ensure_installed = { ]]
+--[[     "prettier", ]]
+--[[     "prettierd" ]]
+--[[   }, ]]
+--[[   automatic_installation = true ]]
+--[[ }) ]]

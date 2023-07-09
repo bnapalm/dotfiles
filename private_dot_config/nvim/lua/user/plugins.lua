@@ -98,8 +98,9 @@ return packer.startup(function(use)
   use "neovim/nvim-lspconfig" -- enable LSP
   use "williamboman/mason.nvim"
   use "williamboman/mason-lspconfig.nvim"
-  -- use "tamago324/nlsp-settings.nvim"  language server settings defined in json for
+  use "jay-babu/mason-null-ls.nvim"
   use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
+  -- use "tamago324/nlsp-settings.nvim"  language server settings defined in json for
 
   -- Telescope
   use "nvim-telescope/telescope.nvim"
