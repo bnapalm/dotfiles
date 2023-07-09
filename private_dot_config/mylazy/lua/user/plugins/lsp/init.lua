@@ -22,6 +22,9 @@ end
 
 local M = {
   {
+    import = "user.plugins.lsp.mason"
+  },
+  {
     "neovim/nvim-lspconfig",
     event = { 'BufReadPre', 'BufNewFile' },
     config = function()
@@ -54,7 +57,10 @@ local M = {
         end
       })
     end,
-  }
+    dependencies = {
+      "williamboman/mason-lspconfig.nvim"
+    }
+  },
 }
 
 return M
