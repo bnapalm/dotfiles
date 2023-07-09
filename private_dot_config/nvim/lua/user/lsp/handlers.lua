@@ -78,7 +78,7 @@ M.setup = function()
       bufmap("n", "<leader>d", "<cmd>lua vim.diagnostic.setloclist()<CR>")
       bufmap("n", "<leader>lg", function () require('telescope.builtin').lsp_document_symbols() end)
       bufmap("n", "<leader>lc", function () require('telescope.builtin').lsp_dynamic_workspace_symbols() end)
-      bufmap("n", "<leader>lf", function() vim.lsp.buf.format { async = true } end)
+      bufmap({ 'n', 'v' }, "<leader>lf", function() vim.lsp.buf.format { async = true } end)
     end
   })
 
