@@ -53,5 +53,12 @@ return {
     keys = {
       { "<leader>u", vim.cmd.UndotreeToggle, desc = "Toggle Undotree" }
     }
-  }
+  },
+  {
+    "tpope/vim-fugitive",
+    cmd = "Git",
+    keys = {
+      { "<leader>gs", vim.cmd.Git, desc = "FuGitive Status" }
+    }
+  },
 }
