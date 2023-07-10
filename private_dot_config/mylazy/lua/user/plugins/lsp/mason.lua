@@ -1,3 +1,8 @@
+local my_default_lsp = {
+  "lua_ls",
+  "gopls"
+}
+
 return {
   {
     "williamboman/mason.nvim",
@@ -18,19 +23,16 @@ return {
     "williamboman/mason-lspconfig.nvim",
     lazy = true,
     opts = {
-      ensure_installed = {
-        "lua_ls",
-        "gopls"
-      }
+      ensure_installed = my_default_lsp
     },
-    config = function (_, opts)
+    config = function(_, opts)
       require("mason-lspconfig").setup(opts)
 
       require("mason-lspconfig").setup_handlers {
-        function (server_name) -- default handler
+        function(server_name) -- default handler
           require("lspconfig")[server_name].setup {}
         end,
-        ["lua_ls"] = function ()
+        ["lua_ls"] = function()
           require("lspconfig")["lua_ls"].setup(require("user.plugins.lsp.configs.lua_ls"))
         end,
       }
