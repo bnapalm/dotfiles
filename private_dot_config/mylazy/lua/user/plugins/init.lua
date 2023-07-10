@@ -9,6 +9,7 @@ return {
       vim.cmd([[colorscheme gruvbox-baby]])
     end,
   },
+
   {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v2.x",
@@ -21,6 +22,7 @@ return {
       "MunifTanjim/nui.nvim",
     }
   },
+
   {
     "nvim-treesitter/nvim-treesitter",
     event = { 'BufReadPost', 'BufNewFile' },
@@ -42,12 +44,14 @@ return {
       })
     end
   },
+
   {
     "mbbill/undotree",
     keys = {
       { "<leader>u", vim.cmd.UndotreeToggle, desc = "Toggle Undotree" }
     }
   },
+
   {
     "tpope/vim-fugitive",
     cmd = "Git",
@@ -55,11 +59,18 @@ return {
       { "<leader>gs", vim.cmd.Git, desc = "FuGitive Status" }
     }
   },
+
   {
     'windwp/nvim-autopairs',
     event = "InsertEnter",
     opts = {
       check_ts = true,
+      ts_config = {
+        lua = { 'string' }, -- it will not add a pair on that treesitter node
+        javascript = { 'template_string' },
+        java = false,     -- don't check treesitter on java
+      },
+      fast_wrap = {},
     },
     config = function(_, opts)
       require("nvim-autopairs").setup(opts)
