@@ -28,12 +28,22 @@ return {
     config = function(_, opts)
       require("mason-lspconfig").setup(opts)
 
+      local lspconfig = require("lspconfig")
+      local lsp_defaults = lspconfig.util.default_config
+
+      lsp_defaults.capabilities = vim.tbl_deep_extend(
+        "force",
+        lsp_defaults.capabilities,
+        require("cmp_nvim_lsp").default_capabilities()
+      )
+
       require("mason-lspconfig").setup_handlers {
+
         function(server_name) -- default handler
-          require("lspconfig")[server_name].setup {}
+          lspconfig[server_name].setup({})
         end,
         ["lua_ls"] = function()
-          require("lspconfig")["lua_ls"].setup(require("user.plugins.lsp.configs.lua_ls"))
+          lspconfig["lua_ls"].setup(require("user.plugins.lsp.configs.lua_ls"))
         end,
       }
     end,
