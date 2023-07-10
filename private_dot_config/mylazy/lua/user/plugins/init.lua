@@ -41,8 +41,14 @@ return {
         auto_install = true,
         highlight = { enable = true },
         indent = { enable = true },
+        context_commentstring = {
+          enable = true,
+        },
       })
-    end
+    end,
+    dependencies = {
+      'JoosepAlviste/nvim-ts-context-commentstring'
+    }
   },
 
   {
@@ -68,7 +74,7 @@ return {
       ts_config = {
         lua = { 'string' }, -- it will not add a pair on that treesitter node
         javascript = { 'template_string' },
-        java = false,     -- don't check treesitter on java
+        java = false,       -- don't check treesitter on java
       },
       fast_wrap = {},
     },
@@ -82,4 +88,9 @@ return {
       )
     end
   },
+
+  {
+    "numToStr/Comment.nvim",
+    config = true,
+  }
 }
