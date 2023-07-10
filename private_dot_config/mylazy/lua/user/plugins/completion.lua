@@ -76,6 +76,13 @@ return {
           ghost_text = true,
           native_menu = false,
         },
+        completion = {
+          get_trigger_characters = function(trigger_characters)
+            return vim.tbl_filter(function(char)
+              return char ~= ' '
+            end, trigger_characters)
+          end
+        }
       }
     end,
     dependencies = {
