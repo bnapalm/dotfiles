@@ -28,19 +28,6 @@ local M = {
     "neovim/nvim-lspconfig",
     event = { 'BufReadPre', 'BufNewFile' },
     config = function()
-      require("lspconfig").lua_ls.setup({
-        settings = {
-          Lua = {
-            diagnostics = {
-              globals = { 'vim' },
-            },
-            telemetry = {
-              enable = false,
-            },
-          }
-        }
-      })
-
       local keymaps = require("user.plugins.lsp.keymaps")
 
       keymaps.global()
