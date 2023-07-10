@@ -10,6 +10,9 @@ local options = {
   relativenumber = true, -- set relative numbered lines
   numberwidth    = 2,    -- set number column width to 2 {default 4}
 
+  splitbelow     = true, -- force all horizontal splits to go below current window
+  splitright     = true, -- force all vertical splits to go to the right of current window
+
   expandtab      = true, -- convert tabs to spaces
   shiftwidth     = 2,    -- the number of spaces inserted for each indentation
   tabstop        = 2,    -- insert 2 spaces for a tab
