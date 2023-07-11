@@ -77,3 +77,5 @@ alias dc='docker-compose'
 alias cat='bat'
 alias drun='docker run --rm -it -v "${PWD}":/app -w /app'
 alias pc='podman-compose'
+
+alias docker='podman'
