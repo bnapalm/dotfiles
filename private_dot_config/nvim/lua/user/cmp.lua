@@ -17,33 +17,62 @@ end
 
 --   פּ ﯟ   some other good icons
 local kind_icons = {
-  Text = "",
+  Text = "󰉿",
   Method = "m",
-  Function = "",
+  Function = "󰊕",
   Constructor = "",
   Field = "",
-  Variable = "",
-  Class = "",
+  Variable = "",
+  Class = "󰌗",
   Interface = "",
   Module = "",
   Property = "",
-  Unit = "",
-  Value = "",
+  Unit = "󰑭",
+  Value = "󰎠",
   Enum = "",
-  Keyword = "",
+  Keyword = "󰌆",
   Snippet = "",
-  Color = "",
-  File = "",
+  Color = "",
+  File = "󰈙",
   Reference = "",
-  Folder = "",
+  Folder = "",
   EnumMember = "",
-  Constant = "",
+  Constant = "󰇽",
   Struct = "",
   Event = "",
-  Operator = "",
-  TypeParameter = "",
+  Operator = "󰆕",
+  TypeParameter = "󰊄",
 }
 -- find more here: https://www.nerdfonts.com/cheat-sheet
+
+-- old icons
+--[[ local kind_icons = { ]]
+--[[   Text = "", ]]
+--[[   Method = "m", ]]
+--[[   Function = "", ]]
+--[[   Constructor = "", ]]
+--[[   Field = "", ]]
+--[[   Variable = "", ]]
+--[[   Class = "", ]]
+--[[   Interface = "", ]]
+--[[   Module = "", ]]
+--[[   Property = "", ]]
+--[[   Unit = "", ]]
+--[[   Value = "", ]]
+--[[   Enum = "", ]]
+--[[   Keyword = "", ]]
+--[[   Snippet = "", ]]
+--[[   Color = "", ]]
+--[[   File = "", ]]
+--[[   Reference = "", ]]
+--[[   Folder = "", ]]
+--[[   EnumMember = "", ]]
+--[[   Constant = "", ]]
+--[[   Struct = "", ]]
+--[[   Event = "", ]]
+--[[   Operator = "", ]]
+--[[   TypeParameter = "", ]]
+--[[ } ]]
 
 cmp.setup {
   snippet = {
@@ -117,7 +146,6 @@ cmp.setup {
     { name = "luasnip" },
     { name = "buffer" },
     { name = "path" },
-    { name = "neorg" },
   },
   confirm_opts = {
     behavior = cmp.ConfirmBehavior.Replace,
