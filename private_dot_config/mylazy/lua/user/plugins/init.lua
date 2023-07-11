@@ -11,10 +11,10 @@ return {
   },
 
   {
-     "moll/vim-bbye",
+    "moll/vim-bbye",
     cmd = "Bdelete",
     keys = {
-      { "<leader>x", "<cmd>Bdelete<cr>", desc = "Delete buffer"}
+      { "<leader>x", "<cmd>Bdelete<cr>", desc = "Delete buffer" }
     }
   },
 
@@ -100,5 +100,6 @@ return {
   {
     "numToStr/Comment.nvim",
     config = true,
-  }
+  },
+
 }
