@@ -98,9 +98,8 @@ return packer.startup(function(use)
   use "neovim/nvim-lspconfig" -- enable LSP
   use "williamboman/mason.nvim"
   use "williamboman/mason-lspconfig.nvim"
-  use "jay-babu/mason-null-ls.nvim"
-  use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
   -- use "tamago324/nlsp-settings.nvim"  language server settings defined in json for
+  use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
 
   -- Telescope
   use "nvim-telescope/telescope.nvim"
@@ -118,7 +117,7 @@ return packer.startup(function(use)
   -- Git
   use "lewis6991/gitsigns.nvim"
   use "https://tpope.io/vim/fugitive.git"
-  use "shumphrey/fugitive-gitlab.vim"
+  use "https://tpope.io/vim/rhubarb.git"
 
   -- Language plugins
   use "towolf/vim-helm"
