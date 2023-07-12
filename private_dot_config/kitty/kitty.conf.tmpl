@@ -1,15 +1,22 @@
 # vim:fileencoding=utf-8:foldmethod=marker
 
-#: Fonts {{{
+#: Fonts {{ "{{{" }}
 
 #: kitty has very powerful font management. You can configure
 #: individual font faces and even specify special fonts for particular
 #: characters.
 
+{{- if eq .chezmoi.os "darwin" }}
+font_family      Fira Code
+bold_font        auto
+italic_font      auto
+bold_italic_font auto
+{{- else }}
 font_family      FiraCode Nerd Font Ret
 bold_font        FiraCode Nerd Font SemBd
 italic_font      Fira Mono Regular Italic
 bold_italic_font Fira Mono Bold Italic
+{{- end }}
 
 #: You can specify different fonts for the bold/italic/bold-italic
 #: variants. To get a full list of supported fonts use the `kitty
@@ -66,35 +73,8 @@ adjust_baseline 0
 #: them down. The underline and strikethrough positions are adjusted
 #: accordingly.
 
-# symbol_map U+E0A0-U+E0A3,U+E0C0-U+E0C7 PowerlineSymbols
-# - Use additional nerd symbols
-# See https://github.com/be5invis/Iosevka/issues/248
-# See https://github.com/ryanoasis/nerd-fonts/wiki/Glyph-Sets-and-Code-Points
-# Seti-UI + Custom
-# symbol_map U+E5FA-U+E62B Symbols Nerd Font Mono
-# # Devicons
-# symbol_map U+E700-U+E7C5 Symbols Nerd Font Mono
-# # Font Awesome
-# symbol_map U+F000-U+F2E0 Symbols Nerd Font Mono
-# # Font Awesome Extension
-# symbol_map U+E200-U+E2A9 Symbols Nerd Font Mono
-# # Material Design Icons
-# symbol_map U+F500-U+FD46 Symbols Nerd Font Mono
-# # Weather
-# symbol_map U+E300-U+E3EB Symbols Nerd Font Mono
-# # Octicons
-# symbol_map U+F400-U+F4A8,U+2665,U+26A1,U+F27C Symbols Nerd Font Mono
-# # Powerline Extra Symbols
-# symbol_map U+E0A3,U+E0B4-U+E0C8,U+E0CC-U+E0D2,U+E0D4 Symbols Nerd Font Mono
-# # IEC Power Symbols
-# symbol_map U+23FB-U+23FE,U+2b58 Symbols Nerd Font Mono
-# # Font Logos
-# symbol_map U+F300-U+F313 Symbols Nerd Font Mono
-# # Pomicons
-# symbol_map U+E000-U+E00D Symbols Nerd Font Mono
-
-# symbol_map U+f101-U+f208 nonicons
-
+# Nerd Fonts
+symbol_map U+23FB-U+23FE,U+2665,U+26A1,U+2B58,U+E000-U+E00A,U+E0A0-U+E0A3,U+E0B0-U+E0D4,U+E200-U+E2A9,U+E300-U+E3E3,U+E5FA-U+E6AA,U+E700-U+E7C5,U+EA60-U+EBEB,U+F000-U+F2E0,U+F300-U+F32F,U+F400-U+F4A9,U+F500-U+F8FF,U+F0001-U+F1AF0 Symbols Nerd Font Mono
 
 #: Map the specified unicode codepoints to a particular font. Useful
 #: if you need special rendering for some symbols, such as for
@@ -190,7 +170,7 @@ box_drawing_scale 0.001, 1, 1.5, 2
 
 #: }}}
 
-#: Cursor customization {{{
+#: Cursor customization {{ "{{{" }}
 
 cursor #cccccc
 
@@ -230,7 +210,7 @@ cursor_stop_blinking_after 15.0
 
 #: }}}
 
-#: Scrollback {{{
+#: Scrollback {{ "{{{" }}
 
 scrollback_lines 2000
 
@@ -286,7 +266,7 @@ touch_scroll_multiplier 3.0
 
 #: }}}
 
-#: Mouse {{{
+#: Mouse {{ "{{{" }}
 
 mouse_hide_wait 3.0
 
@@ -380,7 +360,7 @@ pointer_shape_when_dragging beam
 #: The default shape of the mouse pointer when dragging across text.
 #: Valid values are: arrow, beam and hand
 
-#: Mouse actions {{{
+#: Mouse actions {{ "{{{" }}
 
 #: Mouse buttons can be remapped to perform arbitrary actions. The
 #: syntax for doing so is:
@@ -470,7 +450,7 @@ mouse_map shift+right press ungrabbed,grabbed mouse_selection extend
 
 #: }}}
 
-#: Performance tuning {{{
+#: Performance tuning {{ "{{{" }}
 
 repaint_delay 10
 
@@ -501,7 +481,7 @@ sync_to_monitor yes
 
 #: }}}
 
-#: Terminal bell {{{
+#: Terminal bell {{ "{{{" }}
 
 enable_audio_bell no
 
@@ -532,7 +512,7 @@ command_on_bell none
 
 #: }}}
 
-#: Window layout {{{
+#: Window layout {{ "{{{" }}
 
 remember_window_size  yes
 initial_window_width  640
@@ -668,7 +648,7 @@ confirm_os_window_close 0
 
 #: }}}
 
-#: Tab bar {{{
+#: Tab bar {{ "{{{" }}
 
 tab_bar_edge bottom
 
@@ -780,7 +760,7 @@ tab_bar_background none
 
 #: }}}
 
-#: Color scheme {{{
+#: Color scheme {{ "{{{" }}
 
 foreground #dddddd
 background #000000
@@ -851,7 +831,7 @@ selection_background #fffacd
 
 #: The background for text selected with the mouse.
 
-#: The color table {{{
+#: The color table {{ "{{{" }}
 
 #: The 256 terminal colors. There are 8 basic colors, each color has a
 #: dull and bright version, for the first 16 colors. You can set the
@@ -925,7 +905,7 @@ mark3_background #f274bc
 
 #: }}}
 
-#: Advanced {{{
+#: Advanced {{ "{{{" }}
 
 shell .
 
@@ -971,7 +951,13 @@ allow_remote_control yes
 #: from controlling kitty. Reloading the config will not affect this
 #: setting.
 
-listen_on unix:@mykitty
+listen_on unix:
+{{- if eq .chezmoi.os "darwin" -}}
+${TMPDIR}/
+{{- else -}}
+@
+{{- end -}}
+mykitty
 
 #: Tell kitty to listen to the specified unix/tcp socket for remote
 #: control connections. Note that this will apply to all kitty
@@ -1056,7 +1042,7 @@ term xterm-kitty
 
 #: }}}
 
-#: OS specific tweaks {{{
+#: OS specific tweaks {{ "{{{" }}
 
 wayland_titlebar_color system
 
@@ -1079,7 +1065,7 @@ macos_titlebar_color system
 #: you are probably better off just hiding the titlebar with
 #: hide_window_decorations.
 
-macos_option_as_alt no
+macos_option_as_alt left
 
 #: Use the option key as an alt key. With this set to no, kitty will
 #: use the macOS native Option+Key = unicode character behavior. This
@@ -1094,7 +1080,7 @@ macos_hide_from_tasks no
 #: Hide the kitty window from running tasks (⌘+Tab) on macOS. Changing
 #: this setting by reloading the config is not supported.
 
-macos_quit_when_last_window_closed no
+macos_quit_when_last_window_closed yes
 
 #: Have kitty quit when all the top-level windows are closed. By
 #: default, kitty will stay running, even with no open windows, as is
@@ -1143,7 +1129,7 @@ linux_display_server auto
 
 #: }}}
 
-#: Keyboard shortcuts {{{
+#: Keyboard shortcuts {{ "{{{" }}
 
 #: Keys are identified simply by their lowercase unicode characters.
 #: For example: ``a`` for the A key, ``[`` for the left square bracket
@@ -1224,7 +1210,7 @@ clear_all_shortcuts no
 #: kitty +kitten hints --hints-offset to zero for all mappings,
 #: including the builtin ones.
 
-#: Clipboard {{{
+#: Clipboard {{ "{{{" }}
 
 map kitty_mod+c copy_to_clipboard
 
@@ -1253,7 +1239,7 @@ map kitty_mod+o pass_selection_to_program
 
 #: }}}
 
-#: Scrolling {{{
+#: Scrolling {{ "{{{" }}
 
 map kitty_mod+up        scroll_line_up
 map kitty_mod+down      scroll_line_down
@@ -1275,7 +1261,7 @@ map kitty_mod+h         show_scrollback
 
 #: }}}
 
-#: Window management {{{
+#: Window management {{ "{{{" }}
 
 map kitty_mod+enter new_window
 
@@ -1329,8 +1315,8 @@ map kitty_mod+9 ninth_window
 map kitty_mod+0 tenth_window
 
 #: custom
-map ctrl+ī next_window
-map ctrl+s previous_window
+map kitty_mod+s next_window
+map kitty_mod+h previous_window
 map ctrl+F9 detach_window
 map ctrl+F10 detach_window ask
 map ctrl+F11 detach_tab
@@ -1338,7 +1324,7 @@ map ctrl+F12 detach_tab ask
 
 #: }}}
 
-#: Tab management {{{
+#: Tab management {{ "{{{" }}
 
 map kitty_mod+right next_tab
 map kitty_mod+left  previous_tab
@@ -1364,7 +1350,7 @@ map kitty_mod+alt+t set_tab_title
 #:     map ctrl+t new_tab !neighbor [optional cmd to run]
 #: }}}
 
-#: Layout management {{{
+#: Layout management {{ "{{{" }}
 
 map kitty_mod+l next_layout
 
@@ -1385,7 +1371,7 @@ map kitty_mod+l next_layout
 #:     map ctrl+alt+z toggle_layout stack
 #: }}}
 
-#: Font sizes {{{
+#: Font sizes {{ "{{{" }}
 
 #: You can change the font size for all top-level kitty OS windows at
 #: a time or only the current one.
@@ -1404,7 +1390,7 @@ map kitty_mod+backspace change_font_size all 0
 #:     map kitty_mod+f6 change_font_size current 10.0
 #: }}}
 
-#: Select and act on visible text {{{
+#: Select and act on visible text {{ "{{{" }}
 
 #: Use the hints kitten to select text and either pass it to an
 #: external program or insert it into the terminal or copy it to the
@@ -1455,7 +1441,7 @@ map kitty_mod+p>y kitten hints --type hyperlink
 #: to different shortcuts. For a full description see kittens/hints.
 #: }}}
 
-#: Miscellaneous {{{
+#: Miscellaneous {{ "{{{" }}
 
 map kitty_mod+f11    toggle_fullscreen
 map kitty_mod+f10    toggle_maximized
