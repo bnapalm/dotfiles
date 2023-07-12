@@ -17,3 +17,21 @@ RefreshGuiFont()
 end
 
 ResetGuiFont()
+
+local opts = { noremap = true, silent = true }
+
+-- Shorten function name
+local keymap = vim.keymap.set
+
+-- neovide mac
+if vim.g.neovide then
+  vim.g.neovide_input_use_logo = 1 -- enable use of the logo (cmd) key
+  vim.g.neovide_input_macos_alt_is_meta = 1
+  keymap("n", "<M-m>", "<C-w>h", opts)
+  keymap("n", "<M-w>", "<C-w>j", opts)
+  keymap("n", "<M-v>", "<C-w>k", opts)
+  keymap("n", "<M-z>", "<C-w>l", opts)
+  keymap("n", "<M-l>", ":bnext<CR>", opts)
+  keymap("n", "<M-h>", ":bprevious<CR>", opts)
+end
+
