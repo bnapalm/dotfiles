@@ -1,20 +1,15 @@
 return {
   -- the colorscheme should be available when starting Neovim
   {
-    "luisiacc/gruvbox-baby",
+    "ellisonleao/gruvbox.nvim",
     lazy = false,    -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
     init = function()
-      local colors = require("gruvbox-baby.colors").config()
-      vim.g.gruvbox_baby_highlights = {
-        LspReferenceText = { fg = colors.bright_yellow, style = "bold" },
-        LspReferenceRead = { fg = colors.bright_yellow, style = "bold" },
-        LspReferenceWrite = { fg = colors.orange, style = "bold" },
-      }
+      vim.o.background = "dark"
     end,
     config = function()
       -- load the colorscheme here
-      vim.cmd([[colorscheme gruvbox-baby]])
+      vim.cmd([[colorscheme gruvbox]])
     end,
   },
 
