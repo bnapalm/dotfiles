@@ -45,6 +45,9 @@ return {
         ["lua_ls"] = function()
           lspconfig["lua_ls"].setup(require("user.plugins.lsp.configs.lua_ls"))
         end,
+        ["beancount"] = function()
+          lspconfig["beancount"].setup(require("user.plugins.lsp.configs.beancount"))
+        end,
       }
     end,
     dependencies = {
