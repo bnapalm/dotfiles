@@ -70,14 +70,6 @@ return {
   },
 
   {
-    "tpope/vim-fugitive",
-    cmd = "Git",
-    keys = {
-      { "<leader>gs", vim.cmd.Git, desc = "FuGitive Status" }
-    }
-  },
-
-  {
     'windwp/nvim-autopairs',
     event = "InsertEnter",
     opts = {
