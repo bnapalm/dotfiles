@@ -66,5 +66,13 @@ return {
       end
     },
     config = true
+  },
+
+  {
+    "https://tpope.io/vim/rhubarb.git",
+    cmd = "GBrowse",
+    dependencies = {
+      "tpope/vim-fugitive"
+    }
   }
 }
