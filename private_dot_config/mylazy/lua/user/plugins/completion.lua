@@ -21,12 +21,15 @@ return {
     opts = function()
       local cmp = require("cmp")
       local luasnip = require("luasnip")
+
       return {
+
         snippet = {
           expand = function(args)
             require("luasnip").lsp_expand(args.body)
           end
         },
+
         mapping = {
           ['<C-f>'] = cmp.mapping.scroll_docs(-4),
           ['<C-d>'] = cmp.mapping.scroll_docs(4),
@@ -60,22 +63,43 @@ return {
             end
           end, { "i", "s" }),
         },
+
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
+          { name = "nvim_lua" },
           { name = "luasnip" },
           { name = "buffer" },
           { name = "path" },
-          { name = "cmdline" },
         }),
+
+        formatting = {
+          fields = { "kind", "abbr", "menu" },
+          format = require('lspkind').cmp_format({
+            mode = "symbol",
+            menu = ({
+              nvim_lsp = "[LSP]",
+              nvim_lua = "[NVIM_LUA]",
+              luasnip = "[Snip]",
+              buffer = "[Buff]",
+              path = "[Path]",
+            }),
+            symbol_map = {
+              Snippet = "",
+            }
+          }),
+        },
+
         window = {
           documentation = {
             border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
           }
         },
+
         experimental = {
           ghost_text = true,
           native_menu = false,
         },
+
         completion = {
           get_trigger_characters = function(trigger_characters)
             return vim.tbl_filter(function(char)
@@ -85,6 +109,7 @@ return {
         }
       }
     end,
+
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       {
@@ -95,7 +120,8 @@ return {
       },
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
-      'hrsh7th/cmp-cmdline'
+      'hrsh7th/cmp-cmdline',
+      'onsails/lspkind.nvim',
     },
   }
 }
