@@ -180,4 +180,10 @@ return {
       { 'sn', desc = "Update `n_lines`" },
     }
   },
+
+  {
+    'echasnovski/mini.tabline',
+    version = false,
+    config = true
+  },
 }
