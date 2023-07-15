@@ -55,10 +55,21 @@ return {
         context_commentstring = {
           enable = true,
         },
+        playground = {
+          enable = true
+        },
       })
     end,
     dependencies = {
       'JoosepAlviste/nvim-ts-context-commentstring'
+    }
+  },
+
+  {
+    "nvim-treesitter/playground",
+    cmd = "TSPlaygroundToggle",
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter'
     }
   },
 
@@ -153,5 +164,20 @@ return {
         end,
       })
     end,
+  },
+
+  {
+    'echasnovski/mini.surround',
+    version = false,
+    config = true,
+    keys = {
+      { 'sa', desc = "Add surrounding in Normal and Visual modes", mode = { "n", "v" } },
+      { 'sd', desc = "Delete surrounding" },
+      { 'sf', desc = "Find surrounding (to the right)" },
+      { 'sF', desc = "Find surrounding (to the left)" },
+      { 'sh', desc = "Highlight surrounding" },
+      { 'sr', desc = "Replace surrounding" },
+      { 'sn', desc = "Update `n_lines`" },
+    }
   },
 }
