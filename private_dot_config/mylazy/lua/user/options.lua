@@ -37,6 +37,9 @@ local options = {
   signcolumn     = "yes",
   wrap           = true,
 
+  list           = true,
+  listchars      = { tab = '  ', trail = '·', extends = '⇨', precedes = '⇦' },
+
   foldmethod     = "expr", -- Enable treesitter based folding
   foldexpr       = "nvim_treesitter#foldexpr()",
   foldlevel      = 5
