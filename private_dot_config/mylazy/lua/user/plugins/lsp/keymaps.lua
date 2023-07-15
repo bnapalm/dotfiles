@@ -1,17 +1,5 @@
 local M = {}
 
-M.global = function()
-  local nmap = function(lhs, rhs)
-    local opts = { noremap = true, silent = true }
-    vim.keymap.set('n', lhs, rhs, opts)
-  end
-
-  nmap('gl', vim.diagnostic.open_float)         -- Show diagnostics in a floating window
-  nmap('[d', vim.diagnostic.goto_prev)          -- Move to the previous diagnostic
-  nmap(']d', vim.diagnostic.goto_next)          -- Move to the next diagnostic
-  nmap('<leader>d', vim.diagnostic.setloclist)  -- TODO check other options
-end
-
 M.buflocal = function(bufnr)
   local bufmap = function(mode, lhs, rhs)
     local opts = { noremap = true, silent = true, buffer = bufnr }

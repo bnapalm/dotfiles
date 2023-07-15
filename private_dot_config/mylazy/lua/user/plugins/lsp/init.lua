@@ -30,8 +30,6 @@ local M = {
     config = function()
       local keymaps = require("user.plugins.lsp.keymaps")
 
-      keymaps.global()
-
       api.nvim_create_autocmd('LspAttach', {
         desc = "LSP actions",
         group = api.nvim_create_augroup('UserLspConfig', {}),

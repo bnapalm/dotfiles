@@ -2,7 +2,7 @@ require "user.options"
 require "user.keymaps"
 require "user.commands"
 require "user.lazy"
---[[ require "user.colorscheme" ]]
+require "user.diagnostics"
 --[[ require "user.cmp" ]]
 --[[ require "user.lsp" ]]
 --[[ require "user.telescope" ]]
