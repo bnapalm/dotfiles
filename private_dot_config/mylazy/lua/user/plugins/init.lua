@@ -117,4 +117,41 @@ return {
       }
     end,
   },
+
+  {
+    'echasnovski/mini.indentscope',
+    version = false,
+    opts = function()
+      local indentscope = require("mini.indentscope")
+      return {
+        symbol = "│",
+        draw = {
+          animation = indentscope.gen_animation.quadratic({
+            -- easing = "in",
+            duration = 10
+          })
+        },
+        options = { try_as_border = true },
+      }
+    end,
+    init = function()
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = {
+          "help",
+          "alpha",
+          "dashboard",
+          "neo-tree",
+          "Trouble",
+          "lazy",
+          "mason",
+          "notify",
+          "toggleterm",
+          "lazyterm",
+        },
+        callback = function()
+          vim.b.miniindentscope_disable = true
+        end,
+      })
+    end,
+  },
 }
