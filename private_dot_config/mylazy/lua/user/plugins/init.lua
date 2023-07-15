@@ -194,4 +194,24 @@ return {
     version = false,
     config = true
   },
+
+  {
+    "ahmedkhalf/project.nvim",
+    keys = {
+      { '<leader>tp',
+        function()
+          vim.schedule(function()
+            require("telescope").extensions.projects.projects()
+          end)
+        end,
+      }
+    },
+    config = function()
+      require("project_nvim").setup {}
+      require('telescope').load_extension('projects')
+    end,
+    dependencies = {
+      'nvim-telescope/telescope.nvim'
+    }
+  },
 }
