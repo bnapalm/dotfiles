@@ -33,7 +33,13 @@ return {
       update_focused_file = {
         enable = true,
         update_root = true
-      }
+      },
+      window = {
+        mappings = {
+          ["h"] = "close_node",
+          ["l"] = "open",
+        }
+      },
     },
     dependencies = {
       "nvim-lua/plenary.nvim",
