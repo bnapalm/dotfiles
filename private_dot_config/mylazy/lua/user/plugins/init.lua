@@ -219,4 +219,9 @@ return {
       'nvim-telescope/telescope.nvim'
     }
   },
+  {
+    "folke/neodev.nvim",
+    lazy = true,
+    config = true
+  }
 }

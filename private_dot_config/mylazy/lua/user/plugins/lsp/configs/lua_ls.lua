@@ -1,3 +1,4 @@
+require('lazy').load({ plugins = { 'neodev.nvim' } })
 return {
   settings = {
     Lua = {
@@ -17,6 +18,9 @@ return {
         enable = false,
       },
 
+      completion = {
+        callSnippet = "Replace"
+      },
     },
   },
 }

@@ -1,0 +1,8 @@
+{
+    "workspace.library": [
+        "/home/black/.config/local/share/mylazy/lazy/neodev.nvim/types/nightly",
+        "/usr/share/nvim/runtime/lua",
+        "/home/black/.config/local/share/chezmoi/private_dot_config/mylazy/lua",
+        "${3rd}/luv/library"
+    ]
+}
