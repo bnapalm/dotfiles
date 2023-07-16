@@ -205,12 +205,10 @@ return {
     "ahmedkhalf/project.nvim",
     lazy = false,
     keys = {
-      { '<leader>hp',
+      { '<leader>fp',
         function()
-          vim.schedule(function()
-            require("telescope").extensions.projects.projects()
-          end)
-        end,
+          require('telescope').extensions.projects.projects()
+        end
       }
     },
     config = function()
