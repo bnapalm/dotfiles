@@ -203,6 +203,7 @@ return {
 
   {
     "ahmedkhalf/project.nvim",
+    lazy = false,
     keys = {
       { '<leader>hp',
         function()
