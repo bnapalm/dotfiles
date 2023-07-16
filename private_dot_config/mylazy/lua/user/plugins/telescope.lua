@@ -5,28 +5,28 @@ return {
     cmd = "Telescope",
     keys = {
       {
-        "<leader>tf",
+        "<leader>hf",
         function()
           require('telescope.builtin').find_files()
         end,
         desc = "Telescope: Find Files",
       },
       {
-        "<leader>tt",
+        "<leader>ht",
         function()
           require('telescope.builtin').live_grep()
         end,
         desc = "Telescope: Live Grep",
       },
       {
-        "<leader>tb",
+        "<leader>hb",
         function()
           require('telescope.builtin').buffers()
         end,
         desc = "Telescope: Buffers",
       },
       {
-        "<leader>t/",
+        "<leader>h/",
         function()
           require('telescope.builtin').current_buffer_fuzzy_find()
         end,

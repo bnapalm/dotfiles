@@ -204,7 +204,7 @@ return {
   {
     "ahmedkhalf/project.nvim",
     keys = {
-      { '<leader>tp',
+      { '<leader>hp',
         function()
           vim.schedule(function()
             require("telescope").extensions.projects.projects()
