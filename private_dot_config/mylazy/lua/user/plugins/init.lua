@@ -27,6 +27,7 @@ return {
     keys = {
       { "<leader>t", "<cmd>Neotree toggle reveal<cr>", desc = "NeoTree" },
     },
+    cmd = "Neotree",
     opts = {
       sync_root_with_cwd = true,
       respect_buf_cwd = true,
