@@ -7,7 +7,14 @@ return {
       "G"
     },
     keys = {
-      { "<leader>gs", vim.cmd.Git, desc = "FuGitive Status" }
+      { "<leader>gs", vim.cmd.Git, desc = "Fugitive Status" },
+      {
+        "<leader>gp",
+        function()
+          vim.cmd.Git({ "pull" })
+        end,
+        desc = "Git Pull"
+      }
     }
   },
 
