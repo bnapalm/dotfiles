@@ -25,7 +25,7 @@ return {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v2.x",
     keys = {
-      { "<leader>ft", "<cmd>Neotree toggle<cr>", desc = "NeoTree" },
+      { "<leader>ft", "<cmd>Neotree toggle reveal<cr>", desc = "NeoTree" },
     },
     opts = {
       sync_root_with_cwd = true,
