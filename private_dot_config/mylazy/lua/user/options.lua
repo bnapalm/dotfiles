@@ -9,6 +9,7 @@ local options = {
   number         = true, -- set numbered lines
   relativenumber = true, -- set relative numbered lines
   numberwidth    = 2,    -- set number column width to 2 {default 4}
+  cmdheight      = 2,    -- cmi line size
 
   splitbelow     = true, -- force all horizontal splits to go below current window
   splitright     = true, -- force all vertical splits to go to the right of current window
