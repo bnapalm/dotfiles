@@ -42,7 +42,8 @@ local options = {
 
   foldmethod     = "expr", -- Enable treesitter based folding
   foldexpr       = "nvim_treesitter#foldexpr()",
-  foldlevel      = 5
+  foldlevel      = 5,
+  conceallevel   = 2,
 }
 
 vim.opt.iskeyword = vim.opt.iskeyword + "-"
