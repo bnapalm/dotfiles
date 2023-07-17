@@ -45,6 +45,8 @@ local options = {
   foldexpr       = "nvim_treesitter#foldexpr()",
   foldlevel      = 5,
   conceallevel   = 2,
+
+  laststatus     = 3,
 }
 
 vim.opt.iskeyword = vim.opt.iskeyword + "-"
