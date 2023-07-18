@@ -264,5 +264,12 @@ return {
         desc = "Toggle Flash Search"
       },
     },
-  }
+  },
+
+  {
+    'echasnovski/mini.bracketed',
+    version = false,
+    config = true
+  },
+
 }
