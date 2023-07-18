@@ -4,7 +4,8 @@ return {
     "tpope/vim-fugitive",
     cmd = {
       "Git",
-      "G"
+      "G",
+      "Gbrowse"
     },
     keys = {
       { "<leader>gs", vim.cmd.Git, desc = "Fugitive Status" },
@@ -15,6 +16,9 @@ return {
         end,
         desc = "Git Pull"
       }
+    },
+    dependencies = {
+      "https://tpope.io/vim/rhubarb.git",
     }
   },
 
@@ -75,11 +79,4 @@ return {
     config = true
   },
 
-  {
-    "https://tpope.io/vim/rhubarb.git",
-    cmd = "GBrowse",
-    dependencies = {
-      "tpope/vim-fugitive"
-    }
-  }
 }
