@@ -1,4 +1,4 @@
- return {
+return {
   --
   -- better text-objects
   {
@@ -62,6 +62,8 @@
     'echasnovski/mini.surround',
     version = false,
     config = true,
+    -- following don't actually define keymaps,
+    -- just activate lazy-loading
     keys = {
       { 'sa', desc = "Add surrounding in Normal and Visual modes", mode = { "n", "v" } },
       { 'sd', desc = "Delete surrounding" },
@@ -84,7 +86,16 @@
     version = false,
     config = true
   },
- }
+
+  {
+    'echasnovski/mini.splitjoin',
+    version = false,
+    keys = {
+      { 'gS', desc = "Toggle splitjoint line" }
+    },
+    config = true
+  },
+
   {
     'echasnovski/mini.bufremove',
     version = false,
@@ -100,3 +111,4 @@
     config = true
   },
 
+}
