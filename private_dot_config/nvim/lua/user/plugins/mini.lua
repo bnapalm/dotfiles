@@ -85,3 +85,18 @@
     config = true
   },
  }
+  {
+    'echasnovski/mini.bufremove',
+    version = false,
+    keys = {
+      {
+        "<leader>x",
+        function()
+          require("mini.bufremove").delete()
+        end,
+        desc = "Delete buffer"
+      }
+    },
+    config = true
+  },
+

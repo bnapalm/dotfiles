@@ -14,14 +14,6 @@ return {
   },
 
   {
-    "moll/vim-bbye",
-    cmd = "Bdelete",
-    keys = {
-      { "<leader>x", "<cmd>Bdelete<cr>", desc = "Delete buffer" }
-    }
-  },
-
-  {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v3.x",
     keys = {
