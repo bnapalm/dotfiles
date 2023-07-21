@@ -17,7 +17,7 @@ return {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v3.x",
     keys = {
-      { "<leader>t", "<cmd>Neotree toggle reveal<cr>", desc = "NeoTree" },
+      { "<leader>t", "<cmd>Neotree toggle reveal_force_cwd<cr>", desc = "NeoTree" },
     },
     cmd = "Neotree",
     opts = {
