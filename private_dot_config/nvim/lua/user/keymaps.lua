@@ -65,6 +65,8 @@ keymap("n", "<C-u>", "<C-u>zz")
 keymap({ 'n', 'v' }, '<leader>y', '\"+y')
 keymap('n', '<leader>Y', '\"+Y')
 keymap({ 'n', 'v' }, '<leader>d', '\"+d')
+keymap({ 'n', 'v' }, '<leader>p', '\"+p')
+keymap({ 'n', 'v' }, '<leader>P', '\"+P')
 
 -- Diagnostics
 
