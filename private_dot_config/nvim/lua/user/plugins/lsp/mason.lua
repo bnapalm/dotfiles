@@ -48,6 +48,9 @@ return {
         ["beancount"] = function()
           lspconfig["beancount"].setup(require("user.plugins.lsp.configs.beancount"))
         end,
+        ["gopls"] = function()
+          lspconfig["gopls"].setup(require("user.plugins.lsp.configs.gopls"))
+        end
       }
     end,
     dependencies = {
