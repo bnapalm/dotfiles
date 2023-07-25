@@ -99,8 +99,11 @@ return {
         desc = "Projects"
       }
     },
-    config = function()
-      require("project_nvim").setup {}
+    opts = {
+      detection_methods = { "pattern" },
+    },
+    config = function(_, opts)
+      require("project_nvim").setup(opts)
       require('telescope').load_extension('projects')
     end,
     dependencies = {
