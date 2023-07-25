@@ -52,7 +52,7 @@ keymap("n", "<leader>hl", ":set cursorline!<CR>")
 keymap("n", "<leader>q", "<cmd>close<CR>")
 
 -- keep buffer content when pasting
-keymap("v", "p", '"_dP')
+keymap("x", "p", '"_dP')
 
 -- Keep cursor in place when joining lines
 keymap("n", "J", "mzJ`z")
