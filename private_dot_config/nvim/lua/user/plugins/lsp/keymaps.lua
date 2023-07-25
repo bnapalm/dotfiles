@@ -27,7 +27,7 @@ M.buflocal = function(bufnr)
   bufmap('n', 'K', vim.lsp.buf.hover)
 
   -- Displays a function's signature information
-  bufmap({ 'n', 'i' }, '<C-k>', vim.lsp.buf.signature_help)
+  bufmap({ 'n', 'i', 's' }, '<C-k>', vim.lsp.buf.signature_help)
 
   -- Renames all references to the symbol under the cursor
   bufmap('n', '<leader>rn', vim.lsp.buf.rename)
