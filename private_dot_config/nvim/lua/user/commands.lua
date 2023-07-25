@@ -14,3 +14,12 @@ vim.api.nvim_create_autocmd("FileType", {
   command = "setlocal shiftwidth=3 tabstop=3",
   group = go_grp
 })
+
+-- set tfvars filetype without dashes
+-- https://github.com/neovim/neovim/issues/23184
+local tfvars_grp = vim.api.nvim_create_augroup("tfvars_group", { clear = true })
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+  pattern = "*.tfvars",
+  command = "set ft=terraform",
+  group = tfvars_grp
+})
