@@ -9,28 +9,28 @@ return {
         function()
           require('telescope.builtin').find_files()
         end,
-        desc = "Telescope: Find Files",
+        desc = "Find Files",
       },
       {
         "<leader>ft",
         function()
           require('telescope.builtin').live_grep()
         end,
-        desc = "Telescope: Live Grep",
+        desc = "Live Grep",
       },
       {
         "<leader>fb",
         function()
           require('telescope.builtin').buffers()
         end,
-        desc = "Telescope: Buffers",
+        desc = "Buffers",
       },
       {
         "<leader>f/",
         function()
           require('telescope.builtin').current_buffer_fuzzy_find()
         end,
-        desc = "Telescope: Find in current buffer",
+        desc = "Find in current buffer",
       },
     },
     opts = {

@@ -3,7 +3,7 @@ local options = {
   fileencoding   = "utf-8",
   mouse          = "a",
 
-  timeoutlen     = 500,
+  -- timeoutlen     = 500,
   updatetime     = 100,
 
   number         = true, -- set numbered lines

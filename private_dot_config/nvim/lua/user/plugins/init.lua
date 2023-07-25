@@ -91,10 +91,12 @@ return {
     "ahmedkhalf/project.nvim",
     lazy = false,
     keys = {
-      { '<leader>fp',
+      {
+        '<leader>fp',
         function()
           require('telescope').extensions.projects.projects()
-        end
+        end,
+        desc = "Projects"
       }
     },
     config = function()
@@ -151,4 +153,24 @@ return {
     },
   },
 
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    init = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 500
+    end,
+    config = function(_, opts)
+      local wk = require("which-key")
+      wk.setup(opts)
+      wk.register({
+        ["<leader>f"] = { name = "+find" },
+        ["<leader>g"] = { name = "+git" },
+        ["<leader>c"] = { name = "+config" },
+        ["<leader>h"] = { name = "+hunk/highlight" },
+        ["<leader>l"] = { name = "+lsp" },
+        ["<leader>r"] = { name = "+rename" },
+      })
+    end,
+  }
 }

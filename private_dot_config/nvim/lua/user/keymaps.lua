@@ -73,4 +73,4 @@ keymap({ 'n', 'v' }, '<leader>P', '\"+P')
 keymap('n', 'gl', vim.diagnostic.open_float)        -- Show diagnostics in a floating window
 keymap('n', '[d', vim.diagnostic.goto_prev)         -- Move to the previous diagnostic
 keymap('n', ']d', vim.diagnostic.goto_next)         -- Move to the next diagnostic
-keymap('n', '<leader>d', vim.diagnostic.setloclist) -- TODO check other options
+keymap('n', '<leader>ll', vim.diagnostic.setloclist) -- TODO check other options
