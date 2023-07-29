@@ -161,7 +161,7 @@ return {
     event = "VeryLazy",
     init = function()
       vim.o.timeout = true
-      vim.o.timeoutlen = 500
+      vim.o.timeoutlen = 400
     end,
     config = function(_, opts)
       local wk = require("which-key")
