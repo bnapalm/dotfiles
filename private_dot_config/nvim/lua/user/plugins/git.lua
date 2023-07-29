@@ -23,6 +23,13 @@ return {
         end,
         desc = "Git Pull"
       },
+      {
+        "<leader>gr",
+        function()
+          vim.cmd.Git({ "push -u origin HEAD" })
+        end,
+        desc = "Git Push (with setting remote tracking)"
+      },
     },
     dependencies = {
       "https://tpope.io/vim/rhubarb.git",
