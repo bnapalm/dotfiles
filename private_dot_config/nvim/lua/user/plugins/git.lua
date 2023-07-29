@@ -12,10 +12,17 @@ return {
       {
         "<leader>gp",
         function()
+          vim.cmd.Git({ "push" })
+        end,
+        desc = "Git Push"
+      },
+      {
+        "<leader>gl",
+        function()
           vim.cmd.Git({ "pull" })
         end,
         desc = "Git Pull"
-      }
+      },
     },
     dependencies = {
       "https://tpope.io/vim/rhubarb.git",
