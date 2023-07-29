@@ -175,5 +175,5 @@ return {
         ["<leader>r"] = { name = "+rename" },
       })
     end,
-  }
+  },
 }
