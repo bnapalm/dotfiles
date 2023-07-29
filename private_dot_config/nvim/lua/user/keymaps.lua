@@ -1,7 +1,9 @@
-local opts = { noremap = true, silent = true }
+local default_opts = { noremap = true, silent = true }
 
 -- Shorten function name
-local keymap = function(mode, lhs, rhs)
+local keymap = function(mode, lhs, rhs, desc)
+  local desc_t = { desc = desc } or {}
+  local opts = vim.tbl_extend("force", default_opts, desc_t)
   vim.keymap.set(mode, lhs, rhs, opts)
 end
 
@@ -45,11 +47,11 @@ keymap("v", "K", ":move '<-2<CR>gv=gv")
 keymap("n", "gf", ":edit <cfile><CR>")
 
 -- show/hide highlights
-keymap("n", "<leader>hh", ":set hlsearch!<CR>")
-keymap("n", "<leader>hl", ":set cursorline!<CR>")
+keymap("n", "<leader>hh", ":set hlsearch!<CR>", "hl search")
+keymap("n", "<leader>hl", ":set cursorline!<CR>", "hl cursorline")
 
 -- close window
-keymap("n", "<leader>q", "<cmd>close<CR>")
+keymap("n", "<leader>q", "<cmd>close<CR>", "close pane")
 
 -- keep buffer content when pasting
 keymap("x", "p", '"_dP')
@@ -62,15 +64,15 @@ keymap("n", "<C-d>", "<C-d>zz")
 keymap("n", "<C-u>", "<C-u>zz")
 
 -- System clipboard
-keymap({ 'n', 'v' }, '<leader>y', '\"+y')
-keymap('n', '<leader>Y', '\"+Y')
-keymap({ 'n', 'v' }, '<leader>d', '\"+d')
-keymap({ 'n', 'v' }, '<leader>p', '\"+p')
-keymap({ 'n', 'v' }, '<leader>P', '\"+P')
+keymap({ 'n', 'v' }, '<leader>y', '\"+y', "yank to OS")
+keymap('n', '<leader>Y', '\"+Y', "yank until EOL to OS")
+keymap({ 'n', 'v' }, '<leader>d', '\"+d', "del to OS")
+keymap({ 'n', 'v' }, '<leader>p', '\"+p', "paste from OS")
+keymap({ 'n', 'v' }, '<leader>P', '\"+P', "paste (before) from OS")
 
 -- Diagnostics
 
-keymap('n', 'gl', vim.diagnostic.open_float)        -- Show diagnostics in a floating window
-keymap('n', '[d', vim.diagnostic.goto_prev)         -- Move to the previous diagnostic
-keymap('n', ']d', vim.diagnostic.goto_next)         -- Move to the next diagnostic
-keymap('n', '<leader>ll', vim.diagnostic.setloclist) -- TODO check other options
+keymap('n', 'gl', vim.diagnostic.open_float, "Show diagnostics in window")         -- Show diagnostics in a floating window
+keymap('n', '[d', vim.diagnostic.goto_prev, "Next diagnostic")          -- Move to the previous diagnostic
+keymap('n', ']d', vim.diagnostic.goto_next, "Prev diagnostic")          -- Move to the next diagnostic
+keymap('n', '<leader>ll', vim.diagnostic.setloclist, "loclist") -- TODO check other options
