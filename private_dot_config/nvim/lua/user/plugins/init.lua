@@ -184,6 +184,7 @@ return {
         ["<leader>h"] = { name = "+hunk/highlight" },
         ["<leader>l"] = { name = "+lsp" },
         ["<leader>r"] = { name = "+rename" },
+        ["<leader>w"] = { name = "+workspace" },
       })
     end,
   },

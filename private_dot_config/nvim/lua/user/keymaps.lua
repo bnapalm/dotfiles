@@ -44,14 +44,14 @@ keymap("v", "J", ":move '>+1<CR>gv=gv")
 keymap("v", "K", ":move '<-2<CR>gv=gv")
 --
 -- Edit file under cursor
-keymap("n", "gf", ":edit <cfile><CR>")
+keymap("n", "gf", ":edit <cfile><CR>", "Edit file under cursor")
 
 -- show/hide highlights
-keymap("n", "<leader>hh", ":set hlsearch!<CR>", "hl search")
-keymap("n", "<leader>hl", ":set cursorline!<CR>", "hl cursorline")
+keymap("n", "<leader>hh", ":set hlsearch!<CR>", "Highlight search")
+keymap("n", "<leader>hl", ":set cursorline!<CR>", "Highlight cursorline")
 
 -- close window
-keymap("n", "<leader>q", "<cmd>close<CR>", "close pane")
+keymap("n", "<leader>q", "<cmd>close<CR>", "Close pane")
 
 -- keep buffer content when pasting
 keymap("x", "p", '"_dP')
@@ -64,15 +64,15 @@ keymap("n", "<C-d>", "<C-d>zz")
 keymap("n", "<C-u>", "<C-u>zz")
 
 -- System clipboard
-keymap({ 'n', 'v' }, '<leader>y', '\"+y', "yank to OS")
-keymap('n', '<leader>Y', '\"+Y', "yank until EOL to OS")
-keymap({ 'n', 'v' }, '<leader>d', '\"+d', "del to OS")
-keymap({ 'n', 'v' }, '<leader>p', '\"+p', "paste from OS")
-keymap({ 'n', 'v' }, '<leader>P', '\"+P', "paste (before) from OS")
+keymap({ 'n', 'v' }, '<leader>y', '\"+y', "Yank to OS")
+keymap('n', '<leader>Y', '\"+Y', "Yank until EOL to OS")
+keymap({ 'n', 'v' }, '<leader>d', '\"+d', "Delete to OS")
+keymap({ 'n', 'v' }, '<leader>p', '\"+p', "Paste from OS")
+keymap({ 'n', 'v' }, '<leader>P', '\"+P', "Paste (before) from OS")
 
 -- Diagnostics
 
 keymap('n', 'gl', vim.diagnostic.open_float, "Show diagnostics in window")         -- Show diagnostics in a floating window
 keymap('n', '[d', vim.diagnostic.goto_prev, "Next diagnostic")          -- Move to the previous diagnostic
 keymap('n', ']d', vim.diagnostic.goto_next, "Prev diagnostic")          -- Move to the next diagnostic
-keymap('n', '<leader>ll', vim.diagnostic.setloclist, "loclist") -- TODO check other options
+keymap('n', '<leader>ll', vim.diagnostic.setloclist, "Loclist") -- TODO check other options
