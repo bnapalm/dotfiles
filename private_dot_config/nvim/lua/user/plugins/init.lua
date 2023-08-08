@@ -188,4 +188,25 @@ return {
       })
     end,
   },
+
+  {
+    'rcarriga/nvim-notify',
+    lazy = true,
+    config = true,
+  },
+
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    opts = {
+      presets = {
+        bottom_search = true,
+        long_message_to_split = true,
+      }
+    },
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    }
+  },
 }
