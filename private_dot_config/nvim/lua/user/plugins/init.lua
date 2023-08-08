@@ -92,7 +92,7 @@ return {
     lazy = false,
     keys = {
       {
-        '<leader>fp',
+        '<leader>sp',
         function()
           require('telescope').extensions.projects.projects()
         end,
@@ -178,7 +178,7 @@ return {
       local wk = require("which-key")
       wk.setup(opts)
       wk.register({
-        ["<leader>f"] = { name = "+find" },
+        ["<leader>s"] = { name = "+search" },
         ["<leader>g"] = { name = "+git" },
         ["<leader>c"] = { name = "+config" },
         ["<leader>h"] = { name = "+hunk/highlight" },
