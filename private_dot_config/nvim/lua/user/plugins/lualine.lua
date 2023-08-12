@@ -25,7 +25,14 @@ return {
             unnamed = '[No Name]', -- Text to show for unnamed buffers.
           }
         }
-      }
+      },
+      lualine_x = {
+        {
+          require("noice").api.statusline.mode.get,
+          cond = require("noice").api.statusline.mode.has,
+          color = { fg = "#ff9e64" },
+        }
+      },
     },
     extensions = {
       "neo-tree",
