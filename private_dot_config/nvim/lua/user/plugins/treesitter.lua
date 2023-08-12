@@ -39,4 +39,11 @@ return {
     }
   },
 
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    event = { 'BufReadPost', 'BufNewFile' },
+    cmd = { "TSContextEnable", "TSContextDisable", "TSContextToggle" },
+    keys = { "<leader>hc", "<cmd>TSContextToggle<cr>", desc = "Toggle Treesitter context" },
+    config = true,
+  },
 }
