@@ -46,4 +46,5 @@ return {
     keys = { "<leader>hc", "<cmd>TSContextToggle<cr>", desc = "Toggle Treesitter context" },
     config = true,
   },
+
 }
