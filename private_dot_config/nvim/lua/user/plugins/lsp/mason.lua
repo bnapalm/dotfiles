@@ -50,7 +50,13 @@ return {
         end,
         ["gopls"] = function()
           lspconfig["gopls"].setup(require("user.plugins.lsp.configs.gopls"))
-        end
+        end,
+        ["terraformls"] = function()
+          lspconfig["terraformls"].setup(require("user.plugins.lsp.configs.terraformls"))
+        end,
+        ["tflint"] = function()
+          lspconfig["tflint"].setup(require("user.plugins.lsp.configs.tflint"))
+        end,
       }
     end,
     dependencies = {
