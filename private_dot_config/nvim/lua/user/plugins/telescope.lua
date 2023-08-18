@@ -32,6 +32,13 @@ return {
         end,
         desc = "Find in current buffer",
       },
+      {
+        "<leader>gb",
+        function()
+          require('telescope.builtin').git_branches()
+        end,
+        desc = "Find branches (Telescope)",
+      },
     },
     opts = {
       extensions = {
