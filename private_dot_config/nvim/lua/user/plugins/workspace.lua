@@ -1,3 +1,4 @@
+-- returns true if `dir` is a child of `parent`
 local is_dir_in_parent = function(dir, parent)
   if parent == nil then return false end
   local ws_str_find, _ = string.find(dir, parent)
@@ -8,15 +9,15 @@ local is_dir_in_parent = function(dir, parent)
   end
 end
 
+-- convenience function which wraps is_dir_in_parent with active file
+-- and workspace.
 local current_file_in_ws = function()
   local workspaces = require('workspaces')
   local ws_path = require('workspaces.util').path
   local current_ws = workspaces.path()
   local current_file_dir = ws_path.parent(vim.fn.expand('%:p', true))
-  if is_dir_in_parent(current_file_dir, current_ws) then
-    return true
-  end
-  return false
+
+  return is_dir_in_parent(current_file_dir, current_ws)
 end
 
 local auto_callback = function()
@@ -55,7 +56,8 @@ local auto_callback = function()
 end
 
 return {
-  "natecraddock/workspaces.nvim",
+  -- "natecraddock/workspaces.nvim",
+  "0x0013/workspaces.nvim",
   lazy = false,
 
   cmd = {
