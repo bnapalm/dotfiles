@@ -44,13 +44,14 @@ return {
 
         local new_path = metadata.path
 
-        -- if metadata.path is not a directory, attach worktree root
-        if not string.find(metadata.path, ws_path.sep) then
+        -- if metadata.path is not a directory path, attach worktree root
+        if not string.find(new_path, ws_path.sep) then
           new_path = worktree.get_root() .. ws_path.sep .. new_path
         end
 
-        workspaces.remove(ws_name)
-        workspaces.add(ws_name, new_path)
+        -- workspaces.remove(ws_name)
+        -- workspaces.add(ws_name, new_path)
+        workspaces.set_path(ws_name, new_path)
         print("switch from " .. norm_prev_path .. " to " .. new_path)
         print(vim.inspect(ws_name))
       end
@@ -59,6 +60,7 @@ return {
 
   dependencies = {
     'nvim-telescope/telescope.nvim',
-    "natecraddock/workspaces.nvim",
+    "0x0013/workspaces.nvim",
+    -- "natecraddock/workspaces.nvim",
   }
 }
