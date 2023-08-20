@@ -12,7 +12,7 @@ local current_file_in_ws = function()
   local workspaces = require('workspaces')
   local ws_path = require('workspaces.util').path
   local current_ws = workspaces.path()
-  local current_file_dir = ws_path.normalize(vim.fn.expand('%:p:h', true))
+  local current_file_dir = ws_path.parent(vim.fn.expand('%:p', true))
   if is_dir_in_parent(current_file_dir, current_ws) then
     return true
   end
@@ -33,7 +33,7 @@ local auto_callback = function()
 
   local workspaces = require('workspaces')
   local ws_path = require('workspaces.util').path
-  local current_file_dir = ws_path.normalize(vim.fn.expand('%:p:h', true))
+  local current_file_dir = ws_path.parent(vim.fn.expand('%:p', true))
 
   -- filtered_ws contains workspace entries that contain current file
   local filtered_ws = vim.tbl_filter(function(entry)
