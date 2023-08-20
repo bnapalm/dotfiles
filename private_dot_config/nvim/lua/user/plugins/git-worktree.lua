@@ -44,7 +44,7 @@ return {
 
         local new_path = metadata.path
 
-        -- if metadata.path is not a directory path, attach worktree root
+        -- if new_path is not a full directory path, attach worktree root
         if not string.find(new_path, ws_path.sep) then
           new_path = worktree.get_root() .. ws_path.sep .. new_path
         end
