@@ -1,5 +1,6 @@
 return {
   'ThePrimeagen/git-worktree.nvim',
+
   keys = {
     {
       '<leader>sr',
@@ -16,6 +17,7 @@ return {
       desc = "Git Worktree Create"
     },
   },
+
   config = function(_, opts)
     local worktree = require("git-worktree")
     local workspaces = require("workspaces")
@@ -54,7 +56,9 @@ return {
       end
     end)
   end,
+
   dependencies = {
-    'nvim-telescope/telescope.nvim'
+    'nvim-telescope/telescope.nvim',
+    "natecraddock/workspaces.nvim",
   }
 }
