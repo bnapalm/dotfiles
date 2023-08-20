@@ -95,48 +95,4 @@ return {
     config = true
   },
 
-  {
-    'ThePrimeagen/git-worktree.nvim',
-    keys = {
-      {
-        '<leader>sr',
-        function()
-          require('telescope').extensions.git_worktree.git_worktrees()
-        end,
-        desc = "Git Worktree"
-      },
-      {
-        '<leader>sR',
-        function()
-          require('telescope').extensions.git_worktree.create_git_worktree()
-        end,
-        desc = "Git Worktree Create"
-      },
-    },
-    config = function(_, opts)
-      local worktree = require("git-worktree")
-      local workspaces = require("workspaces")
-      local ws_path = require("workspaces.util").path
-      require("telescope").load_extension("git_worktree")
-      worktree.setup(opts)
-
-      worktree.on_tree_change(function(op, metadata)
-        if op == worktree.Operations.Switch then
-          local norm_prev_path = ws_path.normalize(metadata.prev_path)
-          local ws_name = vim.tbl_filter(function(ws_sel)
-            return ws_sel.path == norm_prev_path
-          end, workspaces.get())[1].name or nil
-          if ws_name == nil then return end
-          workspaces.remove(ws_name)
-          workspaces.add(ws_name, metadata.path)
-          print("switch from " .. norm_prev_path .. " to " .. metadata.path)
-          print(vim.inspect(ws_name))
-        end
-      end)
-    end,
-    dependencies = {
-      'nvim-telescope/telescope.nvim'
-    }
-  },
-
 }
