@@ -1,7 +1,7 @@
 -- returns true if `dir` is a child of `parent`
 local is_dir_in_parent = function(dir, parent)
   if parent == nil then return false end
-  local ws_str_find, _ = string.find(dir, parent)
+  local ws_str_find, _ = string.find(dir, parent, 1, true)
   if ws_str_find == 1 then
     return true
   else
