@@ -1,13 +1,24 @@
 local active_ws = function()
-  local ws_name = require("workspaces").name()
+  local ok, ws = pcall(require, "workspaces")
+  local ws_name
+  if ok then
+    ws_name = ws.name()
+  end
+
   if ws_name then
     return ws_name
+  else
+    return ""
   end
-  return ""
 end
 
-local noice = function()
-  local nmode = require("noice").api.statusline.mode.get()
+local noice_macro_str = function()
+  local ok, noice = pcall(require, "noice")
+  local nmode
+  if ok then
+    nmode = noice.api.statusline.mode.get()
+  end
+
   local s, _ = string.find(nmode, "recording", 1, true)
   if s then
     return nmode
@@ -47,9 +58,9 @@ return {
       },
       lualine_x = {
         {
-          noice,
+          noice_macro_str,
           cond = require("noice").api.statusline.mode.has,
-          color = { fg = require("gruvbox.palette").colors.bright_yellow },
+          color = { fg = "orange" },
         },
         'encoding',
         'fileformat',
