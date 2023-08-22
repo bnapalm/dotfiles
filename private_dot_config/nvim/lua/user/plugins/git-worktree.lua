@@ -52,8 +52,7 @@ return {
         -- workspaces.remove(ws_name)
         -- workspaces.add(ws_name, new_path)
         workspaces.set_path(ws_name, new_path)
-        print("switch from " .. norm_prev_path .. " to " .. new_path)
-        print(vim.inspect(ws_name))
+        -- print("switched git-worktree workspace from " .. norm_prev_path .. " to " .. new_path)
       end
     end)
   end,
