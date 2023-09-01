@@ -5,7 +5,7 @@ return {
     cmd = {
       "Git",
       "G",
-      "Gbrowse"
+      "GBrowse"
     },
     keys = {
       { "<leader>gs", vim.cmd.Git, desc = "Fugitive Status" },
