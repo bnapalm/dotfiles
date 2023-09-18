@@ -77,3 +77,11 @@ gtst() {
 kgirf() {
   k get ingressroute -o jsonpath='{range .items[*]}{.metadata.name}{range .spec.routes[*]}{"\t"}{.match}{"\n"}{end}{"\n"}{end}'
 }
+
+resetgpg() {
+  gpg-connect-agent "scd serialno" "learn --force" /bye
+}
+
+killgpg() {
+  gpgconf --kill gpg-agent
+}
