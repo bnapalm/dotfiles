@@ -17,13 +17,6 @@ setopt AUTO_PUSHD
 setopt PUSHD_IGNORE_DUPS
 setopt PUSHD_SILENT
 
-# Auto-Completion
-autoload -U compinit; compinit
-zmodload zsh/complist
-
-# General completion
-source ${XDG_CONFIG_HOME}/zsh/completion.zsh
-
 # back-dir
 autoload -Uz bd; bd 
 
@@ -52,17 +45,18 @@ source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 
-# This should be at the end of file
-[[ ! -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] || \
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-[[ ! -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]] || \
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-
 [[ ! -f ${ZDOTDIR}/gc.zsh ]] || \
 source ${ZDOTDIR}/gc.zsh
 
 [[ ! -f ${ZDOTDIR}/mac.zsh ]] || \
 source ${ZDOTDIR}/mac.zsh
+
+# Auto-Completion
+autoload -Uz compinit; compinit
+zmodload zsh/complist
+
+# General completion
+source ${XDG_CONFIG_HOME}/zsh/completion.zsh
 
 czd () {
   cd $(chezmoi source-path)
@@ -85,3 +79,9 @@ resetgpg() {
 killgpg() {
   gpgconf --kill gpg-agent
 }
+
+# This should be at the end of file
+[[ ! -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] || \
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[[ ! -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]] || \
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
