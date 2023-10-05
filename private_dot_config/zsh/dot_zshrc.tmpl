@@ -45,11 +45,13 @@ source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 
+{{ if eq .chezmoi.os "darwin" }}
 [[ ! -f ${ZDOTDIR}/gc.zsh ]] || \
-source ${ZDOTDIR}/gc.zsh
+  source ${ZDOTDIR}/gc.zsh
 
 [[ ! -f ${ZDOTDIR}/mac.zsh ]] || \
-source ${ZDOTDIR}/mac.zsh
+  source ${ZDOTDIR}/mac.zsh
+{{ end }}
 
 # Auto-Completion
 autoload -Uz compinit; compinit
