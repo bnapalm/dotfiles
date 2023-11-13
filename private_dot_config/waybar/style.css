@@ -42,6 +42,10 @@ window#waybar {
   border-bottom: 3px solid transparent;
 }
 
+#workspaces button.active {
+  border-bottom: 3px solid @green;
+}
+
 #workspaces button.focused {
   border-bottom: 3px solid @green;
 }
