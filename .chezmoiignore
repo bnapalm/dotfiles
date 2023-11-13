@@ -1,0 +1,6 @@
+{{- if eq .chezmoi.osRelease.id "nixos" }}
+.XCompose
+.zshenv
+.config/zsh/.zshrc
+.config/zsh/alias
+{{- end }}
