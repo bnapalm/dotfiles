@@ -40,6 +40,7 @@ return {
             behavior = cmp.ConfirmBehavior.Replace,
             select = true,
           }),
+          ["<Esc>"] = cmp.mapping.abort(),
 
           ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
