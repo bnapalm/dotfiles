@@ -1,4 +1,4 @@
-{{- if eq .chezmoi.osRelease.id "nixos" }}
+{{- if eq (index .chezmoi.osRelease "id") "nixos" }}
 .XCompose
 .zshenv
 .config/zsh/.zshrc
