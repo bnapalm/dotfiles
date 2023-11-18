@@ -40,7 +40,14 @@ return {
             behavior = cmp.ConfirmBehavior.Replace,
             select = true,
           }),
-          ["<Esc>"] = cmp.mapping.abort(),
+
+          ["<Esc>"] = cmp.mapping(function(fallback)
+            if cmp.visible() and luasnip.expand_or_locally_jumpable() then
+              cmp.abort()
+            else
+              fallback()
+            end
+          end, { "i", "s" }),
 
           ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
