@@ -3,4 +3,5 @@
 .zshenv
 .config/zsh/.zshrc
 .config/zsh/alias
+.config/waybar
 {{- end }}
