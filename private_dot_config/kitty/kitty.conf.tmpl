@@ -1,5 +1,7 @@
 # vim:fileencoding=utf-8:foldmethod=marker
 
+action_alias kitty_scrollback_nvim kitten /Users/gjonasts/.config/local/share/nvim/lazy/kitty-scrollback.nvim/python/kitty_scrollback_nvim.py
+
 #: Fonts {{ "{{{" }}
 
 #: kitty has very powerful font management. You can configure
@@ -446,6 +448,8 @@ mouse_map shift+ctrl+alt+left triplepress ungrabbed,grabbed mouse_selection line
 #: Select from the clicked point to the end of the line
 
 mouse_map shift+right press ungrabbed,grabbed mouse_selection extend
+
+mouse_map ctrl+shift+right press ungrabbed combine : mouse_select_command_output : kitty_scrollback_nvim --config ksb_builtin_last_visited_cmd_output
 #: }}}
 
 #: }}}
@@ -1247,7 +1251,9 @@ map kitty_mod+page_up   scroll_page_up
 map kitty_mod+page_down scroll_page_down
 map kitty_mod+home      scroll_home
 map kitty_mod+end       scroll_end
-map kitty_mod+h         show_scrollback
+map kitty_mod+h         kitty_scrollback_nvim
+map kitty_mod+g         kitty_scrollback_nvim --config ksb_builtin_last_cmd_output
+# map kitty_mod+h         show_scrollback
 
 #: You can pipe the contents of the current screen + history buffer as
 #: STDIN to an arbitrary program using the ``launch`` function. For
