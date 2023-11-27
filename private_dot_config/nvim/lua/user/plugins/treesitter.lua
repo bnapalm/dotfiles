@@ -9,6 +9,9 @@ return {
     config = function()
       local configs = require("nvim-treesitter.configs")
 
+      -- disable legacy commentstring
+      vim.g.skip_ts_context_commentstring_module = true
+
       configs.setup({
         ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "javascript", "typescript", "html", "rust", "bash",
           "beancount", "cpp", "dockerfile", "go", "godot_resource", "gomod", "gosum", "gowork", "git_config",
@@ -18,9 +21,6 @@ return {
         auto_install = true,
         highlight = { enable = true },
         indent = { enable = true },
-        context_commentstring = {
-          enable = true,
-        },
         playground = {
           enable = true
         },
