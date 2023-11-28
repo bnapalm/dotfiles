@@ -1,6 +1,7 @@
 {{- if eq (index .chezmoi.osRelease "id") "nixos" }}
 .XCompose
 .zshenv
+.config/kitty
 .config/zsh/.zshrc
 .config/zsh/alias
 .config/waybar
