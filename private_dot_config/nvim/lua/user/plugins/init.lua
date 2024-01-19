@@ -160,9 +160,13 @@ return {
     "folke/noice.nvim",
     event = "VeryLazy",
     keys = {
-      {"<Esc>", function ()
-        require("noice.message.router").dismiss()
-      end, desc = "Dismiss noice popups"}
+      {
+        "<Esc>",
+        function()
+          require("noice.message.router").dismiss()
+        end,
+        desc = "Dismiss noice popups"
+      }
     },
     opts = {
       presets = {
