@@ -30,14 +30,14 @@ return {
       desc = "Harpoon to file 2",
     },
     {
-      "<C-n>",
+      "<C-s>",
       function()
         require("harpoon.ui").nav_file(3)
       end,
       desc = "Harpoon to file 3",
     },
     {
-      "<C-s>",
+      "<C-n>",
       function()
         require("harpoon.ui").nav_file(4)
       end,
