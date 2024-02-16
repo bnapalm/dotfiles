@@ -2,6 +2,9 @@ require('lazy').load({ plugins = { 'neodev.nvim' } })
 return {
   settings = {
     Lua = {
+      runtime = {
+        version = 'LuaJIT'
+      },
 
       diagnostics = {
         globals = { "vim" },
