@@ -13,10 +13,13 @@ return {
       vim.g.skip_ts_context_commentstring_module = true
 
       configs.setup({
-        ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "javascript", "typescript", "html", "rust", "bash",
-          "beancount", "cpp", "dockerfile", "go", "godot_resource", "gomod", "gosum", "gowork", "git_config",
-          "git_rebase", "gitcommit", "jq", "json", "json5", "jsonnet", "make", "markdown", "norg", "python", "regex",
-          "sql", "terraform", "yaml" },
+        ensure_installed = {
+          "c", "lua", "vim", "vimdoc", "query", "javascript", "typescript",
+          "html", "rust", "bash", "beancount", "cpp", "dockerfile", "go",
+          "godot_resource", "gomod", "gosum", "gowork", "git_config",
+          "git_rebase", "gitcommit", "jq", "json", "json5", "jsonnet", "make",
+          "markdown", "norg", "python", "regex", "sql", "terraform", "yaml"
+        },
         sync_install = false,
         auto_install = true,
         highlight = { enable = true },
