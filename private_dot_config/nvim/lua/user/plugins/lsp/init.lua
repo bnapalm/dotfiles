@@ -29,6 +29,7 @@ local M = {
     event = { 'BufReadPre', 'BufNewFile' },
     config = function()
       local keymaps = require("user.plugins.lsp.keymaps")
+      local lspconfig = require("lspconfig")
 
       api.nvim_create_autocmd('LspAttach', {
         desc = "LSP actions",
@@ -41,6 +42,8 @@ local M = {
           keymaps.buflocal(bufnr)
         end
       })
+
+      lspconfig["lua_ls"].setup(require("user.plugins.lsp.configs.lua_ls"))
     end,
     dependencies = {
       "williamboman/mason-lspconfig.nvim"

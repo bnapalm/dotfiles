@@ -1,5 +1,5 @@
 local my_default_lsp = {
-  "lua_ls",
+  -- "lua_ls",
   -- "gopls",
 }
 
