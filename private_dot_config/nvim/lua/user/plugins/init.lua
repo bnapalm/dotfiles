@@ -208,7 +208,17 @@ return {
   {
     "ray-x/go.nvim",
     config = function()
-      require("go").setup()
+      local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+      require('go').setup({
+        lsp_cfg = {
+          capabilities = capabilities,
+        },
+        lsp_inlay_hints = {
+          enable = true,
+          -- style = 'eol',
+        },
+        luasnip = true
+      })
     end,
     event = { "CmdlineEnter" },
     ft = { "go", 'gomod' },
@@ -217,6 +227,7 @@ return {
       "ray-x/guihua.lua",
       "neovim/nvim-lspconfig",
       "nvim-treesitter/nvim-treesitter",
+      "hrsh7th/nvim-cmp",
     },
   },
 
