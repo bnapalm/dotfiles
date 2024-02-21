@@ -215,7 +215,7 @@ return {
         },
         lsp_inlay_hints = {
           enable = true,
-          -- style = 'eol',
+          style = "eol",
         },
         luasnip = true
       })
