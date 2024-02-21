@@ -24,7 +24,17 @@ return {
     },
     build = "make install_jsregexp",
     config = function()
-      require("luasnip.loaders.from_vscode").lazy_load()
+      require("luasnip.loaders.from_vscode").lazy_load({
+        exclude = {
+          "plaintext",
+          "markdown",
+          "tex",
+          "html",
+          "global",
+          "all",
+          "go",
+        },
+      })
     end,
     dependencies = {
       "rafamadriz/friendly-snippets"
@@ -93,7 +103,7 @@ return {
           { name = "nvim_lua" },
           { name = "nvim_lsp" },
           { name = "luasnip" },
-          { name = "buffer", keyword_length = 4 },
+          { name = "buffer",  keyword_length = 4 },
           { name = "path" },
         }),
 
