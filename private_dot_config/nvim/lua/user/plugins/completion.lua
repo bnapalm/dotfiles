@@ -90,8 +90,8 @@ return {
         },
 
         sources = cmp.config.sources({
-          { name = "nvim_lsp" },
           { name = "nvim_lua" },
+          { name = "nvim_lsp" },
           { name = "luasnip" },
           { name = "buffer", keyword_length = 4 },
           { name = "path" },
@@ -103,7 +103,7 @@ return {
             mode = "symbol",
             menu = ({
               nvim_lsp = "[LSP]",
-              nvim_lua = "[NVIM_LUA]",
+              nvim_lua = "[NVIM]",
               luasnip = "[Snip]",
               buffer = "[Buff]",
               path = "[Path]",
@@ -136,6 +136,7 @@ return {
     end,
 
     dependencies = {
+      "hrsh7th/cmp-nvim-lua",
       "hrsh7th/cmp-nvim-lsp",
       {
         "saadparwaiz1/cmp_luasnip",
