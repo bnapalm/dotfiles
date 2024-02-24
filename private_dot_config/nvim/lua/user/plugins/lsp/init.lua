@@ -54,7 +54,11 @@ local M = {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     cmd = { "TroubleToggle", "Trouble" },
-    opts = { use_diagnostic_signs = true },
+    opts = {
+      position = "right",
+      width = 60,
+      use_diagnostic_signs = true,
+    },
     keys = {
       { "<leader>xx", "<cmd>TroubleToggle<cr>",                       desc = "Toggle (Trouble)" },
       { "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>",  desc = "Document Diagnostics (Trouble)" },
