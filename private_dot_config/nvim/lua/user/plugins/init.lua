@@ -217,7 +217,13 @@ return {
           enable = true,
           style = "eol",
         },
-        luasnip = true
+        lsp_on_client_start = function(_, bufnr)
+          -- go.nvim overrides some keymaps, but we don't want to disable all provided ones,
+          -- so we override with my default keymaps again
+          require("user.plugins.lsp.keymaps").buflocal(bufnr)
+        end,
+        luasnip = true,
+        trouble = true
       })
     end,
     event = { "CmdlineEnter" },
