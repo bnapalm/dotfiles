@@ -7,21 +7,22 @@ M.buflocal = function(bufnr)
   end
 
   local t_builtin = require("telescope.builtin")
+  local trouble = require("trouble")
 
   -- Jump to declaration
   bufmap('n', 'gD', vim.lsp.buf.declaration)
 
   -- Jump to the definition
-  bufmap('n', 'gd', t_builtin.lsp_definitions)
+  bufmap('n', 'gd', function() trouble.open("lsp_definitions") end)
 
   -- Lists all the references
-  bufmap('n', 'gr', t_builtin.lsp_references)
+  bufmap('n', 'gr', function() trouble.open("lsp_references") end)
 
   -- Lists all the implementations for the symbol under the cursor
   bufmap('n', 'gi', t_builtin.lsp_implementations)
 
   -- Jumps to the definition of the type symbol
-  bufmap('n', 'go', t_builtin.lsp_type_definitions)
+  bufmap('n', 'go', function() trouble.open("lsp_type_definitions") end)
 
   -- Displays hover information about the symbol under the cursor
   bufmap('n', 'K', vim.lsp.buf.hover)
