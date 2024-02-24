@@ -9,8 +9,8 @@ return {
     "L3MON4D3/LuaSnip",
     version = "v2.*",
     keys = {
-      { "<C-h>", function() require("luasnip").jump(1) end,  mode = { "i", "s" } },
-      { "<C-l>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
+      { "<C-t>", function() require("luasnip").jump(1) end,  mode = { "i", "s" } },
+      { "<C-m>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
       {
         "<C-s>",
         function()
