@@ -9,8 +9,26 @@ return {
     "L3MON4D3/LuaSnip",
     version = "v2.*",
     keys = {
-      { "<C-t>", function() require("luasnip").jump(1) end,  mode = { "i", "s" } },
-      { "<C-m>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
+      {
+        "<C-t>",
+        function()
+          local ls = require("luasnip")
+          if ls.expand_or_jumpable() then
+            ls.expand_or_jump()
+          end
+        end,
+        mode = { "i", "s" }
+      },
+      {
+        "<C-m>",
+        function()
+          local ls = require("luasnip")
+          if ls.jumpable(-1) then
+            ls.jump(-1)
+          end
+        end,
+        mode = { "i", "s" }
+      },
       {
         "<C-s>",
         function()
