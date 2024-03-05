@@ -95,4 +95,18 @@ return {
     config = true
   },
 
+  {
+    'pwntester/octo.nvim',
+    cmd = {
+      "Octo",
+      "O",
+    },
+    config = true,
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim',
+      'nvim-tree/nvim-web-devicons',
+    },
+  }
+
 }
