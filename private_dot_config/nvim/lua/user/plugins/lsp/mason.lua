@@ -57,6 +57,9 @@ return {
         ["tflint"] = function()
           lspconfig["tflint"].setup(require("user.plugins.lsp.configs.tflint"))
         end,
+        ["jsonnet_ls"] = function()
+          lspconfig["jsonnet_ls"].setup(require("user.plugins.lsp.configs.jsonnet_ls"))
+        end,
       }
     end,
     dependencies = {
