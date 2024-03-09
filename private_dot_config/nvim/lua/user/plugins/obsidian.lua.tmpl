@@ -1,0 +1,23 @@
+return {
+  "epwalsh/obsidian.nvim",
+  version = "*",   -- recommended, use latest release instead of latest commit
+  lazy = true,
+  ft = "markdown",
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+    "nvim-telescope/telescope.nvim",
+    "nvim-treesitter/nvim-treesitter",
+  },
+  opts = {
+    workspaces = {
+      {
+        name = "black",
+{{- if eq .chezmoi.os "darwin" }}
+        path = "~/personal_data/Black Vault",
+{{- else }}
+        path = "~/Documents/Black Vault",
+{{- end }}
+      },
+    },
+  },
+}
