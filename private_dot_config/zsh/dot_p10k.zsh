@@ -59,8 +59,8 @@
     nvm                     # node.js version from nvm (https://github.com/nvm-sh/nvm)
     nodeenv                 # node.js environment (https://github.com/ekalinin/nodeenv)
     # node_version          # node.js version
-    # go_version            # go version (https://golang.org)
-    # rust_version          # rustc version (https://www.rust-lang.org)
+    go_version            # go version (https://golang.org)
+    rust_version          # rustc version (https://www.rust-lang.org)
     # dotnet_version        # .NET version (https://dotnet.microsoft.com)
     # php_version           # php version (https://www.php.net/)
     # laravel_version       # laravel php framework version (https://laravel.com/)
@@ -998,7 +998,7 @@ typeset -g POWERLEVEL9K_OS_ICON_LEFT_{LEFT,RIGHT}_WHITESPACE=' '
 
   #######################[ go_version: go version (https://golang.org) ]########################
   # Go version color.
-  typeset -g POWERLEVEL9K_GO_VERSION_FOREGROUND=6
+  typeset -g POWERLEVEL9K_GO_VERSION_FOREGROUND=4
   # Show go version only when in a go project subdirectory.
   typeset -g POWERLEVEL9K_GO_VERSION_PROJECT_ONLY=true
   # Custom icon.
@@ -1545,7 +1545,8 @@ typeset -g POWERLEVEL9K_OS_ICON_LEFT_{LEFT,RIGHT}_WHITESPACE=' '
   # Current time color.
   typeset -g POWERLEVEL9K_TIME_FOREGROUND=6
   # Format for the current time: 09:51:02. See `man 3 strftime`.
-  typeset -g POWERLEVEL9K_TIME_FORMAT='%D{%H:%M:%S}'
+  typeset -g POWERLEVEL9K_TIME_FORMAT='%D{%H:%M}'
+  # typeset -g POWERLEVEL9K_TIME_FORMAT='%D{%H:%M:%S}'
   # If set to true, time will update when you hit enter. This way prompts for the past
   # commands will contain the start times of their commands as opposed to the default
   # behavior where they contain the end times of their preceding commands.
