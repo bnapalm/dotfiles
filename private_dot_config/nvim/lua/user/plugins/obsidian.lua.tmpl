@@ -1,6 +1,9 @@
 return {
   "epwalsh/obsidian.nvim",
   version = "*",   -- recommended, use latest release instead of latest commit
+  cmd = {
+    "ObsidianToday",
+  },
   lazy = true,
   ft = "markdown",
   dependencies = {
@@ -19,5 +22,17 @@ return {
 {{- end }}
       },
     },
+
+    daily_notes = {
+      folder = "Calendar/Daily",
+      template = "Daily Template.md",
+    },
+
+    templates = {
+      subdir = "Atlas/Templates",
+    },
+
+    disable_frontmatter = true,
+
   },
 }
