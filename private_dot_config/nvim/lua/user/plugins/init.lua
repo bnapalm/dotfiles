@@ -148,7 +148,11 @@ return {
       wk.setup(opts)
       wk.register({
         ["<leader>s"] = { name = "+search" },
-        ["<leader>g"] = { name = "+git" },
+        ["<leader>g"] = {
+          name = "+git",
+          d = { name = "+diff" },
+          b = { name = "+blame" },
+        },
         ["<leader>c"] = { name = "+config" },
         ["<leader>h"] = { name = "+hunk/highlight" },
         ["<leader>l"] = { name = "+lsp" },

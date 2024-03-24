@@ -33,7 +33,7 @@ return {
         desc = "Find in current buffer",
       },
       {
-        "<leader>gb",
+        "<leader>gB",
         function()
           require('telescope.builtin').git_branches()
         end,
