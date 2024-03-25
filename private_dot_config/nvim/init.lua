@@ -41,9 +41,9 @@ end
 -- Utopia jsonnet library paths
 local function jsonnet_path(root_dir)
   return {
-    root_dir .. 'lib',
-    root_dir .. 'jvendor',
-    root_dir .. 'vendor',
+    root_dir .. '/lib',
+    root_dir .. '/jvendor',
+    root_dir .. '/vendor',
   }
 end
 
