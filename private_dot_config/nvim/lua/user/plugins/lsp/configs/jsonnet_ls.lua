@@ -26,6 +26,9 @@ local function jsonnet_path(root_dir)
   return {
     util.path.join(root_dir, 'lib'),
     util.path.join(root_dir, 'jvendor'),
+    util.path.join(root_dir, 'vendor'),
+    util.path.join(root_dir, 'utopia', 'lib'),
+    util.path.join(root_dir, 'utopia', 'jvendor'),
   }
 end
 
