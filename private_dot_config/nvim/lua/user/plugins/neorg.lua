@@ -2,6 +2,7 @@ return {
   "nvim-neorg/neorg",
   cmd = "Neorg",
   ft = "norg",
+  version = "v7.0.0",
   opts = {
     load = {
       ["core.defaults"] = {},
