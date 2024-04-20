@@ -3,6 +3,8 @@
 .zshenv
 .config/kitty
 .config/zsh/.zshrc
+.config/zsh/.p10k.zsh
 .config/zsh/alias
+.config/zsh/plugins
 .config/waybar
 {{- end }}
