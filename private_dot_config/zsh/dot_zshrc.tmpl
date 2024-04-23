@@ -24,6 +24,13 @@ autoload -Uz bd; bd
 bindkey -v
 export KEYTIMEOUT=1
 
+# Auto-Completion
+autoload -Uz compinit; compinit
+zmodload zsh/complist
+
+# General completion
+source ${XDG_CONFIG_HOME}/zsh/completion.zsh
+
 # fzf
 [[ ! -f /usr/share/fzf/key-bindings.zsh ]] || \
 source /usr/share/fzf/key-bindings.zsh
@@ -46,19 +53,12 @@ source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 
 {{ if eq .chezmoi.os "darwin" }}
+[[ ! -f ${ZDOTDIR}/mac.zsh ]] || \
+    source ${ZDOTDIR}/mac.zsh
+
 [[ ! -f ${ZDOTDIR}/gc.zsh ]] || \
   source ${ZDOTDIR}/gc.zsh
-
-[[ ! -f ${ZDOTDIR}/mac.zsh ]] || \
-  source ${ZDOTDIR}/mac.zsh
 {{ end }}
-
-# Auto-Completion
-autoload -Uz compinit; compinit
-zmodload zsh/complist
-
-# General completion
-source ${XDG_CONFIG_HOME}/zsh/completion.zsh
 
 czd () {
   cd $(chezmoi source-path)
