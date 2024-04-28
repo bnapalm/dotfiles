@@ -23,6 +23,7 @@ return {
 
   {
     "NeogitOrg/neogit",
+    branch = "nightly",
     keys = {
       {
         "<leader>gs",
