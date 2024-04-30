@@ -44,6 +44,7 @@ local M = {
       })
 
       lspconfig["lua_ls"].setup(require("user.plugins.lsp.configs.lua_ls"))
+      lspconfig["nixd"].setup {}
     end,
     dependencies = {
       "williamboman/mason-lspconfig.nvim",
