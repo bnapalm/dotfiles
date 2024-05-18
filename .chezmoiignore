@@ -1,4 +1,4 @@
-{{- if eq (index .chezmoi.osRelease "id") "nixos" }}
+{{- if ( or (eq (index .chezmoi.osRelease "id") "nixos") (contains .chezmoi.config.executable ".nix-profile") ) }}
 .XCompose
 .zshenv
 .config/kitty
