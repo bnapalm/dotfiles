@@ -56,6 +56,7 @@ return {
     },
     opts = {
       kind = "auto",
+      console_timeout = 5000,
     },
     dependencies = {
       "nvim-lua/plenary.nvim",
