@@ -18,7 +18,8 @@ return {
           "html", "rust", "bash", "beancount", "cpp", "dockerfile", "go",
           "godot_resource", "gomod", "gosum", "gowork", "git_config",
           "git_rebase", "gitcommit", "jq", "json", "json5", "jsonnet", "make",
-          "markdown", "norg", "python", "regex", "sql", "terraform", "yaml"
+          "markdown", "markdown_inline", "norg", "python", "regex", "sql",
+          "terraform", "yaml"
         },
         sync_install = false,
         auto_install = true,
