@@ -12,6 +12,13 @@ return {
         desc = "Find Files",
       },
       {
+        "<leader>sc",
+        function()
+          require('telescope.builtin').grep_string()
+        end,
+        desc = "Grep word under cursor",
+      },
+      {
         "<leader>sg",
         function()
           require('telescope.builtin').live_grep()
