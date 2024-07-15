@@ -133,33 +133,19 @@ return {
       vim.o.timeoutlen = 400
     end,
     opts = {
-      triggers_nowait = {
-        -- marks
-        "`",
-        "'",
-        "g`",
-        "g'",
-        -- spelling
-        "z=",
+      spec = {
+        { "<leader>s",  group = "search" },
+        { "<leader>g",  group = "git" },
+        { "<leader>gd", group = "diff" },
+        { "<leader>gb", group = "blame" },
+        { "<leader>c",  group = "config" },
+        { "<leader>h",  group = "hunk/highlight" },
+        { "<leader>l",  group = "lsp" },
+        { "<leader>r",  group = "rename" },
+        { "<leader>w",  group = "workspace" },
       },
     },
-    config = function(_, opts)
-      local wk = require("which-key")
-      wk.setup(opts)
-      wk.register({
-        ["<leader>s"] = { name = "+search" },
-        ["<leader>g"] = {
-          name = "+git",
-          d = { name = "+diff" },
-          b = { name = "+blame" },
-        },
-        ["<leader>c"] = { name = "+config" },
-        ["<leader>h"] = { name = "+hunk/highlight" },
-        ["<leader>l"] = { name = "+lsp" },
-        ["<leader>r"] = { name = "+rename" },
-        ["<leader>w"] = { name = "+workspace" },
-      })
-    end,
+    config = true,
   },
 
   {
