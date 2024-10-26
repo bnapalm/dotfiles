@@ -1,0 +1,22 @@
+return {
+  settings = {
+    nixd = {
+      nixpkgs = {
+        expr = "import <nixpkgs> { }"
+      },
+
+      formatting = {
+        command = { "alejandra" }
+      },
+
+      options = {
+        nixos = {
+          expr = "(builtins.getFlake \"" .. os.getenv("FLAKE") .. "\").{{ if eq .chezmoi.os "darwin" }}darwin{{ else }}nixos{{ end }}Configurations.{{ .chezmoi.hostname }}.options"
+        },
+        home_manager = {
+          expr = "(builtins.getFlake \"" .. os.getenv("FLAKE") .. "\").homeConfigurations.\"{{ .chezmoi.username }}@{{ .chezmoi.hostname }}\".options"
+        }
+      }
+    },
+  },
+}
