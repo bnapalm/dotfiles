@@ -23,12 +23,16 @@ local util = require 'lspconfig.util'
 
 -- Utopia jsonnet library paths
 local function jsonnet_path(root_dir)
+  local gitroot = util.find_git_ancestor(vim.api.nvim_buf_get_name(0))
+
   return {
     util.path.join(root_dir, 'lib'),
-    util.path.join(root_dir, 'jvendor'),
     util.path.join(root_dir, 'vendor'),
-    util.path.join(root_dir, 'utopia', 'lib'),
-    util.path.join(root_dir, 'utopia', 'jvendor'),
+    util.path.join(gitroot, 'utopia', 'lib'),
+    util.path.join(gitroot, 'utopia', 'jvendor'),
+    -- util.path.join(root_dir, 'jvendor'),
+    -- util.path.join(root_dir, '..', 'utopia', 'jvendor'),
+    -- util.path.join(root_dir, '..', 'utopia', 'jvendor'),
   }
 end
 
