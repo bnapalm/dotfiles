@@ -14,7 +14,8 @@ return {
     {
       "<C-e>",
       function()
-        require("harpoon").ui:toggle_quick_menu(require("harpoon"):list())
+        local harpoon = require("harpoon")
+        harpoon.ui:toggle_quick_menu(harpoon:list())
       end,
       desc = "Toggle Harpoon menu",
     },
