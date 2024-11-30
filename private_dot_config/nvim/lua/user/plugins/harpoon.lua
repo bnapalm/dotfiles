@@ -1,3 +1,7 @@
+local function harpoonToFile(num)
+  require("harpoon"):list():select(num)
+end
+
 return {
   "ThePrimeagen/harpoon",
   branch = "harpoon2",
@@ -14,36 +18,29 @@ return {
     {
       "<C-e>",
       function()
-        require("harpoon").ui:toggle_quick_menu(require("harpoon"):list())
+        local harpoon = require("harpoon")
+        harpoon.ui:toggle_quick_menu(harpoon:list())
       end,
       desc = "Toggle Harpoon menu",
     },
     {
       "<C-h>",
-      function()
-        require("harpoon"):list():select(1)
-      end,
+      harpoonToFile(1),
       desc = "Harpoon to file 1",
     },
     {
       "<C-t>",
-      function()
-        require("harpoon"):list():select(2)
-      end,
+      harpoonToFile(2),
       desc = "Harpoon to file 2",
     },
     {
       "<C-s>",
-      function()
-        require("harpoon"):list():select(3)
-      end,
+      harpoonToFile(3),
       desc = "Harpoon to file 3",
     },
     {
       "<C-n>",
-      function()
-        require("harpoon"):list():select(4)
-      end,
+      harpoonToFile(4),
       desc = "Harpoon to file 4",
     },
   },
