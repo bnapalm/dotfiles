@@ -56,30 +56,6 @@ return {
     },
   },
 
-  -- {
-  --   "ahmedkhalf/project.nvim",
-  --   lazy = false,
-  --   keys = {
-  --     {
-  --       '<leader>sp',
-  --       function()
-  --         require('telescope').extensions.projects.projects()
-  --       end,
-  --       desc = "Projects"
-  --     }
-  --   },
-  --   opts = {
-  --     detection_methods = { "pattern" },
-  --   },
-  --   config = function(_, opts)
-  --     require("project_nvim").setup(opts)
-  --     require('telescope').load_extension('projects')
-  --   end,
-  --   dependencies = {
-  --     'nvim-telescope/telescope.nvim'
-  --   }
-  -- },
-
   {
     "folke/neodev.nvim",
     lazy = true,
