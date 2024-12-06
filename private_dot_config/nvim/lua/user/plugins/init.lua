@@ -52,9 +52,15 @@ return {
   },
 
   {
-    "folke/neodev.nvim",
-    lazy = true,
-    config = true
+    "folke/lazydev.nvim",
+    ft = "lua", -- only load on lua files
+    opts = {
+      library = {
+        { path = "snacks.nvim",        words = { "Snacks" } },
+        { path = "lazy.nvim",          words = { "LazyVim" } },
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+      },
+    },
   },
 
   {

@@ -43,7 +43,8 @@ local M = {
         end
       })
 
-      lspconfig["lua_ls"].setup(require("user.plugins.lsp.configs.lua_ls"))
+      -- lspconfig["lua_ls"].setup(require("user.plugins.lsp.configs.lua_ls"))
+      lspconfig["lua_ls"].setup {}
       lspconfig["nixd"].setup(require("user.plugins.lsp.configs.nixd"))
       lspconfig["pyright"].setup {}
       lspconfig["yamlls"].setup {}
