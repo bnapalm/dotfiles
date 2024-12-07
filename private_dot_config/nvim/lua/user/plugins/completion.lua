@@ -42,7 +42,7 @@ return {
     },
     build = "make install_jsregexp",
     config = function()
-      require("luasnip.loaders.from_lua").lazy_load({paths = vim.fn.stdpath("config").."/lua/user/snip"})
+      require("luasnip.loaders.from_lua").lazy_load({ paths = { vim.fn.stdpath("config") .. "/lua/user/snip" } })
       require("luasnip.loaders.from_vscode").lazy_load({
         exclude = {
           "plaintext",
