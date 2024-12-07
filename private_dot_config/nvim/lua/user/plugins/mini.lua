@@ -111,19 +111,4 @@ return {
     config = true
   },
 
-  {
-    'echasnovski/mini.bufremove',
-    version = false,
-    keys = {
-      {
-        "<leader>o",
-        function()
-          require("mini.bufremove").delete()
-        end,
-        desc = "Delete buffer"
-      }
-    },
-    config = true
-  },
-
 }
