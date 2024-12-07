@@ -120,6 +120,14 @@ return {
         { "<leader>l",  group = "lsp" },
         { "<leader>r",  group = "rename" },
         { "<leader>w",  group = "workspace" },
+        -- mini.ai custom objects
+        {
+          mode = {"x", "o"},
+          { "id", desc = "digits" },
+          { "ad", desc = "digits" },
+          { "ie", desc = "case aware word" },
+          { "ae", desc = "case aware word" },
+        }
       },
     },
     config = true,
