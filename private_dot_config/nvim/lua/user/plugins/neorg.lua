@@ -17,11 +17,13 @@ return {
         }
       },
       ["core.summary"] = {},
+      --[[
       ["core.completion"] = {
         config = {
           engine = "nvim-cmp"
         }
       },
+      ]]
       ["core.export"] = {
         config = {
           export_dir = "~/tmp/neorg-export"

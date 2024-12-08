@@ -1,4 +1,4 @@
----@type LazySpec[]
+---@type LazySpec
 return {
   -- the colorscheme should be available when starting Neovim
   {
@@ -33,15 +33,15 @@ return {
       },
       fast_wrap = {},
     },
-    config = function(_, opts)
-      require("nvim-autopairs").setup(opts)
-      local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-      local cmp = require("cmp")
-      cmp.event:on(
-        "confirm_done",
-        cmp_autopairs.on_confirm_done()
-      )
-    end
+    -- config = function(_, opts)
+    --   require("nvim-autopairs").setup(opts)
+    --   local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+    --   local cmp = require("cmp")
+    --   cmp.event:on(
+    --     "confirm_done",
+    --     cmp_autopairs.on_confirm_done()
+    --   )
+    -- end
   },
 
   {
@@ -57,8 +57,8 @@ return {
     ft = "lua", -- only load on lua files
     opts = {
       library = {
+        "lazy.nvim",
         { path = "snacks.nvim",        words = { "Snacks" } },
-        { path = "lazy.nvim",          words = { "LazyVim" } },
         { path = "${3rd}/luv/library", words = { "vim%.uv" } },
       },
     },
@@ -158,7 +158,7 @@ return {
         override = {
           ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
           ["vim.lsp.util.stylize_markdown"] = true,
-          ["cmp.entry.get_documentation"] = true,
+          -- ["cmp.entry.get_documentation"] = true,
         },
       },
       presets = {
@@ -278,25 +278,26 @@ return {
 
   {
     "ray-x/go.nvim",
-    config = function()
-      local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
-      require('go').setup({
-        lsp_cfg = {
-          capabilities = capabilities,
-        },
-        lsp_inlay_hints = {
-          enable = true,
-          style = "eol",
-        },
-        lsp_on_client_start = function(_, bufnr)
-          -- go.nvim overrides some keymaps, but we don't want to disable all provided ones,
-          -- so we override with my default keymaps again
-          require("user.plugins.lsp.keymaps").buflocal(bufnr)
-        end,
-        luasnip = true,
-        trouble = true
-      })
-    end,
+    -- config = function()
+    --   local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+    --   require('go').setup({
+    --     lsp_cfg = {
+    --       capabilities = capabilities,
+    --     },
+    --     lsp_inlay_hints = {
+    --       enable = true,
+    --       style = "eol",
+    --     },
+    --     lsp_on_client_start = function(_, bufnr)
+    --       -- go.nvim overrides some keymaps, but we don't want to disable all provided ones,
+    --       -- so we override with my default keymaps again
+    --       require("user.plugins.lsp.keymaps").buflocal(bufnr)
+    --     end,
+    --     luasnip = true,
+    --     trouble = true
+    --   })
+    -- end,
+    config = true,
     event = { "CmdlineEnter" },
     ft = { "go", 'gomod' },
     build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
@@ -304,7 +305,7 @@ return {
       "ray-x/guihua.lua",
       "neovim/nvim-lspconfig",
       "nvim-treesitter/nvim-treesitter",
-      "hrsh7th/nvim-cmp",
+      -- "hrsh7th/nvim-cmp",
     },
   },
 

@@ -31,19 +31,11 @@ return {
       local lspconfig = require("lspconfig")
       local lsp_defaults = lspconfig.util.default_config
 
-      lsp_defaults.capabilities = vim.tbl_deep_extend(
-        "force",
-        lsp_defaults.capabilities,
-        require("cmp_nvim_lsp").default_capabilities()
-      )
-
+      lsp_defaults.capabilities = require("blink.cmp").get_lsp_capabilities(lsp_defaults.capabilities)
       require("mason-lspconfig").setup_handlers {
 
         function(server_name) -- default handler
           lspconfig[server_name].setup({})
-        end,
-        ["lua_ls"] = function()
-          lspconfig["lua_ls"].setup(require("user.plugins.lsp.configs.lua_ls"))
         end,
         ["beancount"] = function()
           lspconfig["beancount"].setup(require("user.plugins.lsp.configs.beancount"))
@@ -63,7 +55,8 @@ return {
       }
     end,
     dependencies = {
-      "williamboman/mason.nvim"
+      "williamboman/mason.nvim",
+      'saghen/blink.cmp'
     }
   }
 }
