@@ -108,7 +108,12 @@ return {
       -- experimental auto-brackets support
       completion = {
         accept = { auto_brackets = { enabled = true } },
-        documentation = { auto_show = true },
+        documentation = {
+          auto_show = true,
+          window = {
+            border = 'rounded'
+          }
+        },
       },
 
       -- experimental signature help support
