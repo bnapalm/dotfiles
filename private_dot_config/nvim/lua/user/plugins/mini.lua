@@ -1,4 +1,4 @@
----@type LazySpec[]
+---@type LazySpec
 return {
   --
   -- better text-objects
