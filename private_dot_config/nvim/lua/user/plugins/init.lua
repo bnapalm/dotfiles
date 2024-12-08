@@ -132,6 +132,7 @@ return {
       },
     },
     config = true,
+    dependencies = { "echasnovski/mini.icons" },
   },
 
   {
@@ -257,6 +258,7 @@ return {
         end,
       })
     end,
+    dependencies = { "echasnovski/mini.icons" },
   },
 
   {
