@@ -45,14 +45,6 @@ return {
   },
 
   {
-    "numToStr/Comment.nvim",
-    config = true,
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-    },
-  },
-
-  {
     "folke/lazydev.nvim",
     ft = "lua", -- only load on lua files
     opts = {
