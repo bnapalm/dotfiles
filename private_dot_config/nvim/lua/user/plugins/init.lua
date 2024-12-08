@@ -183,7 +183,18 @@ return {
       dashboard = { enabled = true },
       gitbrowse = {
         remote_patterns = {
-          {"^gh%w+:(.+)%.git$", "https://github.com/%1"}
+          -- ghcustom:foo/bar.git
+          { "^gh%w+:(.+)%.git$",     "https://github.com/%1" },
+          -- foo.bar.baz:foo/bar.git
+          { "^([%w%.]+):(.+)%.git$", "https://%1/%2" },
+        },
+        url_patterns = {
+          -- forgejo/gitea
+          ["git%.mythoranium%.com"] = {
+            branch = "/src/branch/{branch}",
+            file = "/src/branch/{branch}/{file}#L{line_start}-L{line_end}",
+            commit = "/commit/{commit}",
+          },
         },
       },
       notifier = {
