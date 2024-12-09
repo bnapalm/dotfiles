@@ -272,26 +272,25 @@ return {
 
   {
     "ray-x/go.nvim",
-    -- config = function()
-    --   local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
-    --   require('go').setup({
-    --     lsp_cfg = {
-    --       capabilities = capabilities,
-    --     },
-    --     lsp_inlay_hints = {
-    --       enable = true,
-    --       style = "eol",
-    --     },
-    --     lsp_on_client_start = function(_, bufnr)
-    --       -- go.nvim overrides some keymaps, but we don't want to disable all provided ones,
-    --       -- so we override with my default keymaps again
-    --       require("user.plugins.lsp.keymaps").buflocal(bufnr)
-    --     end,
-    --     luasnip = true,
-    --     trouble = true
-    --   })
-    -- end,
-    config = true,
+    config = function()
+      local capabilities = require('blink.cmp').get_lsp_capabilities(vim.lsp.protocol.make_client_capabilities())
+      require('go').setup({
+        lsp_cfg = {
+          capabilities = capabilities,
+        },
+        lsp_inlay_hints = {
+          enable = true,
+          style = "eol",
+        },
+        lsp_on_client_start = function(_, bufnr)
+          -- go.nvim overrides some keymaps, but we don't want to disable all provided ones,
+          -- so we override with my default keymaps again
+          require("user.plugins.lsp.keymaps").buflocal(bufnr)
+        end,
+        luasnip = true,
+        trouble = true
+      })
+    end,
     event = { "CmdlineEnter" },
     ft = { "go", 'gomod' },
     build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
