@@ -72,7 +72,13 @@ keymap({ 'n', 'v' }, '<leader>P', '\"+P', "Paste (before) from OS")
 
 -- Diagnostics
 
-keymap('n', 'gl', vim.diagnostic.open_float, "Show diagnostics in window")         -- Show diagnostics in a floating window
-keymap('n', '[d', vim.diagnostic.goto_prev, "Next diagnostic")          -- Move to the previous diagnostic
-keymap('n', ']d', vim.diagnostic.goto_next, "Prev diagnostic")          -- Move to the next diagnostic
-keymap('n', '<leader>ll', vim.diagnostic.setloclist, "Loclist") -- TODO check other options
+keymap('n', 'gl', vim.diagnostic.open_float, "Show diagnostics in window") -- Show diagnostics in a floating window
+keymap('n', '[d', vim.diagnostic.goto_prev, "Next diagnostic")             -- Move to the previous diagnostic
+keymap('n', ']d', vim.diagnostic.goto_next, "Prev diagnostic")             -- Move to the next diagnostic
+keymap('n', '<leader>ll', vim.diagnostic.setloclist, "Loclist")            -- TODO check other options
+
+-- With Remap
+
+-- Remap commenting to more ergonomic keys
+vim.keymap.set({ "n", "v", "o" }, "gs", "gc", { remap = true, silent = true, desc = "comment block" })
+vim.keymap.set("n", "gss", "gcc", { remap = true, silent = true, desc = "comment line" })
