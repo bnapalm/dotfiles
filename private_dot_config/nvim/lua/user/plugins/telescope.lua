@@ -1,3 +1,8 @@
+local ivy_opts = {
+  theme = "ivy",
+  layout_config = { height = 0.80 },
+}
+
 return {
   {
     'nvim-telescope/telescope.nvim',
@@ -48,6 +53,11 @@ return {
       },
     },
     opts = {
+      pickers = {
+        find_files = ivy_opts,
+        grep_string = ivy_opts,
+        live_grep = ivy_opts,
+      },
       extensions = {
         fzf = {
           fuzzy = true,
