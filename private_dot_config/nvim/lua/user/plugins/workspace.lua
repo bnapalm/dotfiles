@@ -83,7 +83,6 @@ return {
   },
 
   opts = {
-    auto_open = true,
     hooks = {
       open = {
         -- do not run hooks if file already in dir
