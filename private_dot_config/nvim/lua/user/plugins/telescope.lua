@@ -39,6 +39,11 @@ return {
         require('telescope.builtin').git_branches,
         desc = "Find branches (Telescope)",
       },
+      {
+        "<leader>sh",
+        require('telescope.builtin').help_tags,
+        desc = "Help tags (Telescope)",
+      },
     },
     opts = {
       pickers = {
