@@ -11,44 +11,32 @@ return {
     keys = {
       {
         "<leader>sf",
-        function()
-          require('telescope.builtin').find_files()
-        end,
+        require('telescope.builtin').find_files,
         desc = "Find Files",
       },
       {
         "<leader>sc",
-        function()
-          require('telescope.builtin').grep_string()
-        end,
+        require('telescope.builtin').grep_string,
         desc = "Grep word under cursor",
       },
       {
         "<leader>sg",
-        function()
-          require('telescope.builtin').live_grep()
-        end,
+        require('telescope.builtin').live_grep,
         desc = "Live Grep",
       },
       {
         "<leader>sb",
-        function()
-          require('telescope.builtin').buffers()
-        end,
+        require('telescope.builtin').buffers,
         desc = "Buffers",
       },
       {
         "<leader>s/",
-        function()
-          require('telescope.builtin').current_buffer_fuzzy_find()
-        end,
+        require('telescope.builtin').current_buffer_fuzzy_find,
         desc = "Find in current buffer",
       },
       {
         "<leader>sB",
-        function()
-          require('telescope.builtin').git_branches()
-        end,
+        require('telescope.builtin').git_branches,
         desc = "Find branches (Telescope)",
       },
     },
