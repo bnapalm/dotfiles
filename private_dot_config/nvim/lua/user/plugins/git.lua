@@ -173,7 +173,14 @@ return {
       "Octo",
       "O",
     },
-    config = true,
+    keys = {
+      { "<leader>gx", "<cmd>Octo pr<cr>", desc = "Open current PR (Octo)" },
+    },
+    opts = {
+      default_remote = { "origin", "upstream" },
+      default_merge_method = "squash",
+      default_delete_branch = true,
+    },
     dependencies = {
       'nvim-lua/plenary.nvim',
       'nvim-telescope/telescope.nvim',
