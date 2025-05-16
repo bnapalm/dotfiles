@@ -1,25 +1,5 @@
 local api = vim.api
 
-local function highlighting(client, bufnr)
-  if client.server_capabilities.documentHighlightProvider then
-    local lsp_highlight_grp = api.nvim_create_augroup("LspDocumentHighlight", { clear = true })
-    api.nvim_create_autocmd("CursorHold", {
-      callback = function()
-        vim.schedule(vim.lsp.buf.document_highlight)
-      end,
-      group = lsp_highlight_grp,
-      buffer = bufnr,
-    })
-    api.nvim_create_autocmd("CursorMoved", {
-      callback = function()
-        vim.schedule(vim.lsp.buf.clear_references)
-      end,
-      group = lsp_highlight_grp,
-      buffer = bufnr,
-    })
-  end
-end
-
 local M = {
   {
     import = "user.plugins.lsp.mason"
@@ -29,31 +9,43 @@ local M = {
     event = { 'BufReadPre', 'BufNewFile' },
     config = function()
       local keymaps = require("user.plugins.lsp.keymaps")
-      local lspconfig = require("lspconfig")
+      local trouble = require("trouble")
+
+      -- Lists all the references
+      vim.keymap.del("n", "grr")
+      vim.keymap.set("n", "grr", function() trouble.open("lsp_references") end, { desc = "List References" })
+
+      -- Lists all implementations
+      vim.keymap.del("n", "gri")
+      vim.keymap.set("n", "gri", function() trouble.open("lsp_implementations") end, { desc = "List Implementations" })
+
+      vim.keymap.set('n', '<F2>', 'grn')
+      vim.keymap.set({ 'n', 'v' }, '<F4>', vim.lsp.buf.code_action, { desc = "Execute Code Action" })
 
       api.nvim_create_autocmd('LspAttach', {
         desc = "LSP actions",
         group = api.nvim_create_augroup('UserLspConfig', {}),
         callback = function(args)
           local bufnr = args.buf
-          local client = vim.lsp.get_client_by_id(args.data.client_id)
-
-          highlighting(client, bufnr)
           keymaps.buflocal(bufnr)
         end
       })
 
-      -- lspconfig["lua_ls"].setup(require("user.plugins.lsp.configs.lua_ls"))
-      lspconfig["lua_ls"].setup {}
-      lspconfig["nixd"].setup(require("user.plugins.lsp.configs.nixd"))
-      lspconfig["pyright"].setup {}
-      lspconfig["yamlls"].setup {}
+      vim.lsp.config["nixd"] = require("user.plugins.lsp.configs.nixd")
+
+      vim.lsp.enable({
+        "lua_ls",
+        "nixd",
+        "yamlls",
+      })
     end,
+
     dependencies = {
       "williamboman/mason-lspconfig.nvim",
       "folke/trouble.nvim"
     }
   },
+
   {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
