@@ -10,6 +10,7 @@ local M = {
     config = function()
       local keymaps = require("user.plugins.lsp.keymaps")
       local trouble = require("trouble")
+      local t_builtin = require("telescope.builtin")
 
       -- Lists all the references
       vim.keymap.del("n", "grr")
@@ -18,6 +19,10 @@ local M = {
       -- Lists all implementations
       vim.keymap.del("n", "gri")
       vim.keymap.set("n", "gri", function() trouble.open("lsp_implementations") end, { desc = "List Implementations" })
+
+      -- Lists document symbols
+      vim.keymap.del("n", "gO")
+      vim.keymap.set("n", "gO", t_builtin.lsp_document_symbols, { desc = "Document Symbols" })
 
       vim.keymap.set('n', '<F2>', 'grn')
       vim.keymap.set({ 'n', 'v' }, '<F4>', vim.lsp.buf.code_action, { desc = "Execute Code Action" })

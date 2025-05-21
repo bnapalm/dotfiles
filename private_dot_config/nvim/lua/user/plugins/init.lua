@@ -64,9 +64,9 @@ return {
         lsp_cfg = {
           capabilities = capabilities,
         },
+        lsp_keymaps = false,
         lsp_inlay_hints = {
-          enable = true,
-          style = "eol",
+          enable = false,
         },
         lsp_on_client_start = function(_, bufnr)
           -- go.nvim overrides some keymaps, but we don't want to disable all provided ones,
