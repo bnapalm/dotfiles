@@ -52,6 +52,26 @@ return {
     "--lint"
   },
 
+  before_init = function(_, config)
+    config.settings = config.settings or {}
+    config.settings.jpath = jsonnet_path(config.root_dir)
+
+    local top_file = topFileFunc()
+
+    -- We only want the LSP to evaluate the whole file when working on .jsonnet
+    -- files, as opposed to .libsonnet files, which would most often present
+    -- errors when evaluated on their own. topFileFunc() returning a value
+    -- implies a .jsonnet file.
+    if top_file then
+      config.settings.ext_vars.topFile = top_file
+      config.cmd = {
+        "jsonnet-language-server",
+        "--eval-diags",
+        "--lint"
+      }
+    end
+  end,
+
   -- This overrides the default nvim-lspconfig function. The function is called
   -- each time a new root_dir is found. This has the unfortunate side effect
   -- that when switching buffers from a .jsonnet to .libsonnet or vice versa
@@ -87,7 +107,7 @@ return {
         "--eval-diags",
         "--lint"
       }
-    -- otherwise skip evaluation and just do plain LSP + linting
+      -- otherwise skip evaluation and just do plain LSP + linting
     else
       new_config.cmd = {
         "jsonnet-language-server",

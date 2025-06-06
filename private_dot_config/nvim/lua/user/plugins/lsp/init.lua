@@ -37,11 +37,13 @@ local M = {
       })
 
       vim.lsp.config["nixd"] = require("user.plugins.lsp.configs.nixd")
+      vim.lsp.config["jsonnet_ls"] = require("user.plugins.lsp.configs.jsonnet_ls")
 
       vim.lsp.enable({
         "lua_ls",
         "nixd",
         "yamlls",
+        "jsonnet_ls",
       })
     end,
 
