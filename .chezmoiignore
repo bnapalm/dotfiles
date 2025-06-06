@@ -9,3 +9,7 @@
 .config/waybar
 .config/neovide
 {{- end }}
+
+{{- if eq (index .chezmoi.osRelease "id") "nixos" }}
+.config/nvim/lua/user/plugins/llm.lua
+{{- end }}
