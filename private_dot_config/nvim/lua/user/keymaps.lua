@@ -66,7 +66,7 @@ keymap("n", "<C-u>", "<C-u>zz")
 -- System clipboard
 keymap({ 'n', 'v' }, '<leader>y', '\"+y', "Yank to OS")
 keymap('n', '<leader>Y', '\"+Y', "Yank until EOL to OS")
-keymap({ 'n', 'v' }, '<leader>d', '\"+d', "Delete to OS")
+-- keymap({ 'n', 'v' }, '<leader>d', '\"+d', "Delete to OS")
 keymap({ 'n', 'v' }, '<leader>p', '\"+p', "Paste from OS")
 keymap({ 'n', 'v' }, '<leader>P', '\"+P', "Paste (before) from OS")
 
