@@ -12,21 +12,6 @@ local active_ws = function()
   end
 end
 
-local noice_macro_str = function()
-  local ok, noice = pcall(require, "noice")
-  local nmode
-  if ok then
-    nmode = noice.api.statusline.mode.get()
-  end
-
-  local s, _ = string.find(nmode, "recording", 1, true)
-  if s then
-    return nmode
-  else
-    return ""
-  end
-end
-
 return {
   "nvim-lualine/lualine.nvim",
   lazy = false,
@@ -57,11 +42,21 @@ return {
         }
       },
       lualine_x = {
-        {
-          noice_macro_str,
-          cond = require("noice").api.statusline.mode.has,
-          color = { fg = "orange" },
-        },
+      {
+        require("noice").api.status.command.get,
+        cond = require("noice").api.status.command.has,
+        color = { fg = "#ff9e64" },
+      },
+      {
+        require("noice").api.status.mode.get,
+        cond = require("noice").api.status.mode.has,
+        color = { fg = "#ff9e64" },
+      },
+      {
+        require("noice").api.status.search.get,
+        cond = require("noice").api.status.search.has,
+        color = { fg = "#ff9e64" },
+      },
         'encoding',
         'fileformat',
         'filetype'
