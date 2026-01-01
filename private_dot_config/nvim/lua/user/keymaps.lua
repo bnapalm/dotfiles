@@ -73,8 +73,8 @@ keymap({ 'n', 'v' }, '<leader>P', '\"+P', "Paste (before) from OS")
 -- Diagnostics
 
 keymap('n', 'gl', vim.diagnostic.open_float, "Show diagnostics in window") -- Show diagnostics in a floating window
-keymap('n', '[d', vim.diagnostic.goto_prev, "Next diagnostic")             -- Move to the previous diagnostic
-keymap('n', ']d', vim.diagnostic.goto_next, "Prev diagnostic")             -- Move to the next diagnostic
+keymap('n', '[d', function() vim.diagnostic.jump({count=-1, float=true}) end, "Next diagnostic")             -- Move to the previous diagnostic
+keymap('n', ']d', function() vim.diagnostic.jump({count=1, float=true}) end, "Prev diagnostic")             -- Move to the next diagnostic
 keymap('n', '<leader>ll', vim.diagnostic.setloclist, "Loclist")            -- TODO check other options
 
 -- With Remap
