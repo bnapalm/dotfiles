@@ -104,7 +104,7 @@ return {
       --   },
     },
     dependencies = {
-      "https://tpope.io/vim/rhubarb.git",
+      "tpope/vim-rhubarb",
     }
   },
 
