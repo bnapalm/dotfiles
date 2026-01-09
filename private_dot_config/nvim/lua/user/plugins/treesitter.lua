@@ -43,7 +43,7 @@ return {
         "html", "rust", "bash", "beancount", "cpp", "dockerfile", "go",
         "godot_resource", "gomod", "gosum", "gowork", "git_config",
         "git_rebase", "gitcommit", "jq", "json", "json5", "jsonnet", "make",
-        "markdown", "markdown_inline", "norg", "python", "regex", "sql",
+        "markdown", "markdown_inline", "python", "regex", "sql",
         "terraform", "yaml", "nix"
       },
     },
