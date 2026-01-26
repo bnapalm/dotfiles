@@ -36,7 +36,7 @@ return {
 
   cmd = function(dispatchers, config)
     local bufname = vim.api.nvim_buf_get_name(0)
-    local cmd_args = { "jsonnet-language-server", "--lint" }
+    local cmd_args = { "jsonnet-language-server", "--lint", "--show-docstrings" }
 
     if needs_eval_diags(bufname) then
       table.insert(cmd_args, 2, "--eval-diags")  -- Insert after server name
@@ -62,30 +62,19 @@ return {
   end,
 
   reuse_client = function(client, config)
-    -- Different LSP? Never reuse
-    if client.name ~= config.name then
-      return false
-    end
-
-    -- Client stopped? Can't reuse
-    if client:is_stopped() then
+    -- Different LSP or stopped? Never reuse
+    if client.name ~= config.name or client:is_stopped() then
       return false
     end
 
     local bufname = vim.api.nvim_buf_get_name(0)
 
-    -- If new file needs eval → always create new server (file-specific topFile)
-    -- Early exit - no need to check existing client
-    if needs_eval_diags(bufname) then
+    -- Eval-diags mode must match
+    if client.config._has_eval_diags ~= needs_eval_diags(bufname) then
       return false
     end
 
-    -- Check if existing client has eval-diags (can't reuse eval server for non-eval file)
-    if client.config._has_eval_diags then
-      return false
-    end
-
-    -- Check jpath matches
+    -- jpath must match
     local git_root = vim.fs.root(0, ".git")
     if not git_root then
       return false
@@ -110,21 +99,18 @@ return {
     end
 
     -- Track whether this client has eval-diags (for reuse_client check)
-    local has_eval = needs_eval_diags(bufname)
-    config._has_eval_diags = has_eval
-
-    -- Set topFile only for .jsonnet files (when eval-diags is enabled)
-    if has_eval then
-      config.settings.ext_vars.topFile = bufname
-    end
+    config._has_eval_diags = needs_eval_diags(bufname)
   end,
 
   settings = {
+    -- Some files still use ext_vars, define dummy values here, that should
+    -- still evaluate correctly.
+    -- We would want to inject TLA vars when needed, but current
+    -- jsonnet-language-server doesn't support that. We could fork it or look
+    -- for different LSP.
     ext_vars = {
       revision = "no-revision",
-      service = "payments-service",
-      environment = "sandbox-staging",
-      project_id = "gc-prd-paysvc-sbx-stag-d54a",
+      context = "compute-lab",
     },
   },
 }
