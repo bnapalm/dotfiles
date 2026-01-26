@@ -1,135 +1,125 @@
--- Utopia jsonnet library paths
-local function jsonnet_path(root_dir)
-  -- local gitroot = util.find_git_ancestor(vim.api.nvim_buf_get_name(0))
+-- Determine jpath based on file path and git root
+local function determine_jpath(file_path, git_root)
+  -- Normalize paths - get relative path from git root
+  local rel_path = file_path:sub(#git_root + 2)
 
-  local libParent = root_dir
-
-  if vim.uv.fs_statfs(vim.fs.joinpath(root_dir, 'jsonnetfile.json')) then
-    libParent = root_dir
-  elseif vim.uv.fs_statfs(vim.fs.joinpath(root_dir, 'utopia')) then
-    libParent = vim.fs.joinpath(root_dir, 'utopia')
+  if rel_path:match("^kubernetes/") then
+    return {
+      vim.fs.joinpath(git_root, "kubernetes", "lib"),
+      vim.fs.joinpath(git_root, "kubernetes", "vendor"),
+    }
+  else
+    -- Default: utopia paths (for utopia/, root files, or any other location)
+    return {
+      vim.fs.joinpath(git_root, "utopia", "lib"),
+      vim.fs.joinpath(git_root, "utopia", "jvendor"),
+    }
   end
-
-  return {
-    vim.fs.joinpath(libParent, 'vendor'),
-    vim.fs.joinpath(libParent, 'jvendor'),
-    vim.fs.joinpath(libParent, 'lib'),
-  }
 end
 
--- Derive the "topFile" external variable
-local function topFileFunc()
-  local bufname = vim.api.nvim_buf_get_name(0)
-  if string.find(bufname, '.jsonnet') then
-    return bufname
-  else
-    return nil
+-- Check if file needs eval-diags (is .jsonnet, not .libsonnet)
+local function needs_eval_diags(file_path)
+  return file_path:match("%.jsonnet$") ~= nil
+end
+
+-- Compare two jpath arrays for equality
+local function jpath_equal(a, b)
+  if #a ~= #b then return false end
+  for i, v in ipairs(a) do
+    if v ~= b[i] then return false end
   end
+  return true
 end
 
 return {
-  cmd = {
-    "jsonnet-language-server",
-    "--lint"
-  },
+  filetypes = { "jsonnet", "libsonnet" },
 
-  -- reuse_client = function(client, config)
-  --   -- skip if not in the same root dir or different lsp
-  --   if client.root_dir ~= config.root_dir or client.name ~= config.name then
-  --     return false
-  --   end
-  --
-  --   local new_needs_eval = false
-  --   local existing_has_eval = false
-  --
-  --   -- does existing client have eval
-  --   for _, v in ipairs(client.config.cmd) do
-  --     if v == "--eval-diags" then
-  --       vim.notify("existing client has eval")
-  --       existing_has_eval = true
-  --     end
-  --   end
-  --
-  --   -- do we need eval
-  --   for _, v in ipairs(config.cmd) do
-  --     if v == "--eval-diags" then
-  --       vim.notify("new client needs eval")
-  --       new_needs_eval = true
-  --     end
-  --   end
-  --
-  --   if existing_has_eval ~= new_needs_eval then
-  --     return false
-  --   end
-  --
-  --   return true
-  -- end,
+  cmd = function(dispatchers, config)
+    local bufname = vim.api.nvim_buf_get_name(0)
+    local cmd_args = { "jsonnet-language-server", "--lint" }
 
-  before_init = function(_, config)
+    if needs_eval_diags(bufname) then
+      table.insert(cmd_args, 2, "--eval-diags")  -- Insert after server name
+    end
+
+    return vim.lsp.rpc.start(cmd_args, dispatchers, {
+      cwd = config.cmd_cwd,
+      env = config.cmd_env,
+    })
+  end,
+
+  root_dir = function(bufnr, on_dir)
+    -- Find root by jsonnetfile.json or .git
+    local jsonnetfile_root = vim.fs.root(bufnr, "jsonnetfile.json")
+    local git_root = vim.fs.root(bufnr, ".git")
+
+    -- Prefer jsonnetfile.json location, fall back to git root
+    local root = jsonnetfile_root or git_root
+
+    if root then
+      on_dir(root)
+    end
+  end,
+
+  reuse_client = function(client, config)
+    -- Different LSP? Never reuse
+    if client.name ~= config.name then
+      return false
+    end
+
+    -- Client stopped? Can't reuse
+    if client:is_stopped() then
+      return false
+    end
+
+    local bufname = vim.api.nvim_buf_get_name(0)
+
+    -- If new file needs eval → always create new server (file-specific topFile)
+    -- Early exit - no need to check existing client
+    if needs_eval_diags(bufname) then
+      return false
+    end
+
+    -- Check if existing client has eval-diags (can't reuse eval server for non-eval file)
+    if client.config._has_eval_diags then
+      return false
+    end
+
+    -- Check jpath matches
+    local git_root = vim.fs.root(0, ".git")
+    if not git_root then
+      return false
+    end
+
+    local new_jpath = determine_jpath(bufname, git_root)
+    local existing_jpath = client.config.settings and client.config.settings.jpath or {}
+
+    return jpath_equal(new_jpath, existing_jpath)
+  end,
+
+  before_init = function(params, config)
+    local bufname = vim.api.nvim_buf_get_name(0)
+    local git_root = vim.fs.root(0, ".git")
+
     config.settings = config.settings or {}
-    config.settings.jpath = jsonnet_path(config.root_dir)
+    config.settings.ext_vars = config.settings.ext_vars or {}
 
-    local top_file = topFileFunc()
+    -- Set jpath based on file location
+    if git_root then
+      config.settings.jpath = determine_jpath(bufname, git_root)
+    end
 
-    -- We only want the LSP to evaluate the whole file when working on .jsonnet
-    -- files, as opposed to .libsonnet files, which would most often present
-    -- errors when evaluated on their own. topFileFunc() returning a value
-    -- implies a .jsonnet file.
-    if top_file then
-      config.settings.ext_vars.topFile = top_file
-      config.cmd = {
-        "jsonnet-language-server",
-        "--eval-diags",
-        "--lint"
-      }
+    -- Track whether this client has eval-diags (for reuse_client check)
+    local has_eval = needs_eval_diags(bufname)
+    config._has_eval_diags = has_eval
+
+    -- Set topFile only for .jsonnet files (when eval-diags is enabled)
+    if has_eval then
+      config.settings.ext_vars.topFile = bufname
     end
   end,
 
-  -- This overrides the default nvim-lspconfig function. The function is called
-  -- each time a new root_dir is found. This has the unfortunate side effect
-  -- that when switching buffers from a .jsonnet to .libsonnet or vice versa
-  -- in the same repo, the same LSP is reused and the new config will not be
-  -- reevaluated. So if you need to refresh the topFile or enable/disable
-  -- eval according to the current buffer, you need to either restart neovim
-  -- or probably `:LspRestart` would also work.
-  on_new_config = function(new_config, root_dir)
-    -- This is removed from default function. It's meant to include standard
-    -- jsonnet/tanka paths, but ours are different.
-    --
-    -- if not new_config.cmd_env then
-    --   new_config.cmd_env = {}
-    -- end
-    -- if not new_config.cmd_env.JSONNET_PATH then
-    --   new_config.cmd_env.JSONNET_PATH = table.concat(jsonnet_path(root_dir), ':')
-    -- end
-
-    -- This updates with the correct library paths, even if your anu location
-    -- is not static. For example with git worktrees.
-    new_config.settings.jpath = jsonnet_path(root_dir)
-
-    local top_file = topFileFunc()
-
-    -- We only want the LSP to evaluate the whole file when working on .jsonnet
-    -- files, as opposed to .libsonnet files, which would most often present
-    -- errors when evaluated on their own. topFileFunc() returning a value
-    -- implies a .jsonnet file.
-    if top_file then
-      new_config.settings.ext_vars.topFile = top_file
-      new_config.cmd = {
-        "jsonnet-language-server",
-        "--eval-diags",
-        "--lint"
-      }
-      -- otherwise skip evaluation and just do plain LSP + linting
-    else
-      new_config.cmd = {
-        "jsonnet-language-server",
-        "--lint"
-      }
-    end
-  end,
   settings = {
-    -- adding some ext_vars used in some files does no harm
     ext_vars = {
       revision = "no-revision",
       service = "payments-service",
