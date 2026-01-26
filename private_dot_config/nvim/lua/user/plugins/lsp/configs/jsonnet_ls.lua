@@ -1,38 +1,19 @@
--- local function getRoot()
---   local ret = vim.system({ 'git', 'rev-parse', '--show-toplevel' },
---     { cwd = vim.fs.dirname(vim.api.nvim_buf_get_name(0)), text = true }):wait()
---   if ret.code ~= 0 then
---     return ""
---   end
---   return string.gsub(ret.stdout, '\n', '')
--- end
---
--- local jpathVal = function()
---   local gitRoot = getRoot()
---   if gitRoot ~= "" then
---     return {
---       gitRoot .. "/utopia/lib",
---       gitRoot .. "/utopia/jvendor",
---     }
---   else
---     return {}
---   end
--- end
-
-local util = require 'lspconfig.util'
-
 -- Utopia jsonnet library paths
 local function jsonnet_path(root_dir)
-  local gitroot = util.find_git_ancestor(vim.api.nvim_buf_get_name(0))
+  -- local gitroot = util.find_git_ancestor(vim.api.nvim_buf_get_name(0))
+
+  local libParent = root_dir
+
+  if vim.uv.fs_statfs(vim.fs.joinpath(root_dir, 'jsonnetfile.json')) then
+    libParent = root_dir
+  elseif vim.uv.fs_statfs(vim.fs.joinpath(root_dir, 'utopia')) then
+    libParent = vim.fs.joinpath(root_dir, 'utopia')
+  end
 
   return {
-    util.path.join(root_dir, 'lib'),
-    util.path.join(root_dir, 'vendor'),
-    util.path.join(gitroot, 'utopia', 'lib'),
-    util.path.join(gitroot, 'utopia', 'jvendor'),
-    -- util.path.join(root_dir, 'jvendor'),
-    -- util.path.join(root_dir, '..', 'utopia', 'jvendor'),
-    -- util.path.join(root_dir, '..', 'utopia', 'jvendor'),
+    vim.fs.joinpath(libParent, 'vendor'),
+    vim.fs.joinpath(libParent, 'jvendor'),
+    vim.fs.joinpath(libParent, 'lib'),
   }
 end
 
@@ -51,6 +32,38 @@ return {
     "jsonnet-language-server",
     "--lint"
   },
+
+  -- reuse_client = function(client, config)
+  --   -- skip if not in the same root dir or different lsp
+  --   if client.root_dir ~= config.root_dir or client.name ~= config.name then
+  --     return false
+  --   end
+  --
+  --   local new_needs_eval = false
+  --   local existing_has_eval = false
+  --
+  --   -- does existing client have eval
+  --   for _, v in ipairs(client.config.cmd) do
+  --     if v == "--eval-diags" then
+  --       vim.notify("existing client has eval")
+  --       existing_has_eval = true
+  --     end
+  --   end
+  --
+  --   -- do we need eval
+  --   for _, v in ipairs(config.cmd) do
+  --     if v == "--eval-diags" then
+  --       vim.notify("new client needs eval")
+  --       new_needs_eval = true
+  --     end
+  --   end
+  --
+  --   if existing_has_eval ~= new_needs_eval then
+  --     return false
+  --   end
+  --
+  --   return true
+  -- end,
 
   before_init = function(_, config)
     config.settings = config.settings or {}
