@@ -1,20 +1,40 @@
--- Determine jpath based on file path and git root
-local function determine_jpath(file_path, git_root)
-  -- Normalize paths - get relative path from git root
-  local rel_path = file_path:sub(#git_root + 2)
+-- Check if in gocardless/anu repo
+local function is_anu_repo(git_root)
+  if not git_root then return false end
+  local result = vim.system(
+    { "git", "-C", git_root, "remote", "get-url", "origin" },
+    { text = true }
+  ):wait()
+  if result.code ~= 0 or not result.stdout then return false end
+  return result.stdout:match("gocardless/anu") ~= nil
+end
 
-  if rel_path:match("^kubernetes/") then
+-- Determine jpath based on repo, file path, and roots
+local function determine_jpath(file_path, root_dir, git_root)
+  -- Standard pattern: base/lib, base/vendor
+  local function standard_jpath(base)
     return {
-      vim.fs.joinpath(git_root, "kubernetes", "lib"),
-      vim.fs.joinpath(git_root, "kubernetes", "vendor"),
-    }
-  else
-    -- Default: utopia paths (for utopia/, root files, or any other location)
-    return {
-      vim.fs.joinpath(git_root, "utopia", "lib"),
-      vim.fs.joinpath(git_root, "utopia", "jvendor"),
+      vim.fs.joinpath(base, "lib"),
+      vim.fs.joinpath(base, "vendor"),
     }
   end
+
+  -- Non-Anu repos: use standard pattern from root_dir
+  if not is_anu_repo(git_root) then
+    return standard_jpath(root_dir)
+  end
+
+  -- In Anu: check if in kubernetes/ (relative to git root)
+  local rel_path = file_path:sub(#git_root + 2)
+  if rel_path:match("^kubernetes/") then
+    return standard_jpath(vim.fs.joinpath(git_root, "kubernetes"))
+  end
+
+  -- In Anu, not kubernetes: use utopia paths (with jvendor instead of vendor)
+  return {
+    vim.fs.joinpath(git_root, "utopia", "lib"),
+    vim.fs.joinpath(git_root, "utopia", "jvendor"),
+  }
 end
 
 -- Check if file needs eval-diags (is .jsonnet, not .libsonnet)
@@ -39,7 +59,7 @@ return {
     local cmd_args = { "jsonnet-language-server", "--lint", "--show-docstrings" }
 
     if needs_eval_diags(bufname) then
-      table.insert(cmd_args, 2, "--eval-diags")  -- Insert after server name
+      table.insert(cmd_args, 2, "--eval-diags")
     end
 
     return vim.lsp.rpc.start(cmd_args, dispatchers, {
@@ -76,11 +96,7 @@ return {
 
     -- jpath must match
     local git_root = vim.fs.root(0, ".git")
-    if not git_root then
-      return false
-    end
-
-    local new_jpath = determine_jpath(bufname, git_root)
+    local new_jpath = determine_jpath(bufname, config.root_dir, git_root)
     local existing_jpath = client.config.settings and client.config.settings.jpath or {}
 
     return jpath_equal(new_jpath, existing_jpath)
@@ -91,26 +107,22 @@ return {
     local git_root = vim.fs.root(0, ".git")
 
     config.settings = config.settings or {}
-    config.settings.ext_vars = config.settings.ext_vars or {}
 
-    -- Set jpath based on file location
-    if git_root then
-      config.settings.jpath = determine_jpath(bufname, git_root)
+    -- Set jpath based on repo and file location
+    config.settings.jpath = determine_jpath(bufname, config.root_dir, git_root)
+
+    -- Only set ext_vars in Anu repo
+    if is_anu_repo(git_root) then
+      config.settings.ext_vars = {
+        revision = "no-revision",
+        context = "compute-lab",
+      }
     end
 
-    -- Track whether this client has eval-diags (for reuse_client check)
+    -- Track eval-diags mode for reuse_client
     config._has_eval_diags = needs_eval_diags(bufname)
   end,
 
-  settings = {
-    -- Some files still use ext_vars, define dummy values here, that should
-    -- still evaluate correctly.
-    -- We would want to inject TLA vars when needed, but current
-    -- jsonnet-language-server doesn't support that. We could fork it or look
-    -- for different LSP.
-    ext_vars = {
-      revision = "no-revision",
-      context = "compute-lab",
-    },
-  },
+  -- without this, the modifications in before_init are not applied
+  settings = {},
 }
