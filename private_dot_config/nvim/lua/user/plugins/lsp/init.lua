@@ -37,7 +37,7 @@ local M = {
       })
 
       vim.lsp.config["nixd"] = require("user.plugins.lsp.configs.nixd")
-      vim.lsp.config["jsonnet_ls"] = require("user.plugins.lsp.configs.jsonnet_ls")
+      -- vim.lsp.config["jsonnet_ls"] = require("user.plugins.lsp.configs.jsonnet_ls")
       vim.lsp.config["beancount"] = require("user.plugins.lsp.configs.beancount")
 
       vim.lsp.enable({
@@ -64,6 +64,14 @@ local M = {
       use_diagnostic_signs = true,
       win = {
         size = 0.4
+      },
+      modes = {
+        lsp_references = {
+          focus = true,
+        },
+        lsp_implementations = {
+          focus = true,
+        },
       },
     },
     keys = {
