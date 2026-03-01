@@ -46,6 +46,7 @@ local M = {
         "yamlls",
         "jsonnet_ls",
         "beancount",
+        "hls",
       })
     end,
 
