@@ -1,3 +1,6 @@
+CLAUDE.md
+AGENTS.md
+
 {{- if ( or (eq (index .chezmoi.osRelease "id") "nixos") (contains ".nix-profile" .chezmoi.executable) ) }}
 .XCompose
 .zshenv
