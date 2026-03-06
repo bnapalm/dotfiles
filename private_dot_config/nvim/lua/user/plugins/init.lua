@@ -36,17 +36,65 @@ return {
     config = function(_, opts)
       local npairs = require('nvim-autopairs')
       local Rule = require('nvim-autopairs.rule')
-      local cond = require('nvim-autopairs.conds')
+
+      local function currentNixNodeType(bufnr, row, col)
+        local parser = vim.treesitter.get_parser(bufnr, 'nix', { error = false })
+        if parser == nil then
+          return nil
+        end
+
+        parser:parse()
+
+        local node = vim.treesitter.get_node({
+          bufnr = bufnr,
+          pos = { row, math.max(col - 1, 0) },
+          ignore_injections = false,
+        })
+
+        return node
+      end
+
+      local function hasForbiddenNixAncestor(node)
+        local forbidden = {
+          interpolation = true,
+          string_expression = true,
+          indented_string_expression = true,
+        }
+
+        while node do
+          if forbidden[node:type()] then
+            return true
+          end
+          node = node:parent()
+        end
+
+        return false
+      end
+
+      local function isOnlyFollowedByWhitespace(opts)
+        local suffix = opts.line:sub(opts.col)
+        return suffix == '' or suffix:match('^%s+$') ~= nil
+      end
+
+      local function shouldTerminateNixCollection(opts)
+        if not isOnlyFollowedByWhitespace(opts) then
+          return false
+        end
+
+        local row = vim.api.nvim_win_get_cursor(0)[1] - 1
+        local node = currentNixNodeType(opts.bufnr, row, opts.col)
+        if node == nil then
+          return true
+        end
+
+        return not hasForbiddenNixAncestor(node)
+      end
 
       npairs.setup(opts)
-      npairs.add_rule(
-        Rule('{', '};', 'nix')
-        :with_pair(cond.not_before_text("$"))
-      )
-      npairs.add_rule(
-        Rule('{', '}', 'nix')
-        :with_pair(cond.before_text("$"))
-      )
+      npairs.add_rules({
+        Rule('{', '};', 'nix'):with_pair(shouldTerminateNixCollection),
+        Rule('[', '];', 'nix'):with_pair(shouldTerminateNixCollection),
+      })
     end
   },
 
