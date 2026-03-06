@@ -37,7 +37,19 @@ return {
       local npairs = require('nvim-autopairs')
       local Rule = require('nvim-autopairs.rule')
 
-      local function currentNixNodeType(bufnr, row, col)
+      local forbiddenNixAncestors = {
+        interpolation = true,
+        string_expression = true,
+        indented_string_expression = true,
+      }
+
+      local parenForbiddenAncestors = {
+        inherit_from = true,
+        apply_expression = true,
+        function_expression = true,
+      }
+
+      local function currentNixNode(bufnr, row, col)
         local parser = vim.treesitter.get_parser(bufnr, 'nix', { error = false })
         if parser == nil then
           return nil
@@ -45,24 +57,16 @@ return {
 
         parser:parse()
 
-        local node = vim.treesitter.get_node({
+        return vim.treesitter.get_node({
           bufnr = bufnr,
           pos = { row, math.max(col - 1, 0) },
           ignore_injections = false,
         })
-
-        return node
       end
 
-      local function hasForbiddenNixAncestor(node)
-        local forbidden = {
-          interpolation = true,
-          string_expression = true,
-          indented_string_expression = true,
-        }
-
+      local function hasAncestor(node, nodeTypes)
         while node do
-          if forbidden[node:type()] then
+          if nodeTypes[node:type()] then
             return true
           end
           node = node:parent()
@@ -76,24 +80,65 @@ return {
         return suffix == '' or suffix:match('^%s+$') ~= nil
       end
 
+      local function previousNonWhitespaceChar(opts)
+        local prefix = opts.line:sub(1, opts.col - 1)
+        local trimmed = prefix:gsub('%s+$', '')
+        return trimmed:sub(-1)
+      end
+
+      local function currentCursorNixNode(opts)
+        local row = vim.api.nvim_win_get_cursor(0)[1] - 1
+        return currentNixNode(opts.bufnr, row, opts.col)
+      end
+
       local function shouldTerminateNixCollection(opts)
         if not isOnlyFollowedByWhitespace(opts) then
           return false
         end
 
-        local row = vim.api.nvim_win_get_cursor(0)[1] - 1
-        local node = currentNixNodeType(opts.bufnr, row, opts.col)
+        local node = currentCursorNixNode(opts)
         if node == nil then
-          return true
+          return false
         end
 
-        return not hasForbiddenNixAncestor(node)
+        if hasAncestor(node, forbiddenNixAncestors) then
+          return false
+        end
+
+        return hasAncestor(node, { binding = true }) or previousNonWhitespaceChar(opts) == '='
+      end
+
+      local function shouldTerminateNixParen(opts)
+        if not isOnlyFollowedByWhitespace(opts) then
+          return false
+        end
+
+        local node = currentCursorNixNode(opts)
+        if node == nil then
+          return false
+        end
+
+        if hasAncestor(node, forbiddenNixAncestors) or hasAncestor(node, parenForbiddenAncestors) then
+          return false
+        end
+
+        return hasAncestor(node, { binding = true }) or previousNonWhitespaceChar(opts) == '='
+      end
+
+      local function plainNixPairWhen(semicolonPairFn)
+        return function(ruleOpts)
+          return not semicolonPairFn(ruleOpts)
+        end
       end
 
       npairs.setup(opts)
       npairs.add_rules({
         Rule('{', '};', 'nix'):with_pair(shouldTerminateNixCollection),
+        Rule('{', '}', 'nix'):with_pair(plainNixPairWhen(shouldTerminateNixCollection)),
         Rule('[', '];', 'nix'):with_pair(shouldTerminateNixCollection),
+        Rule('[', ']', 'nix'):with_pair(plainNixPairWhen(shouldTerminateNixCollection)),
+        Rule('(', ');', 'nix'):with_pair(shouldTerminateNixParen),
+        Rule('(', ')', 'nix'):with_pair(plainNixPairWhen(shouldTerminateNixParen)),
       })
     end
   },
