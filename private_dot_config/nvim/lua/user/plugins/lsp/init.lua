@@ -39,6 +39,7 @@ local M = {
       vim.lsp.config["nixd"] = require("user.plugins.lsp.configs.nixd")
       -- vim.lsp.config["jsonnet_ls"] = require("user.plugins.lsp.configs.jsonnet_ls")
       vim.lsp.config["beancount"] = require("user.plugins.lsp.configs.beancount")
+      vim.lsp.config["rust_analyzer"] = require("user.plugins.lsp.configs.rust_analyzer")
       vim.lsp.config["vtsls"] = require("user.plugins.lsp.configs.vtsls")
 
       vim.lsp.enable({
@@ -48,6 +49,7 @@ local M = {
         "jsonnet_ls",
         "beancount",
         "hls",
+        "rust_analyzer",
         "vtsls",
       })
     end,
