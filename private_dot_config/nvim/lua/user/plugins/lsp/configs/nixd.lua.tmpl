@@ -1,8 +1,9 @@
 return {
+  cmd = { 'nixd', '--inlay-hints=true', },
   settings = {
     nixd = {
       nixpkgs = {
-        expr = "import <nixpkgs> { }"
+        expr = "import (builtins.getFlake \"" .. os.getenv("NH_FLAKE") .. "\").inputs.nixpkgs { }"
       },
 
       formatting = {
