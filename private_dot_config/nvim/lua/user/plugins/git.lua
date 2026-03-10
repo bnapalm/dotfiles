@@ -1,7 +1,7 @@
 return {
 
   {
-    "sindrets/diffview.nvim",
+    "dlyongemallo/diffview.nvim",
     cmd = {
       "DiffviewOpen",
       "DiffviewFileHistory",
@@ -10,7 +10,7 @@ return {
     keys = {
       { "<leader>gdo", vim.cmd.DiffviewOpen,        desc = "Diffview Open" },
       { "<leader>gdb", vim.cmd.DiffviewFileHistory, desc = "Diffview Branch" },
-      { "<leader>gdq", vim.cmd.DiffviewClose,       desc = "Diffview Branch" },
+      { "<leader>gdq", vim.cmd.DiffviewClose,       desc = "Diffview Close" },
       {
         "<leader>gdf",
         function()
