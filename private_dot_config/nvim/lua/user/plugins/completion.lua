@@ -93,6 +93,53 @@ return {
       sources = {
         default = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev' },
         providers = {
+          lsp = {
+            -- HACK: Work around gopls returning a zero-width completion edit in syntactically
+            -- invalid Go buffers (e.g. `foo === fa|`), which causes blink to insert `false`
+            -- at the cursor instead of replacing the typed prefix. When gopls gives us an
+            -- edit at the cursor for a Go identifier, rewrite it to replace the current
+            -- identifier prefix. Related upstream issues: golang/go#32510, golang/go#72753.
+            transform_items = function(ctx, items)
+              if vim.bo[ctx.bufnr].filetype ~= "go" then
+                return items
+              end
+
+              local row = ctx.cursor[1] - 1
+              local col = ctx.cursor[2]
+              local line = vim.api.nvim_buf_get_lines(ctx.bufnr, row, row + 1, false)[1] or ""
+
+              local start_col = col
+              while start_col > 0 and line:sub(start_col, start_col):match("[%w_]") do
+                start_col = start_col - 1
+              end
+
+              for _, item in ipairs(items) do
+                local client = item.client_id and vim.lsp.get_client_by_id(item.client_id) or nil
+                if client and client.name == "gopls" and item.textEdit and item.textEdit.newText then
+                  local edit = item.textEdit
+                  local range = edit.range or edit.insert or edit.replace
+
+                  if range
+                    and range.start.line == row
+                    and range["end"].line == row
+                    and range.start.character == col
+                    and range["end"].character == col
+                    and start_col < col
+                  then
+                    item.textEdit = {
+                      newText = edit.newText,
+                      range = {
+                        start = { line = row, character = start_col },
+                        ["end"] = { line = row, character = col },
+                      },
+                    }
+                  end
+                end
+              end
+
+              return items
+            end,
+          },
           lazydev = {
             name = "LazyDev",
             module = "lazydev.integrations.blink",
