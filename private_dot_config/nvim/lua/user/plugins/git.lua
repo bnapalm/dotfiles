@@ -60,7 +60,7 @@ return {
     },
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "sindrets/diffview.nvim",
+      "dlyongemallo/diffview.nvim",
       "nvim-telescope/telescope.nvim",
     },
   },
