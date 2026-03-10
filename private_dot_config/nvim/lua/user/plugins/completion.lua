@@ -60,7 +60,10 @@ return {
     'saghen/blink.cmp',
     lazy = false, -- lazy loading handled internally
     -- optional: provides snippets for the snippet source
-    dependencies = 'rafamadriz/friendly-snippets',
+    dependencies = {
+      'rafamadriz/friendly-snippets',
+      { 'yus-works/csc.nvim', opts = {} },
+    },
 
     -- use a release tag to download pre-built binaries
     version = '1.*',
@@ -91,7 +94,15 @@ return {
       -- default list of enabled providers defined so that you can extend it
       -- elsewhere in your config, without redefining it, via `opts_extend`
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev' },
+        default = function()
+          -- Commit messages only need snippet templates, repo-history scopes and
+          -- nearby buffer words; LSP/LazyDev are noise in this context.
+          if vim.bo.filetype == 'gitcommit' then
+            return { 'snippets', 'buffer', 'path' }
+          end
+
+          return { 'lsp', 'path', 'snippets', 'buffer', 'lazydev' }
+        end,
         providers = {
           lsp = {
             -- HACK: Work around gopls returning a zero-width completion edit in syntactically
@@ -145,6 +156,55 @@ return {
             module = "lazydev.integrations.blink",
             -- dont show LuaLS require statements when lazydev has items
             fallbacks = { "lsp" },
+          },
+          snippets = {
+            transform_items = function(ctx, items)
+              if vim.bo[ctx.bufnr].filetype ~= 'gitcommit' then
+                return items
+              end
+
+              -- These friendly-snippets entries should only win while typing the
+              -- first token of the subject line, e.g. `fea|` -> `feat(scope): msg`.
+              local conventional = {
+                cc = true,
+                feat = true,
+                fix = true,
+                build = true,
+                chore = true,
+                ci = true,
+                docs = true,
+                style = true,
+                refactor = true,
+                perf = true,
+                test = true,
+              }
+
+              local row = ctx.cursor[1] - 1
+              local col = ctx.cursor[2]
+              local line = vim.api.nvim_buf_get_lines(ctx.bufnr, row, row + 1, false)[1] or ""
+              local before_cursor = line:sub(1, col)
+              -- Only treat the cursor as being in the commit type position on the
+              -- first line before any `(`, `:`, spaces, or other separators.
+              local in_type_position = row == 0 and before_cursor:match('^%l*$') ~= nil
+
+              local filtered = {}
+              for _, item in ipairs(items) do
+                local label = item.label
+                local is_conventional = conventional[label] == true
+
+                if in_type_position and is_conventional then
+                  -- Boost commit-type templates when they are actually relevant.
+                  item.score_offset = (item.score_offset or 0) + 120
+                  table.insert(filtered, item)
+                elseif not is_conventional then
+                  -- Outside the type position, hide these templates completely so
+                  -- they do not pollute scope/body completion.
+                  table.insert(filtered, item)
+                end
+              end
+
+              return filtered
+            end,
           },
         },
       },
