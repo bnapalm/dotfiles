@@ -15,4 +15,26 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup("user.plugins")
+require("lazy").setup("user.plugins", {
+  concurrency = 8,
+  checker = {
+    concurrency = 8,
+  },
+})
+
+local function ensure_ghgj_master()
+  if vim.system({ "ssh", "-O", "check", "ghgj" }):wait().code ~= 0 then
+    vim.system({ "ssh", "-MNf", "ghgj" }):wait()
+  end
+end
+
+vim.api.nvim_create_autocmd("User", {
+  pattern = {
+    "LazyUpdatePre",
+    "LazySyncPre",
+    "LazyCheckPre",
+    "LazyInstallPre",
+    "LazyRestorePre",
+  },
+  callback = ensure_ghgj_master,
+})
