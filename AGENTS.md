@@ -1,44 +1,42 @@
-# CLAUDE.md
+# AGENTS.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+Chezmoi-managed dotfiles repo; only `private_dot_config/nvim/` is actively maintained.
 
-## Repository Overview
-
-Chezmoi-managed dotfiles repository. Only the Neovim configuration is actively maintained here; other configurations are deprecated.
-
-## Chezmoi Commands
+## Chezmoi
 
 ```bash
-chezmoi apply                    # Apply changes to home directory
-chezmoi diff                     # Preview changes before applying
-chezmoi edit ~/.config/nvim/...  # Edit a managed file
-chezmoi re-add ~/.config/nvim/...# Re-add after direct edits to target
+chezmoi apply
+chezmoi diff
+chezmoi edit ~/.config/nvim/...
+chezmoi re-add ~/.config/nvim/...
 ```
 
-## Chezmoi Naming Conventions
+Naming:
+- `dot_` hidden file
+- `private_dot_` hidden file in private dir
+- `executable_` executable file
+- `.tmpl` Go template
 
-- `dot_` prefix → hidden file
-- `private_dot_` prefix → hidden file in private directory
-- `executable_` prefix → executable permissions
-- `.tmpl` suffix → processed as Go template
+## Neovim
 
-## Neovim Configuration
+- Config root: `private_dot_config/nvim/`
+- Key files: `lua/user/options.lua`, `lua/user/keymaps.lua`, `lua/user/plugins/`, `lua/user/plugins/lsp/`
+- Plugin manager: `lazy.nvim`
+- Colorscheme: `gruvbox`
+- LSPs: `lua_ls`, `nixd`, `jsonnet_ls`, `beancount`, `gopls`, `terraformls`, `yamlls`
 
-Location: `private_dot_config/nvim/`
+## Testing
 
-**Structure:**
-- `lua/user/options.lua` - Editor settings
-- `lua/user/keymaps.lua` - Key mappings
-- `lua/user/plugins/` - Lazy.nvim plugin specs
-- `lua/user/plugins/lsp/` - LSP configuration
-- `lua/user/plugins/lsp/configs/` - Per-language LSP configs
+For headless tests, deploy the managed Neovim config to a temp HOME, then run Neovim against that deployed tree with temp config HOME but existing data dir:
 
-**Plugin Manager:** Lazy.nvim
+```bash
+TEST_HOME=/tmp/<temp_dir> sh -c 'mkdir -p "$TEST_HOME" && chezmoi apply "$TEST_HOME/.config/nvim" -D "$TEST_HOME" -P'
+HOME=$TEST_HOME XDG_CONFIG_HOME=$TEST_HOME/.config XDG_STATE_HOME=$TEST_HOME/.local/state XDG_DATA_HOME=/home/black/.config/local/share \
+  nvim --headless -u "$TEST_HOME/.config/nvim/init.lua" ...
+```
 
-**Colorscheme:** Gruvbox
+Test the deployed tree under `$TEST_HOME/.config/nvim`, not source files directly.
 
-**LSP Servers Configured:** lua_ls, nixd, jsonnet_ls, beancount, gopls, terraformls, yamlls
+## Platform
 
-## Platform Handling
-
-The `.chezmoiignore` conditionally excludes files based on NixOS detection. Template files (`.tmpl`) use Chezmoi variables like `{{ .chezmoi.os }}` for platform-specific content.
+`.chezmoiignore` may exclude files by platform; templates can use `{{ .chezmoi.os }}`.
