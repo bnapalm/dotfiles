@@ -69,6 +69,7 @@ return {
         { "<leader>l",  group = "lsp" },
         { "<leader>r",  group = "rename" },
         { "<leader>w",  group = "workspace" },
+        { "<leader>n",  group = "notify/nix" },
         -- mini.ai custom objects
         {
           mode = { "x", "o" },
@@ -182,7 +183,7 @@ return {
 
       { "<leader>.",   function() Snacks.scratch() end,                 desc = "Toggle Scratch Buffer" },
       { "<leader>S",   function() Snacks.scratch.select() end,          desc = "Select Scratch Buffer" },
-      { "<leader>n",   function() Snacks.notifier.show_history() end,   desc = "Notification History" },
+      { "<leader>nn",   function() Snacks.notifier.show_history() end,   desc = "Notification History" },
       { "<leader>cR",  function() Snacks.rename.rename_file() end,      desc = "Rename File" },
       { "<leader>gB",  function() Snacks.gitbrowse() end,               desc = "Git Browse" },
       { "<leader>gbl", function() Snacks.git.blame_line() end,          desc = "Git Blame Line" },
