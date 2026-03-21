@@ -151,6 +151,7 @@ return {
 
   {
     "ray-x/go.nvim",
+    cmd = { "GoNew" },
     config = function()
       local capabilities = require('blink.cmp').get_lsp_capabilities(vim.lsp.protocol.make_client_capabilities())
       require('go').setup({
@@ -170,7 +171,6 @@ return {
         trouble = true
       })
     end,
-    event = { "CmdlineEnter" },
     ft = { "go", 'gomod' },
     build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
     dependencies = {                                        -- optional packages
