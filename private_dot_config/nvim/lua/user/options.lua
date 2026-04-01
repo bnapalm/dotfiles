@@ -37,6 +37,8 @@ local options = {
   sidescrolloff  = 8,
   signcolumn     = "yes",
   wrap           = true,
+  linebreak      = true,
+  breakindent    = true,
 
   list           = true,
   listchars      = { tab = '  ', trail = '·', extends = '⇨', precedes = '⇦' },
