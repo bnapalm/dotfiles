@@ -1,10 +1,17 @@
 return {
   'MeanderingProgrammer/render-markdown.nvim',
   opts = {
+    completions = {
+      blink = {
+        enabled = true
+      }
+    },
+
     heading = {
       width = 'block',
       right_pad = 1,
     },
+
     code = {
       sign = false,
       width = 'block',
@@ -12,6 +19,7 @@ return {
       right_pad = 2,
       min_width = 40,
     },
+
     indent = {
       enabled = true,
     },
