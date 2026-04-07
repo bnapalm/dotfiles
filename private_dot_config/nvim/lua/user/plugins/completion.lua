@@ -40,6 +40,7 @@ return {
     config = function()
       require("luasnip.loaders.from_lua").lazy_load({ paths = { vim.fn.stdpath("config") .. "/lua/user/snip" } })
       require("luasnip.loaders.from_vscode").lazy_load({
+        paths = { vim.fn.stdpath("config") .. "/snippets" },
         exclude = {
           "plaintext",
           "markdown",
@@ -167,6 +168,7 @@ return {
               -- first token of the subject line, e.g. `fea|` -> `feat(scope): msg`.
               local conventional = {
                 cc = true,
+                config = true,
                 feat = true,
                 fix = true,
                 build = true,

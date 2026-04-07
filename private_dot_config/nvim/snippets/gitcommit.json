@@ -1,0 +1,6 @@
+{
+  "config conventional commit": {
+    "prefix": "config",
+    "body": ["config(${1:scope}): ${2:title}", "", "$0"]
+  }
+}
