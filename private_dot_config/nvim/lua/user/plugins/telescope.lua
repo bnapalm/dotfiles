@@ -15,6 +15,11 @@ return {
         desc = "Find Files",
       },
       {
+        "<leader>m",
+        require('telescope.builtin').git_status,
+        desc = "Changed files (Git)",
+      },
+      {
         "<leader>sc",
         require('telescope.builtin').grep_string,
         desc = "Grep word under cursor",
@@ -48,6 +53,7 @@ return {
     opts = {
       pickers = {
         find_files = ivy_opts,
+        git_status = ivy_opts,
         grep_string = ivy_opts,
         live_grep = ivy_opts,
       },
