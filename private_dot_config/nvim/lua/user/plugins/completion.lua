@@ -83,7 +83,7 @@ return {
       -- your own keymap.
       keymap = {
         preset = 'default',
-        ['<S-CR>'] = { 'accept' },
+        ['<S-CR>'] = { 'accept', 'fallback' },
       },
 
       appearance = {
@@ -104,7 +104,14 @@ return {
 
           return { 'lsp', 'path', 'snippets', 'buffer', 'lazydev' }
         end,
+        per_filetype = {
+          ['pi-chat-prompt'] = { 'pi' },
+        },
         providers = {
+          pi = {
+            name = 'Pi',
+            module = 'pi.completion.blink',
+          },
           lsp = {
             -- HACK: Work around gopls returning a zero-width completion edit in syntactically
             -- invalid Go buffers (e.g. `foo === fa|`), which causes blink to insert `false`
