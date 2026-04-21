@@ -22,9 +22,7 @@ Naming:
 - Config root: `private_dot_config/nvim/`
 - Key files: `lua/user/options.lua`, `lua/user/keymaps.lua`, `lua/user/plugins/`, `lua/user/plugins/lsp/`
 - Plugin manager: `lazy.nvim`
-- Colorscheme: `gruvbox`
-- LSPs: `lua_ls`, `nixd`, `jsonnet_ls`, `beancount`, `gopls`, `terraformls`, `yamlls`
-
+- Installed plugin directory: `$XDG_DATA_HOME/nvim/lazy/`
 ## Testing
 
 For headless tests, deploy the managed Neovim config to a temp HOME, then run Neovim against that deployed tree with temp config HOME but existing data dir:
