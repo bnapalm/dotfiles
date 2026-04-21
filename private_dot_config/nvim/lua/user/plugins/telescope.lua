@@ -15,7 +15,7 @@ return {
         desc = "Find Files",
       },
       {
-        "<leader>m",
+        "<leader>sm",
         require('telescope.builtin').git_status,
         desc = "Changed files (Git)",
       },
