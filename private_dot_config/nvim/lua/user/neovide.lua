@@ -19,9 +19,9 @@ if vim.g.neovide then
   vim.g.neovide_input_use_logo = 1 -- enable use of the logo (cmd) key
   vim.g.neovide_input_macos_option_key_is_meta = "both"
   vim.keymap.set("n", "<M-m>", "<C-w>h")
-  vim.keymap.set("n", "<M-w>", "<C-w>j")
-  vim.keymap.set("n", "<M-v>", "<C-w>k")
-  vim.keymap.set("n", "<M-z>", "<C-w>l")
+  vim.keymap.set("n", "<M-g>", "<C-w>j")
+  vim.keymap.set("n", "<M-f>", "<C-w>k")
+  vim.keymap.set("n", "<M-v>", "<C-w>l")
   vim.keymap.set("n", "<M-l>", ":bnext<CR>")
   vim.keymap.set("n", "<M-h>", ":bprevious<CR>")
 end

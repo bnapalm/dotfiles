@@ -25,9 +25,9 @@ keymap('n', '<leader>cl', '<cmd>Lazy<cr>')
 -- Normal --
 -- Better window navigation
 keymap("n", "<A-m>", "<C-w>h")
-keymap("n", "<A-w>", "<C-w>j")
-keymap("n", "<A-v>", "<C-w>k")
-keymap("n", "<A-z>", "<C-w>l")
+keymap("n", "<A-g>", "<C-w>j")
+keymap("n", "<A-f>", "<C-w>k")
+keymap("n", "<A-v>", "<C-w>l")
 
 -- Navigate buffers
 keymap("n", "<A-l>", ":bnext<CR>")
