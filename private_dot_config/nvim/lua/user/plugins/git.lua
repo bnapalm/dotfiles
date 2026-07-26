@@ -105,6 +105,16 @@ return {
     },
     dependencies = {
       "tpope/vim-rhubarb",
+      {
+        name = "vim-forgejo",
+        url = "ssh://git@git.mythoranium.com/mytools/vim-forgejo.git",
+        init = function()
+          vim.g.forgejo_domains = {
+            "https://codeberg.org",
+            "https://git.mythoranium.com",
+          }
+        end,
+      },
     }
   },
 
