@@ -6,6 +6,8 @@ return {
       "DiffviewOpen",
       "DiffviewFileHistory",
       "DiffviewClose",
+      "DiffviewDiffDirs",
+      "DiffviewMergeFiles",
     },
     keys = {
       { "<leader>gdo", vim.cmd.DiffviewOpen,        desc = "Diffview Open" },
