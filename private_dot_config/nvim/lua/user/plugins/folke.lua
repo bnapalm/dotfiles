@@ -77,6 +77,8 @@ return {
           { "ad", desc = "digits" },
           { "ie", desc = "case aware word" },
           { "ae", desc = "case aware word" },
+          { "iC", desc = "comment inner" },
+          { "aC", desc = "comment outer" },
         }
       },
     },
