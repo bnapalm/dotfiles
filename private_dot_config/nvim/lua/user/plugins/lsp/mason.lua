@@ -1,6 +1,7 @@
 local my_default_lsp = {
   -- "lua_ls",
   -- "gopls",
+  "jsonls", -- json-lsp: formatting + schema/syntax diagnostics
 }
 
 return {

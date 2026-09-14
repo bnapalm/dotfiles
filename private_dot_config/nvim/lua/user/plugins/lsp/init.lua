@@ -41,6 +41,7 @@ local M = {
       vim.lsp.config["beancount"] = require("user.plugins.lsp.configs.beancount")
       vim.lsp.config["rust_analyzer"] = require("user.plugins.lsp.configs.rust_analyzer")
       vim.lsp.config["vtsls"] = require("user.plugins.lsp.configs.vtsls")
+      vim.lsp.config["jsonls"] = require("user.plugins.lsp.configs.jsonls")
 
       vim.lsp.enable({
         "lua_ls",
@@ -51,6 +52,7 @@ local M = {
         "hls",
         "rust_analyzer",
         "vtsls",
+        "jsonls",
       })
     end,
 
