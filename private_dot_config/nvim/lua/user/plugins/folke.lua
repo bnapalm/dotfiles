@@ -188,6 +188,7 @@ return {
       { "<leader>nn",   function() Snacks.notifier.show_history() end,   desc = "Notification History" },
       { "<leader>cR",  function() Snacks.rename.rename_file() end,      desc = "Rename File" },
       { "<leader>gB",  function() Snacks.gitbrowse() end,               desc = "Git Browse" },
+      { "<leader>gY",  function() Snacks.gitbrowse({ open = function(url) vim.fn.setreg("+", url) end }) end, mode = { "n", "x" }, desc = "Copy Git URL" },
       { "<leader>gbl", function() Snacks.git.blame_line() end,          desc = "Git Blame Line" },
       { "<leader>gf",  function() Snacks.lazygit.log_file() end,        desc = "Lazygit Current File History" },
       { "<leader>gg",  function() Snacks.lazygit() end,                 desc = "Lazygit" },

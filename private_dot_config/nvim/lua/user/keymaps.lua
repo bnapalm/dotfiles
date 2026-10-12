@@ -69,6 +69,11 @@ keymap('n', '<leader>Y', '\"+Y', "Yank until EOL to OS")
 -- keymap({ 'n', 'v' }, '<leader>d', '\"+d', "Delete to OS")
 keymap({ 'n', 'v' }, '<leader>p', '\"+p', "Paste from OS")
 keymap({ 'n', 'v' }, '<leader>P', '\"+P', "Paste (before) from OS")
+keymap({ 'n', 'x' }, '<leader>gy', function()
+  local s, e = math.min(vim.fn.line('v'), vim.fn.line('.')), math.max(vim.fn.line('v'), vim.fn.line('.'))
+  local path = vim.fs.relpath(vim.fs.root(0, '.git') or vim.fn.getcwd(), vim.api.nvim_buf_get_name(0))
+  vim.fn.setreg('+', path .. ':' .. (s == e and s or s .. '-' .. e))
+end, "Copy path:line")
 
 -- Diagnostics
 
