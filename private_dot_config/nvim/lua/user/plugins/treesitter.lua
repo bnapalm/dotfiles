@@ -29,7 +29,20 @@ return {
     lazy = false,
     branch = 'main',
     build = function()
-      require("nvim-treesitter").update(nil, { summary = true })
+      local ts = require("nvim-treesitter")
+      ts.update(nil, { summary = true }):wait(300000)
+      ts.install({ "nix" }, { force = true }):wait(300000)
+    end,
+    init = function()
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "TSUpdate",
+        callback = function()
+          require("nvim-treesitter.parsers").nix.install_info = {
+            url = "https://github.com/numtide/tree-sitter-nix",
+            branch = "master",
+          }
+        end,
+      })
     end,
     event = { "VeryLazy" },
     cmd = { "TSUpdate", "TSInstall", "TSLog", "TSUninstall" },
