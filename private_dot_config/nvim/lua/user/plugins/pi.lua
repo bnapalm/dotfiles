@@ -8,8 +8,9 @@ local function pi(method, ...)
   end
 end
 
-return {
+local legacy = {
   "alex35mil/pi.nvim",
+  enabled = false,
 
   -- Optional: required only for `:PiPasteImage` (clipboard image paste).
   dependencies = { "HakonHarnes/img-clip.nvim" },
@@ -40,5 +41,23 @@ return {
       { match = "kimi-k2.5",    exact = true },
     },
     -- layout = { ... },
+  },
+}
+
+return {
+  legacy,
+  {
+    "carderne/pi-nvim",
+    cmd = { "Pi", "PiSend", "PiSendFile", "PiSendSelection", "PiSendBuffer", "PiPing", "PiSessions" },
+    keys = {
+      { "<Leader>mm", ":Pi<CR>", mode = { "n", "v" }, desc = "Pi send prompt w/ file/selection" },
+      { "<Leader>mf", "<cmd>PiSendFile<CR>", desc = "Pi send file" },
+      { "<Leader>mb", "<cmd>PiSendBuffer<CR>", desc = "Pi send buffer" },
+      { "<Leader>ms", "<cmd>PiSessions<CR>", desc = "Pi select session" },
+      { "<Leader>mi", "<cmd>PiPing<CR>", desc = "Pi ping session" },
+    },
+    opts = {
+      set_default_keymaps = false,
+    },
   },
 }
