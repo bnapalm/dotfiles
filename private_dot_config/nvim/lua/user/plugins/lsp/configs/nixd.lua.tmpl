@@ -3,7 +3,7 @@ return {
   settings = {
     nixd = {
       nixpkgs = {
-        expr = "import (builtins.getFlake \"" .. os.getenv("NH_FLAKE") .. "\").inputs.nixpkgs { }"
+        expr = "(builtins.getFlake \"" .. os.getenv("NH_FLAKE") .. "\").homeConfigurations.\"{{ .chezmoi.username }}@{{ .chezmoi.hostname }}\".pkgs"
       },
 
       formatting = {
